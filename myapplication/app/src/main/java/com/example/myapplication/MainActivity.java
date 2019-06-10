@@ -3,6 +3,7 @@ package com.example.myapplication;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -45,6 +46,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
+        MotionEvent event;
         switch (v.getId()) {
             case R.id.btn:
                     Toast t = Toast.makeText(this, "make toast1!", Toast.LENGTH_LONG);
