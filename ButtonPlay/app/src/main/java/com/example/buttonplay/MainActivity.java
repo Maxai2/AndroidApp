@@ -11,8 +11,13 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import java.sql.Time;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Random;
+
+import javax.xml.datatype.Duration;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -22,6 +27,9 @@ public class MainActivity extends AppCompatActivity {
 
     ArrayList fLesson = new ArrayList();
     ArrayList sLesson = new ArrayList();
+
+    long firstLessonEnd = 10 * 3600 + 20 * 60 + 0;
+    long secondLessonEnd = 11 * 3600 + 50 * 60 + 0;
 
 //    long startTimeInMillis = 2700000; // 45 min
 //    CountDownTimer countDownTimer;
@@ -105,9 +113,27 @@ public class MainActivity extends AppCompatActivity {
         int minutes = (int) ((time / (1000 * 60)) % 60);
         int hours = (int) ((time / (1000 * 60 * 60)) % 24) + 4; // +4 for Baku
 
-        if ((int)fLesson.get(0) == hours) {
+        long newTime = hours * 3600 + minutes * 60 + seconds;
+        long res = 0;
+
+        if (newTime <= firstLessonEnd) {
+           res = firstLessonEnd - newTime;
+        } else if (firstLessonEnd < newTime && newTime <= secondLessonEnd) {
+
+        } else {
 
         }
+
+//        String pattern = "HH:mm:ss";
+//        SimpleDateFormat sdf = new SimpleDateFormat(pattern);
+//
+//        try {
+//            Date date1 = sdf.parse(String.format("%02d:%02d:%02d", hours, minutes, seconds));
+//            Date date2 = sdf.parse("10:20:00");
+//            Date date3 = sdf.parse("11:50:00");
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
 
         return String.format("%02d:%02d:%02d", hours, minutes, seconds);
     }
