@@ -119,10 +119,16 @@ public class MainActivity extends AppCompatActivity {
         if (newTime <= firstLessonEnd) {
            res = firstLessonEnd - newTime;
         } else if (firstLessonEnd < newTime && newTime <= secondLessonEnd) {
-
+            res = secondLessonEnd - newTime;
         } else {
-
+            return null;
         }
+
+        int resH = (int)(res / 3600);
+        res -= resH * 3600;
+        int resM = (int)(res / 60);
+        res -= resM * 60;
+        int resS = (int)res;
 
 //        String pattern = "HH:mm:ss";
 //        SimpleDateFormat sdf = new SimpleDateFormat(pattern);
@@ -135,6 +141,6 @@ public class MainActivity extends AppCompatActivity {
 //            e.printStackTrace();
 //        }
 
-        return String.format("%02d:%02d:%02d", hours, minutes, seconds);
+        return String.format("%02d:%02d:%02d", resH, resM, resS);
     }
 }
