@@ -1,7 +1,11 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <!--<string name="app_name">My Application</string>-->
     <string name="hello">Hello world!</string>
     <string-array name="flsgList">
         <item></item>
     </string-array>
+    <string name="app_name">Speech To Text</string>
+    <string name="speech_prompt" translatable="false">Tell smth</string>
+    <string name="speech_not_supported" translatable="false">Your device not support voice input</string>
+    <string name="tap_on_mic" translatable="false">Push me</string>
 </resources>

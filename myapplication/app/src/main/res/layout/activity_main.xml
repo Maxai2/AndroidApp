@@ -48,5 +48,25 @@
         android:onClick="onClick"
         />
 
+    <Button
+        android:id="@+id/btnF"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Flash"
+        android:layout_centerInParent="true"
+        android:layout_below="@id/btn3"
+        android:onClick="onClick"
+        />
+
+    <Button
+        android:id="@+id/btnSecAct"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SecAct"
+        android:layout_centerInParent="true"
+        android:layout_below="@id/btnF"
+        android:onClick="onClick"
+        />
+
 
 </RelativeLayout>
