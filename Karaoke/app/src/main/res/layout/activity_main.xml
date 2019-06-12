@@ -6,19 +6,46 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-
     <!--<VideoView-->
-        <!--android:id="@+id/videoView"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_gravity="center" />-->
+    <!--android:id="@+id/videoView"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_gravity="center" />-->
 
     <Button
+        android:id="@+id/st"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Start"
         android:layout_centerHorizontal="true"
+        android:onClick="onClick"/>
+
+    <Button
+        android:id="@+id/pa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pause"
+        android:layout_below="@id/st"
+        android:layout_centerHorizontal="true"
+        android:onClick="onClick"/>
+
+    <Button
+        android:id="@+id/stop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Stop"
+        android:layout_below="@id/pa"
+        android:layout_centerHorizontal="true"
+        android:onClick="onClick"/>
+
+
+    <Button
+        android:id="@+id/ne"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Next"
+        android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
-        android:onClick="Start"/>
+        android:onClick="onClick"/>
 
 </RelativeLayout>
