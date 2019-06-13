@@ -2,6 +2,8 @@ package com.example.speedmatch;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import java.util.ArrayList;
@@ -53,11 +55,31 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public static int generateRandomIntIntRange(int min, int max) {
-
         Random r = new Random();
-
         return r.nextInt((max - min) + 1) + min;
+    }
 
+    public void answer(View view) {
+        Button bt = (Button)view;
+
+        switch (bt.getId()) {
+            case R.id.correct:
+                break;
+            case R.id.inCorrect:
+                break;
+        }
+    }
+
+    public void remote(View view) {
+        Button bt = (Button)view;
+
+        switch (bt.getId()) {
+            case R.id.start:
+                break;
+            case R.id.reset:
+                break;
+        }
+    }
     }
 
 //    @Override protected void onResume() {
