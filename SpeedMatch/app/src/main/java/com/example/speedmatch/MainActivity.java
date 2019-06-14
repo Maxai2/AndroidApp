@@ -1,5 +1,6 @@
 package com.example.speedmatch;
 
+import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -17,6 +18,13 @@ public class MainActivity extends AppCompatActivity {
     ImageView iv;
     Random random = new Random();
 
+    long startTimeInMillis = 60000; // 1 min
+    CountDownTimer countDownTimer;
+    long mtimeLeftInMillis = startTimeInMillis;
+
+    Button start;
+    Button reset;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +41,11 @@ public class MainActivity extends AppCompatActivity {
         iv = (ImageView) findViewById(R.id.pic);
 
         iv.setImageResource((int)pics.get(generateRandomIntIntRange(0, 6)));
+
+        start = findViewById(R.id.start);
+        reset = findViewById(R.id.reset);
+
+        reset.setEnabled(false);
 
 //        gifImageView = findViewById(R.id.gifImageView);
 //
@@ -75,6 +88,17 @@ public class MainActivity extends AppCompatActivity {
 
         switch (bt.getId()) {
             case R.id.start:
+                countDownTimer = new CountDownTimer(mtimeLeftInMillis, 1000) {
+                    @Override
+                    public void onTick(long millisUntilFinished) {
+                        mtimeLeftInMillis = millisUntilFinished;
+                    }
+
+                    @Override
+                    public void onFinish() {
+
+                    }
+                }.start();
                 break;
             case R.id.reset:
                 break;
@@ -95,4 +119,4 @@ public class MainActivity extends AppCompatActivity {
 //    public void OnClick(View view) {
 //        gifImageView.startAnimation();
 //    }
-}
+
