@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ShomHuman">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        >
+
+        <TextView
+            android:id="@+id/textV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="25dp"
+            />
+
+        <Button
+            android:id="@+id/ab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ActionBar"
+            android:textAllCaps="false"
+            android:onClick="showAc"
+            android:layout_gravity="center"
+            />
+        <Button
+            android:id="@+id/toa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Toast"
+            android:textAllCaps="false"
+            android:onClick="showAc"
+            android:layout_gravity="center"
+            />
+        <Button
+            android:id="@+id/di"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dialog"
+            android:textAllCaps="false"
+            android:onClick="showAc"
+            android:layout_gravity="center"
+            />
+        <Button
+            android:id="@+id/tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Text view"
+            android:textAllCaps="false"
+            android:onClick="showAc"
+            android:layout_gravity="center"
+            />
+        <Button
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Back"
+            android:textAllCaps="false"
+            android:onClick="showAc"
+            android:layout_gravity="center"
+            />
+
+    </LinearLayout>
+
+</RelativeLayout>
