@@ -26,6 +26,13 @@
             android:layout_height="match_parent"
             android:text="0"
             />
+
+        <!--<Button-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content" -->
+            <!--android:text="X"-->
+            <!---->
+            <!--/>-->
     </LinearLayout>
 
     <LinearLayout
@@ -53,7 +60,25 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:layout_margin="20dp"
+        android:layout_margin="40dp"
+        />
+
+    <ImageView
+        android:id="@+id/picC"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_margin="40dp"
+        android:background="#008000"
+        />
+
+    <ImageView
+        android:id="@+id/picW"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_margin="40dp"
+        android:background="#FF0000"
         />
 
     <RelativeLayout
@@ -63,7 +88,7 @@
         >
 
         <Button
-            android:id="@+id/correct"
+            android:id="@+id/inCorrect"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="#F44336"
@@ -72,7 +97,7 @@
             />
 
         <Button
-            android:id="@+id/inCorrect"
+            android:id="@+id/correct"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
