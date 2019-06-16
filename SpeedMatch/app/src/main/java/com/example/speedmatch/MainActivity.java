@@ -26,8 +26,8 @@ public class MainActivity extends AppCompatActivity {
 
     ArrayList pics = new ArrayList();
     ImageView iv;
-    ImageView ivC;
-    ImageView ivW;
+//    ImageView ivC;
+//    ImageView ivW;
     Random random = new Random();
     TextView point;
     TextView time;
@@ -59,11 +59,11 @@ public class MainActivity extends AppCompatActivity {
         pics.add(R.drawable.triangle_rightdown);
 
         iv = (ImageView) findViewById(R.id.pic);
-        ivC = (ImageView) findViewById(R.id.picC);
-        ivW = (ImageView) findViewById(R.id.picW);
+//        ivC = (ImageView) findViewById(R.id.picC);
+//        ivW = (ImageView) findViewById(R.id.picW);
 
-        ivC.setVisibility(View.GONE);
-        ivW.setVisibility(View.GONE);
+//        ivC.setVisibility(View.GONE);
+//        ivW.setVisibility(View.GONE);
 
         start = findViewById(R.id.start);
         reset = findViewById(R.id.reset);
@@ -135,45 +135,34 @@ public class MainActivity extends AppCompatActivity {
                 }
                 break;
         }
-//        iv.setBackgroundColor(Color.TRANSPARENT);
 
-        lastIndex = currentIndex;
-        currentIndex = generateRandomIntIntRange(0, 6);
-        iv.setImageResource((int)pics.get(currentIndex));
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                iv.setBackgroundColor(Color.TRANSPARENT);
+                lastIndex = currentIndex;
+                currentIndex = generateRandomIntIntRange(0, 6);
+                iv.setImageResource((int)pics.get(currentIndex));
+            }
+        }, 500);
     }
 
     public void equalNotEqual(boolean equal) {
+        iv.setImageDrawable(null);
+
         if (equal) {
             point.setText(String.valueOf(Integer.parseInt(point.getText().toString()) + 100));
             correctAns++;
 
-//            iv.setImageDrawable(null);
-//            iv.setBackgroundColor(Color.green(255));
-
-//            Handler handler = new Handler();
-//            handler.postDelayed(new Runnable() {
-//                @Override
-//                public void run() {
-                      iv.setBackgroundColor(Color.green(255));
-//                    iv.setImageDrawable(new ColorDrawable(Color.green(255)));
-//                }
-//            }, 500);
+            iv.setBackgroundColor(Color.rgb(0, 255, 0));
         } else {
             point.setText(String.valueOf(Integer.parseInt(point.getText().toString()) - 75));
             wrongAns++;
 
-//            iv.setImageDrawable(null);
-//            iv.setBackgroundColor(Color.red(255));
-
-//            Handler handler = new Handler();
-//            handler.postDelayed(new Runnable() {
-//                @Override
-//                public void run() {
-                      iv.setBackgroundColor(Color.red(255));
-//                    iv.setImageDrawable(new ColorDrawable(Color.red(255)));
-//                }
-//            }, 500);
+            iv.setBackgroundColor(Color.rgb(255, 0, 0));
         }
+
     }
 
     public void remote(View view) {
@@ -186,25 +175,28 @@ public class MainActivity extends AppCompatActivity {
                 break;
             }
             case R.id.reset:
-                countDownTimer.cancel();
+                if (!time.getText().equals("0")) {
+                    countDownTimer.cancel();
 
-                new AlertDialog.Builder(this)
-                    .setTitle("Attention!")
-                    .setMessage("Your progress will be lost, do u want it?")
-                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            resetGame();
-                        }
-                    })
-                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            countDownTimer.start();
-                        }
-                    })
-                    .show();
-
+                    new AlertDialog.Builder(this)
+                        .setTitle("Attention!")
+                        .setMessage("Your progress will be lost, do u want it?")
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                resetGame();
+                            }
+                        })
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                countDownTimer.start();
+                            }
+                        })
+                        .show();
+                } else {
+                    resetGame();
+                }
                 break;
         }
     }
@@ -219,6 +211,7 @@ public class MainActivity extends AppCompatActivity {
         mtimeLeftInMillis = 60000;
 
         iv.setImageDrawable(null);
+        iv.setBackgroundColor(Color.TRANSPARENT);
 
         correct.setEnabled(false);
         inCorrect.setEnabled(false);
@@ -249,6 +242,23 @@ public class MainActivity extends AppCompatActivity {
             }
         }, 1000);
     }
+
+//    boolean test = false;
+//
+//    public void test(View view) {
+//        Button bt = (Button)view;
+//
+//        if (bt.getId() == R.id.test) {
+//            iv.setImageDrawable(null);
+//            if (test) {
+//                iv.setBackgroundColor(Color.rgb(5, 12, 123));
+//            } else {
+//                iv.setBackgroundColor(Color.TRANSPARENT);
+//            }
+//
+//            test = !test;
+//        }
+//    }
 }
 
 //    @Override protected void onResume() {
