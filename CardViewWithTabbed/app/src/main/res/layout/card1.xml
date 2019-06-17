@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="15dp"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp"
+                >
+
+                <TextView
+                    android:id="@+id/header"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Welcome Back!"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="20dp"
+                    />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="It's been a while, have you\nread any new books lately?"
+                    android:layout_below="@id/header"
+                    android:layout_marginTop="10dp"
+                    />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                >
+
+                <Button
+                    android:id="@+id/nopeBt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nope"
+                    android:textAllCaps="true"
+                    android:textSize="14dp"
+                    android:textColor="@color/cardview_dark_background"
+                    style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
+                    android:background="@android:color/transparent"
+                    />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Yes"
+                    android:layout_toRightOf="@id/nopeBt"
+                    android:textColor="#FF9800"
+                    android:textAllCaps="true"
+                    android:textSize="14dp"
+                    style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
+                    android:background="@android:color/transparent"
+                    />
+                <!--android:textStyle="bold"-->
+                <!--android:background="#ffffff"-->
+
+            </RelativeLayout>
+        </LinearLayout>
+
+
+    </android.support.v7.widget.CardView>
+
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        >
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+
+            <ImageView
+                android:id="@+id/wolfPic"
+                android:layout_width="80dp"
+                android:layout_height="150dp"
+                android:src="@drawable/wolf"
+                />
+
+            <LinearLayout
+                android:id="@+id/afWol"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/wolfPic"
+                android:orientation="vertical"
+                android:layout_margin="15dp"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="El Pooch"
+                    android:textSize="25dp"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="By Alex Nelson"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/cardview_shadow_start_color"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_toRightOf="@id/wolfPic"
+                android:layout_below="@id/afWol"
+                >
+
+                <Button
+                    android:id="@+id/freeSBt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Free Sample"
+                    android:textAllCaps="true"
+                    android:textSize="14dp"
+                    android:textColor="@color/cardview_dark_background"
+                    style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
+                    />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Review"
+                    android:layout_toRightOf="@id/freeSBt"
+                    android:textColor="#FF9800"
+                    android:textAllCaps="true"
+                    android:textSize="14dp"
+                    style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
+                    />
+            </LinearLayout>
+
+        </RelativeLayout>
+
+
+    </android.support.v7.widget.CardView>
+
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        >
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+
+            <ImageView
+                android:id="@+id/wolfPl"
+                android:layout_width="80dp"
+                android:layout_height="150dp"
+                android:src="@drawable/plane"
+                />
+
+            <LinearLayout
+                android:id="@+id/afPl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/wolfPl"
+                android:orientation="vertical"
+                android:layout_margin="15dp"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="The Flight"
+                    android:textSize="25dp"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="By Scott Masterson"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/cardview_shadow_start_color"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_toRightOf="@id/wolfPl"
+                android:layout_below="@id/afPl"
+                >
+
+                <Button
+                    android:id="@+id/freeS2Bt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Free Sample"
+                    android:textAllCaps="true"
+                    android:textSize="14dp"
+                    android:textColor="@color/cardview_dark_background"
+                    style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
+                    />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Review"
+                    android:layout_toRightOf="@id/freeS2Bt"
+                    android:textColor="#FF9800"
+                    android:textAllCaps="true"
+                    android:textSize="14dp"
+                    style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
+                    />
+            </LinearLayout>
+
+        </RelativeLayout>
+
+
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>

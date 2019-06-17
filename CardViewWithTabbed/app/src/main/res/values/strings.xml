@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">CardViewWithTabbed</string>
+    <string name="main">Main</string>
+    <string name="card1">Card 1</string>
+    <string name="card2Landscape">Card 2L</string>
+    <string name="card2Portret">Card 2P</string>
+    <string name="card3">Card 3</string>
+    <string name="card4">Card 4</string>
+    <string name="card5">Card 5</string>
+</resources>
