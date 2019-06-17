@@ -84,7 +84,11 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFinish() {
+                correct.setEnabled(false);
+                inCorrect.setEnabled(false);
+
                 new AlertDialog.Builder(MainActivity.this)
+                    .setCancelable(false)
                     .setTitle("Game over!")
                     .setMessage("Your score: " + point.getText() +
                             "\nNumber of Correct Answer: " + correctAns +
@@ -119,6 +123,9 @@ public class MainActivity extends AppCompatActivity {
     public void answer(View view) {
         Button bt = (Button)view;
 
+        correct.setEnabled(false);
+        inCorrect.setEnabled(false);
+
         switch (bt.getId()) {
             case R.id.correct:
                 if (lastIndex == currentIndex) {
@@ -140,9 +147,11 @@ public class MainActivity extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
+                correct.setEnabled(true);
+                inCorrect.setEnabled(true);
                 iv.setBackgroundColor(Color.TRANSPARENT);
                 lastIndex = currentIndex;
-                currentIndex = generateRandomIntIntRange(0, 6);
+                currentIndex = randRand();
                 iv.setImageResource((int)pics.get(currentIndex));
             }
         }, 500);
@@ -179,6 +188,7 @@ public class MainActivity extends AppCompatActivity {
                     countDownTimer.cancel();
 
                     new AlertDialog.Builder(this)
+                        .setCancelable(false)
                         .setTitle("Attention!")
                         .setMessage("Your progress will be lost, do u want it?")
                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
@@ -221,7 +231,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void startGame() {
-
         countDownTimer.start();
 
         start.setEnabled(false);
@@ -234,7 +243,7 @@ public class MainActivity extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                currentIndex = generateRandomIntIntRange(0, 6);
+                currentIndex = randRand();
                 iv.setImageResource((int)pics.get(currentIndex));
 
                 correct.setEnabled(true);
@@ -242,6 +251,21 @@ public class MainActivity extends AppCompatActivity {
             }
         }, 1000);
     }
+
+    public int randRand() {
+        int i = generateRandomIntIntRange(0, 1);
+        int res;
+
+        if (i == 0) {
+            res = generateRandomIntIntRange(0, 6);
+        } else {
+            res = lastIndex;
+        }
+
+        return res;
+    }
+}
+
 
 //    boolean test = false;
 //
@@ -259,7 +283,6 @@ public class MainActivity extends AppCompatActivity {
 //            test = !test;
 //        }
 //    }
-}
 
 //    @Override protected void onResume() {
 //        super.onResume();
