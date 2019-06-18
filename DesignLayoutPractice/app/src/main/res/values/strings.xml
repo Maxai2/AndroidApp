@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">DesignLayoutPractice</string>
+    <string name="grid1">G1</string>
+    <string name="grid2">G2</string>
+    <string name="grid3">G3</string>
+    <string name="grid4">G4</string>
+    <string name="grid5">G5</string>
+    <string name="grid6">G6</string>
+    <string name="grid7">G7</string>
+    <string name="linear1">L1</string>
+    <string name="linear2">L2</string>
+    <string name="relative1">R1</string>
+    <string name="relative2">R2</string>
+    <string name="relative3">R3</string>
+    <string name="relative4">R4</string>
+    <string name="relative5">R5</string>
+    <string name="relative6">R6</string>
+</resources>
