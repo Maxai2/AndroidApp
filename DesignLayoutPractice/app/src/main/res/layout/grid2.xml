@@ -11,9 +11,20 @@
     <Button
         android:background="#0E3C87"
         android:drawableLeft="@drawable/androidlogo"
+        android:text="1"
+        android:textColor="@android:color/white"
+        android:padding="20dp"
+        android:layout_row="0"
+        android:layout_column="0"
         />
     <Button
         android:background="#005F99"
+        android:layout_row="0"
+        android:layout_column="1"
+        android:drawableLeft="@drawable/androidlogo"
+        android:text="1"
+        android:textColor="@android:color/white"
+        android:padding="20dp"
         />
     <Button
         android:background="#009CC5"
