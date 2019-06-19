@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:rowCount="6"
+    android:columnCount="2"
+    android:orientation="vertical"
+    >
+
+    <Button
+        android:background="#0E3C87"
+        android:drawableLeft="@drawable/androidlogo"
+        />
+    <Button
+        android:background="#005F99"
+        />
+    <Button
+        android:background="#009CC5"
+        />
+    <Button
+        android:background="#019B9A"
+        />
+    <Button
+        android:background="#5BA222"
+        />
+    <Button
+        android:background="#C3C301"
+        />
+    <Button
+        android:background="#2E6D27"
+        />
+    <Button
+        android:background="#D5005D"
+        />
+    <Button
+        android:background="#D5005D"
+        />
+    <Button
+        android:background="#E18305"
+        />
+
+</GridLayout>
