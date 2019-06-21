@@ -9,35 +9,9 @@
 
     <Button
         android:background="#0E3C87"
-        android:drawableLeft="@drawable/androidlogo"
         android:textColor="@android:color/white"
-        android:text="1"
+        android:text="Lorem Ipsum"
         android:layout_row="0"
-        android:layout_column="0"
-        android:layout_columnWeight="1"
-        android:layout_rowWeight="1"
-        android:layout_margin="3dp"
-        />
-
-    <Button
-        android:background="#005F99"
-        android:drawableLeft="@drawable/androidlogo"
-        android:textColor="@android:color/white"
-        android:text="3"
-        android:layout_row="0"
-        android:layout_column="1"
-        android:layout_columnWeight="1"
-        android:layout_rowWeight="1"
-        android:layout_margin="3dp"
-        />
-
-
-    <Button
-        android:background="#009CC5"
-        android:drawableLeft="@drawable/androidlogo"
-        android:textColor="@android:color/white"
-        android:text="4"
-        android:layout_row="1"
         android:layout_column="0"
         android:layout_columnWeight="1"
         android:layout_rowWeight="1"
@@ -46,57 +20,53 @@
 
     <Button
         android:background="#019B9A"
-        android:drawableLeft="@drawable/androidlogo"
         android:textColor="@android:color/white"
-        android:text="2"
+        android:text="Something"
+        android:layout_row="0"
+        android:layout_column="1"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:layout_margin="3dp"
+        />
+
+    <Button
+        android:background="#009CC5"
+        android:textColor="@android:color/white"
+        android:text="Ipsum Dolor Sit Amet"
         android:layout_row="1"
-        android:layout_column="1"
-        android:layout_columnWeight="1"
-        android:layout_rowWeight="1"
-        android:layout_margin="3dp"
-        />
-
-
-    <Button
-        android:background="#5BA222"
-        android:drawableLeft="@drawable/androidlogo"
-        android:textColor="@android:color/white"
-        android:text="5"
-        android:layout_row="2"
         android:layout_column="0"
-        android:layout_columnWeight="1"
-        android:layout_rowWeight="1"
-        android:layout_margin="3dp"
-        />
-
-    <Button
-        android:background="#C3C301"
-        android:drawableLeft="@drawable/androidlogo"
-        android:textColor="@android:color/white"
-        android:text="6"
-        android:layout_row="2"
-        android:layout_column="1"
+        android:layout_columnSpan="2"
         android:layout_columnWeight="1"
         android:layout_rowWeight="1"
         android:layout_margin="3dp"
         />
 
     <LinearLayout
-        android:layout_row="3"
+        android:layout_row="2"
+        android:layout_rowSpan="4"
         android:layout_column="0"
-        android:layout_rowSpan="3"
         android:layout_columnWeight="1"
         android:layout_rowWeight="1"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        >
+
+        <Button
+            android:background="#5BA222"
+            android:textColor="@android:color/white"
+            android:text="Ipsum Yes"
+            android:layout_margin="3dp"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            />
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:background="#2E6D27"
-            android:drawableLeft="@drawable/androidlogo"
             android:textColor="@android:color/white"
-            android:text="7"
+            android:text="Helloworld"
             android:layout_margin="3dp"
             />
 
@@ -105,42 +75,51 @@
             android:layout_height="0dp"
             android:layout_weight="2"
             android:background="#D5005D"
-            android:drawableLeft="@drawable/androidlogo"
             android:textColor="@android:color/white"
-            android:text="9"
+            android:text="Lorem Ipsum\nDolor Sit"
             android:layout_margin="3dp"
-        />
+            />
+
     </LinearLayout>
 
-
     <LinearLayout
-        android:layout_row="3"
+        android:layout_row="2"
+        android:layout_rowSpan="4"
         android:layout_column="1"
-        android:layout_rowSpan="3"
         android:layout_columnWeight="1"
         android:layout_rowWeight="1"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        >
+
 
         <Button
-            android:background="#E04028"
-            android:drawableLeft="@drawable/androidlogo"
+            android:background="#C3C301"
             android:textColor="@android:color/white"
-            android:text="8"
             android:layout_margin="3dp"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="2"
+            android:text="Something"
             />
 
         <Button
-            android:background="#E18305"
-            android:drawableLeft="@drawable/androidlogo"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
             android:textColor="@android:color/white"
-            android:text="10"
+            android:text="Yes yes yes"
             android:layout_margin="3dp"
+            android:background="#E04028"
+            />
+
+        <Button
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
+            android:textColor="@android:color/white"
+            android:text="Dolor Dolor"
+            android:layout_margin="3dp"
+            android:background="#E18305"
             />
     </LinearLayout>
 

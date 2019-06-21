@@ -17,7 +17,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     @StringRes
 //    private static final int[] TAB_TITLES = new int[]{R.string.grid1, R.string.grid2, R.string.grid3, R.string.grid4, R.string.grid5, R.string.grid6, R.string.linear1, R.string.linear2, R.string.relative1, R.string.relative2, R.string.relative3, R.string.relative4, R.string.relative5, R.string.relative6};
-    private static final int[] TAB_TITLES = new int[]{R.string.grid1, R.string.grid2};
+    private static final int[] TAB_TITLES = new int[]{R.string.grid1, R.string.grid2, R.string.grid3, R.string.grid4, R.string.grid5};
     private final Context mContext;
 
     public SectionsPagerAdapter(Context context, FragmentManager fm) {
@@ -32,6 +32,12 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
                 return new grid1Fragment();
             case 1:
                 return new grid2Fragment();
+            case 2:
+                return new grid3Fragment();
+            case 3:
+                return new grid4Fragment();
+            case 4:
+                return new grid5Fragment();
             default:
                 return null;
         }
