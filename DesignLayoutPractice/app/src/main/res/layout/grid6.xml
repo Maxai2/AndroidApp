@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:rowCount="4"
+    android:layout_column="5"
+    android:background="@android:color/black"
+    >
+
+    <FrameLayout
+        android:layout_row="0"
+        android:layout_column="0"
+        android:layout_rowWeight="1"
+        android:layout_columnWeight="1"
+        android:background="#00A9EC"
+        android:padding="5dp"
+        android:layout_margin="10dp"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mail"
+            android:textColor="@android:color/white"
+            android:layout_gravity="bottom"
+            />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/mail"
+            android:layout_gravity="center"/>
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_row="1"
+        android:layout_column="0"
+        android:layout_rowWeight="1"
+        android:layout_columnWeight="1"
+        android:background="#6B6B6B"
+        android:padding="5dp"
+        android:layout_margin="10dp"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Settings"
+            android:textColor="@android:color/white"
+            android:layout_gravity="bottom"
+            />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/settingsicon"
+            android:layout_gravity="center"
+            />
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_row="2"
+        android:layout_column="0"
+        android:layout_rowWeight="1"
+        android:layout_columnWeight="1"
+        android:background="#43B51F"
+        android:padding="5dp"
+        android:layout_margin="10dp"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Make a call"
+            android:textColor="@android:color/white"
+            android:layout_gravity="bottom"
+            />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/phoneicon"
+            android:layout_gravity="center"
+            />
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_row="3"
+        android:layout_column="0"
+        android:layout_rowWeight="1"
+        android:layout_columnWeight="1"
+        android:background="#00A9EC"
+        android:padding="5dp"
+        android:layout_margin="10dp"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Music"
+            android:textColor="@android:color/white"
+            android:layout_gravity="bottom"
+            />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/musicicon"
+            android:layout_gravity="center"
+            />
+
+    </FrameLayout>
+
+
+    <FrameLayout
+        android:layout_row="0"
+        android:layout_rowSpan="2"
+        android:layout_column="1"
+        android:layout_columnSpan="2"
+        android:padding="5dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/amerroad"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Photos"
+            android:textColor="@android:color/white"
+            android:layout_gravity="bottom"
+            />
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_row="2"
+        android:layout_column="1"
+        android:layout_rowWeight="1"
+        android:layout_columnWeight="1"
+        android:background="#F48D02"
+        android:padding="5dp"
+        android:layout_margin="10dp"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mozilla"
+            android:textColor="@android:color/white"
+            android:layout_gravity="bottom"
+            />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/firefoxicon"
+            android:layout_gravity="center"
+            />
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_row="3"
+        android:layout_column="1"
+        android:layout_rowWeight="1"
+        android:layout_columnWeight="1"
+        android:background="#640F6C"
+        android:padding="5dp"
+        android:layout_margin="10dp"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Yahoo"
+            android:textColor="@android:color/white"
+            android:layout_gravity="bottom"
+            />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/yahooicon"
+            android:layout_gravity="center"
+            />
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_row="2"
+        android:layout_rowSpan="2"
+        android:layout_column="2"
+        android:layout_rowWeight="1"
+        android:layout_columnWeight="1"
+        android:background="#D42C2C"
+        android:padding="5dp"
+        android:layout_margin="10dp"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="GMail"
+            android:textColor="@android:color/white"
+            android:layout_gravity="bottom"
+            />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/gmailicon"
+            android:layout_gravity="center"
+            />
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_row="0"
+        android:layout_column="3"
+        android:layout_rowWeight="1"
+        android:layout_columnWeight="1"
+        android:background="#3C5B9C"
+        android:padding="5dp"
+        android:layout_margin="10dp"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Facebook"
+            android:textColor="@android:color/white"
+            android:layout_gravity="bottom"
+            />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/facebookicon"
+            android:layout_gravity="center"
+            />
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_row="1"
+        android:layout_column="3"
+        android:layout_rowWeight="1"
+        android:layout_columnWeight="1"
+        android:background="#FFC809"
+        android:padding="5dp"
+        android:layout_margin="10dp"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Winamp"
+            android:textColor="@android:color/white"
+            android:layout_gravity="bottom"
+            />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/winampicon"
+            android:layout_gravity="center"
+            />
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_row="2"
+        android:layout_column="3"
+        android:layout_rowWeight="1"
+        android:layout_columnWeight="1"
+        android:background="#00A9EC"
+        android:padding="5dp"
+        android:layout_margin="10dp"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TMall"
+            android:textColor="@android:color/white"
+            android:layout_gravity="bottom"
+            />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/tmallicon"
+            android:layout_gravity="center"
+            />
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_row="3"
+        android:layout_column="3"
+        android:layout_rowWeight="1"
+        android:layout_columnWeight="1"
+        android:background="#F874A5"
+        android:padding="5dp"
+        android:layout_margin="10dp"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Basketball"
+            android:textColor="@android:color/white"
+            android:layout_gravity="bottom"
+            />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/basketballicon"
+            android:layout_gravity="center"
+            />
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_row="0"
+        android:layout_rowSpan="2"
+        android:layout_column="4"
+        android:layout_rowWeight="1"
+        android:layout_columnWeight="5"
+        android:background="#4C5E52"
+        android:padding="5dp"
+        android:layout_margin="10dp"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dewential"
+            android:textColor="@android:color/white"
+            android:layout_gravity="bottom"
+            />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/dicon"
+            android:layout_gravity="center"
+            />
+
+    </FrameLayout>
+</GridLayout>
