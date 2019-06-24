@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Top\nLeft"
+        android:background="#2DA4B8"
+        android:textColor="@android:color/white"
+        android:textAllCaps="false"
+        android:padding="30dp"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Top\nMiddle"
+        android:background="#FF5C01"
+        android:textColor="@android:color/white"
+        android:textAllCaps="false"
+        android:layout_centerHorizontal="true"
+        android:padding="30dp"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Top\nRight"
+        android:background="#2DA4B8"
+        android:textColor="@android:color/white"
+        android:textAllCaps="false"
+        android:layout_alignParentRight="true"
+        android:padding="30dp"
+        />
+
+    <Button
+        android:id="@+id/centre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Centre"
+        android:background="#2DA4B8"
+        android:textColor="@android:color/white"
+        android:textAllCaps="false"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:padding="30dp"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Left"
+        android:background="#FF5C01"
+        android:textColor="@android:color/white"
+        android:textAllCaps="false"
+        android:padding="30dp"
+        android:layout_below="@id/centre"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Right"
+        android:background="#FF5C01"
+        android:textColor="@android:color/white"
+        android:textAllCaps="false"
+        android:padding="30dp"
+        android:layout_below="@id/centre"
+        android:layout_alignParentRight="true"
+        />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Bottom of Screen"
+        android:background="#2DA4B8"
+        android:textColor="@android:color/white"
+        android:textAllCaps="false"
+        android:padding="30dp"
+        android:layout_alignParentBottom="true"
+        />
+</RelativeLayout>

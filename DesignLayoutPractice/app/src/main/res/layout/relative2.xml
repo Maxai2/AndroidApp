@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/black"
+    >
+
+    <ImageButton
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="@android:color/white"
+        android:src="@drawable/androidlogo"
+        android:scaleType="fitXY"
+        />
+
+    <ImageButton
+        android:id="@+id/topcentre"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="@android:color/darker_gray"
+        android:src="@drawable/androidlogo"
+        android:layout_centerHorizontal="true"
+        android:scaleType="fitXY"
+        />
+
+    <ImageButton
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="#0F2EE9"
+        android:src="@drawable/androidlogo"
+        android:scaleType="fitXY"
+        android:layout_alignParentRight="true"
+        />
+
+    <ImageButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#F90908"
+        android:src="@drawable/androidlogo"
+        android:layout_below="@id/topcentre"
+        android:layout_margin="20dp"
+        android:scaleType="fitCenter"
+        />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true">
+
+        <ImageButton
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:background="#56F71D"
+            android:src="@drawable/androidlogo"
+            android:scaleType="fitXY"
+            android:layout_margin="5dp"
+            />
+
+        <ImageButton
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:background="#FCFB31"
+            android:src="@drawable/androidlogo"
+            android:scaleType="fitXY"
+            android:layout_margin="5dp"
+            />
+
+        <ImageButton
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:background="#24F5AC"
+            android:src="@drawable/androidlogo"
+            android:scaleType="fitXY"
+            android:layout_margin="5dp"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        >
+
+        <ImageButton
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="#F97A13"
+            android:src="@drawable/androidlogo"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="20dp"
+            />
+
+        <ImageButton
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:background="#D39147"
+            android:src="@drawable/androidlogo"
+            />
+
+        <ImageButton
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="#F0A89C"
+            android:src="@drawable/androidlogo"
+            android:scaleType="fitXY"
+            android:layout_marginTop="80dp"
+            />
+
+    </LinearLayout>
+</RelativeLayout>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Top Content Here"
+        android:textAllCaps="false"
+        android:layout_centerHorizontal="true"
+        android:background="#0863B4"
+        android:textColor="@android:color/white"
+        android:padding="40dp"
+        />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        >
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#0863B4"
+            android:text="1st"
+            android:textColor="@android:color/white"
+            android:padding="40dp"
+            android:layout_margin="10dp"
+            />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#FE0000"
+            android:text="2nd"
+            android:padding="40dp"
+            android:layout_margin="10dp"
+            />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#0863B4"
+            android:text="3rd"
+            android:textColor="@android:color/white"
+            android:padding="40dp"
+            android:layout_margin="10dp"
+            />
+
+    </LinearLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bottom Content Here"
+        android:textAllCaps="false"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:background="#0863B4"
+        android:textColor="@android:color/white"
+        android:padding="40dp"
+        />
+
+</RelativeLayout>
