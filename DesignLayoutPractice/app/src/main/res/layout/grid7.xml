@@ -132,7 +132,7 @@
             android:textColor="@android:color/white"
             android:layout_gravity="top|center"
             android:textAllCaps="true"
-            android:textSize="10dp"
+            android:textSize="5dp"
             />
 
         <ImageView

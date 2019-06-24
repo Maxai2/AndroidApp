@@ -24,6 +24,7 @@
             android:text="Mail"
             android:textColor="@android:color/white"
             android:layout_gravity="bottom"
+            android:textSize="10dp"
             />
 
         <ImageView
@@ -50,6 +51,7 @@
             android:text="Settings"
             android:textColor="@android:color/white"
             android:layout_gravity="bottom"
+            android:textSize="10dp"
             />
 
         <ImageView
@@ -77,6 +79,7 @@
             android:text="Make a call"
             android:textColor="@android:color/white"
             android:layout_gravity="bottom"
+            android:textSize="10dp"
             />
 
         <ImageView
@@ -104,6 +107,7 @@
             android:text="Music"
             android:textColor="@android:color/white"
             android:layout_gravity="bottom"
+            android:textSize="10dp"
             />
 
         <ImageView
@@ -121,6 +125,7 @@
         android:layout_rowSpan="2"
         android:layout_column="1"
         android:layout_columnSpan="2"
+        android:layout_rowWeight="1"
         android:padding="5dp"
         android:layout_margin="10dp"
         android:background="@drawable/amerroad"
@@ -132,6 +137,7 @@
             android:text="Photos"
             android:textColor="@android:color/white"
             android:layout_gravity="bottom"
+            android:textSize="10dp"
             />
     </FrameLayout>
 
@@ -151,6 +157,7 @@
             android:text="Mozilla"
             android:textColor="@android:color/white"
             android:layout_gravity="bottom"
+            android:textSize="10dp"
             />
 
         <ImageView
@@ -178,6 +185,7 @@
             android:text="Yahoo"
             android:textColor="@android:color/white"
             android:layout_gravity="bottom"
+            android:textSize="10dp"
             />
 
         <ImageView
@@ -206,6 +214,7 @@
             android:text="GMail"
             android:textColor="@android:color/white"
             android:layout_gravity="bottom"
+            android:textSize="10dp"
             />
 
         <ImageView
@@ -233,6 +242,7 @@
             android:text="Facebook"
             android:textColor="@android:color/white"
             android:layout_gravity="bottom"
+            android:textSize="10dp"
             />
 
         <ImageView
@@ -260,6 +270,7 @@
             android:text="Winamp"
             android:textColor="@android:color/white"
             android:layout_gravity="bottom"
+            android:textSize="10dp"
             />
 
         <ImageView
@@ -287,6 +298,7 @@
             android:text="TMall"
             android:textColor="@android:color/white"
             android:layout_gravity="bottom"
+            android:textSize="10dp"
             />
 
         <ImageView
@@ -314,6 +326,7 @@
             android:text="Basketball"
             android:textColor="@android:color/white"
             android:layout_gravity="bottom"
+            android:textSize="10dp"
             />
 
         <ImageView
@@ -342,6 +355,7 @@
             android:text="Dewential"
             android:textColor="@android:color/white"
             android:layout_gravity="bottom"
+            android:textSize="10dp"
             />
 
         <ImageView
