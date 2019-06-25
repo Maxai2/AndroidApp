@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/black"
+    >
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="red"
+            android:layout_alignLeft="@id/green"
+            android:background="#F90600"
+            style="@style/Widget.AppCompat.ActionButton"
+            android:textAllCaps="true"
+            android:layout_above="@id/orange"
+            />
+
+        <Button
+            android:id="@+id/orange"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="orange"
+            android:layout_alignLeft="@id/green"
+            android:background="#FBA908"
+            style="@style/Widget.AppCompat.ActionButton"
+            android:textAllCaps="true"
+            android:layout_above="@id/yellow"
+            />
+
+        <Button
+            android:id="@+id/yellow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="yellow"
+            android:layout_alignLeft="@id/green"
+            android:background="#FDFF17"
+            style="@style/Widget.AppCompat.ActionButton"
+            android:textAllCaps="true"
+            android:layout_above="@id/green"
+            />
+
+        <Button
+            android:id="@+id/green"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="green"
+            android:layout_centerInParent="true"
+            android:background="#03FD1F"
+            style="@style/Widget.AppCompat.ActionButton"
+            android:textAllCaps="true"
+            />
+
+        <Button
+            android:id="@+id/blue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="blue"
+            android:layout_alignLeft="@id/green"
+            android:background="#110EFE"
+            android:textColor="@android:color/white"
+            style="@style/Widget.AppCompat.ActionButton"
+            android:textAllCaps="true"
+            android:layout_below="@id/green"
+            />
+
+        <Button
+            android:id="@+id/indigo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="indigo"
+            android:layout_alignLeft="@id/green"
+            android:background="#4B0383"
+            android:textColor="@android:color/white"
+            style="@style/Widget.AppCompat.ActionButton"
+            android:textAllCaps="true"
+            android:layout_below="@id/blue"
+            />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="violet"
+            android:layout_alignLeft="@id/green"
+            android:background="#EE82EE"
+            style="@style/Widget.AppCompat.ActionButton"
+            android:textAllCaps="true"
+            android:layout_below="@id/indigo"
+            />
+
+</RelativeLayout>

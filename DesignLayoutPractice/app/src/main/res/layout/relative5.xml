@@ -4,27 +4,100 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        >
-
         <Button
             android:id="@+id/red"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:background="#FF0300"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:background="@drawable/buttonrad"
+            android:backgroundTint="#FF0300"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
             />
 
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="#150CFB"
+            android:id="@+id/minred"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/buttonrad"
+            android:backgroundTint="#150CFB"
             android:layout_toLeftOf="@id/red"
+            android:layout_centerVertical="true"
+            android:layout_margin="50dp"
             />
 
-    </RelativeLayout>
+        <Button
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/buttonrad"
+            android:backgroundTint="#FF0300"
+            android:layout_above="@id/minred"
+            android:layout_toLeftOf="@id/graycube"
+            />
+
+        <FrameLayout
+            android:id="@+id/graycube"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="50dp"
+            android:layout_above="@id/red"
+            android:layout_centerHorizontal="true">
+
+            <Button
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/buttonrad"
+                android:backgroundTint="#7F7F7F"
+                />
+
+            <Button
+                android:layout_width="5dp"
+                android:layout_height="5dp"
+                android:backgroundTint="@android:color/white"
+                android:layout_gravity="center|right"
+                android:layout_marginRight="-3dp"
+                android:background="@drawable/buttonrad"
+                />
+
+        </FrameLayout>
+
+        <Button
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/buttonrad"
+            android:backgroundTint="#80047E"
+            android:layout_above="@id/minred"
+            android:layout_toRightOf="@id/graycube"
+            />
+
+        <Button
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/buttonrad"
+            android:backgroundTint="#017E0E"
+            android:layout_toRightOf="@id/red"
+            android:layout_centerVertical="true"
+            android:layout_margin="50dp"
+            />
+
+        <Button
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/buttonrad"
+            android:backgroundTint="#FDFE1E"
+            android:layout_below="@id/minred"
+            android:layout_toRightOf="@id/graycube"
+            />
+
+        <Button
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/buttonrad"
+            android:backgroundTint="#BFBFBF"
+            android:layout_margin="50dp"
+            android:layout_below="@id/red"
+            android:layout_centerHorizontal="true"
+            />
+
+    <!--style="@style/Widget.AppCompat.Button"-->
 
 </RelativeLayout>

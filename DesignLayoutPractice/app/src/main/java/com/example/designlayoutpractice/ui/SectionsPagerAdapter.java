@@ -16,7 +16,7 @@ import com.example.designlayoutpractice.R;
 public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     @StringRes
-    private static final int[] TAB_TITLES = new int[]{R.string.grid1, R.string.grid2, R.string.grid3, R.string.grid4, R.string.grid5, R.string.grid6, R.string.grid7, R.string.linear1, R.string.relative1, R.string.relative2, R.string.relative3, R.string.relative4};
+    private static final int[] TAB_TITLES = new int[]{R.string.grid1, R.string.grid2, R.string.grid3, R.string.grid4, R.string.grid5, R.string.grid6, R.string.grid7, R.string.linear1, R.string.relative1, R.string.relative2, R.string.relative3, R.string.relative4, R.string.relative5, R.string.relative6};
     private final Context mContext;
 
     public SectionsPagerAdapter(Context context, FragmentManager fm) {
@@ -51,6 +51,10 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
                 return new relative3Fragment();
             case 11:
                 return new relative4Fragment();
+            case 12:
+                return new relative5Fragment();
+            case 13:
+                return new relative6Fragment();
             default:
                 return null;
         }
