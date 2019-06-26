@@ -10,9 +10,11 @@ public class MainActivity extends AppCompatActivity {
 
     TextView expression;
     TextView curNumber;
-    int ans = 0;
-    String ansStr = "";
+    float ansF = 0;
+    float ansS = 0;
+    String ansStr = "0";
     String exp = "";
+    boolean dotIn = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,29 +23,17 @@ public class MainActivity extends AppCompatActivity {
 
         expression = (TextView)findViewById(R.id.expression);
         curNumber = (TextView)findViewById(R.id.curNumber);
-        curNumber.setText("0");
+        curNumber.setText(ansStr);
     }
 
-    public void calcAct(View view) {
+    public void calcNum(View view) {
         Button bt = (Button)view;
 
+        if (ansStr == "0") {
+            ansStr = "";
+        }
+
         switch (bt.getId()) {
-            case R.id.clear:
-                expression.setText("");
-                curNumber.setText("0");
-                ans = 0;
-                break;
-            case R.id.backspace:
-                ansStr = ansStr.substring(0, ansStr.length() - 1);
-                break;
-            case R.id.divide:
-                break;
-            case R.id.multiple:
-                break;
-            case R.id.minus:
-                break;
-            case R.id.plus:
-                break;
             case R.id.one:
                 ansStr += "1";
                 break;
@@ -72,16 +62,89 @@ public class MainActivity extends AppCompatActivity {
                 ansStr += "9";
                 break;
             case R.id.zero:
-                break;
-            case R.id.equal:
-                break;
-            case R.id.radical:
+                if (!ansStr.equals("0"))
+                    ansStr += "0";
                 break;
             case R.id.dot:
+                if (!dotIn) {
+                    if (ansStr.equals("")) {
+                        ansStr += "0.";
+                    } else {
+                        ansStr += ".";
+                    }
+                    dotIn = true;
+                }
                 break;
         }
 
         curNumber.setText(ansStr);
-//        expression.setText(expression.getText() + ansStr);
+    }
+
+    public void clearNum(View view) {
+        Button bt = (Button)view;
+
+        switch (bt.getId()) {
+            case R.id.clear:
+                ansStr = "0";
+                dotIn = false;
+                break;
+            case R.id.backspace:
+                if (ansStr.length() == 1) {
+                    ansStr = "0";
+                } else {
+                    if (ansStr.substring(ansStr.length() - 1).equals("."))
+                        dotIn = false;
+
+                    ansStr = ansStr.substring(0, ansStr.length() - 1);
+                }
+                break;
+        }
+
+        curNumber.setText(ansStr);
+    }
+
+    public void numExp(View view) {
+        Button bt = (Button)view;
+
+        if (ansS != 0)
+            ansF = ansS;
+
+        ansS = Float.parseFloat(ansStr);
+
+        String oldS = expression.getText().toString();
+
+        if (oldS.equals("")) {
+            oldS = ansStr;
+            ansStr = "";
+        } else {
+            oldS.substring(oldS.length() - 1).equals(".")
+        }
+
+        curNumber.setText(ansStr);
+
+        switch (bt.getId()) {
+            case R.id.divide:
+                oldS += '÷';
+                break;
+            case R.id.multiple:
+                oldS += '*';
+                break;
+            case R.id.minus:
+                oldS += '-';
+                break;
+            case R.id.plus:
+                oldS += '+';
+                break;
+        }
+
+        expression.setText(oldS);
+    }
+
+    public void totalEq(View view) {
+
+    }
+
+    public void plusMinAdd(View view) {
+//        if (ansStr.equals("0") || ansStr.equals("0."))
     }
 }
