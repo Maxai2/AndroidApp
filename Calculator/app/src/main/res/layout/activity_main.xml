@@ -27,7 +27,6 @@
         android:layout_height="wrap_content"
         android:layout_weight="2"
         android:textDirection="rtl"
-        android:textColor="#676C72"
         android:textSize="50dp"
         android:gravity="bottom"
         />
@@ -38,7 +37,6 @@
         android:layout_weight="3"
         android:columnCount="4"
         android:rowCount="5"
-        android:onClick="calcAct"
         >
 
         <Button
@@ -51,6 +49,7 @@
             android:text="C"
             android:textColor="@android:color/white"
             android:textSize="40dp"
+            android:onClick="calcAct"
             />
 
         <Button
@@ -63,6 +62,7 @@
             android:text="←"
             android:textColor="@android:color/white"
             android:textSize="40dp"
+            android:onClick="calcAct"
             />
 
         <Button
@@ -75,6 +75,7 @@
             android:text="÷"
             android:textColor="@android:color/white"
             android:textSize="40dp"
+            android:onClick="calcAct"
             />
 
         <Button
@@ -87,6 +88,7 @@
             android:text="X"
             android:textColor="@android:color/white"
             android:textSize="40dp"
+            android:onClick="calcAct"
             />
 
         <Button
@@ -99,6 +101,7 @@
             android:text="7"
             android:textColor="@android:color/white"
             android:textSize="40dp"
+            android:onClick="calcAct"
             />
 
         <Button
@@ -111,6 +114,7 @@
             android:text="8"
             android:textColor="@android:color/white"
             android:textSize="40dp"
+            android:onClick="calcAct"
             />
 
         <Button
@@ -123,6 +127,7 @@
             android:text="9"
             android:textColor="@android:color/white"
             android:textSize="40dp"
+            android:onClick="calcAct"
             />
 
         <Button
@@ -135,6 +140,7 @@
             android:text="―"
             android:textColor="@android:color/white"
             android:textSize="40dp"
+            android:onClick="calcAct"
             />
 
         <Button
@@ -147,6 +153,7 @@
             android:text="4"
             android:textColor="@android:color/white"
             android:textSize="40dp"
+            android:onClick="calcAct"
             />
 
         <Button
@@ -159,6 +166,7 @@
             android:text="5"
             android:textColor="@android:color/white"
             android:textSize="40dp"
+            android:onClick="calcAct"
             />
 
         <Button
@@ -171,6 +179,7 @@
             android:text="6"
             android:textColor="@android:color/white"
             android:textSize="40dp"
+            android:onClick="calcAct"
             />
 
         <Button
@@ -183,6 +192,7 @@
             android:text="+"
             android:textColor="@android:color/white"
             android:textSize="40dp"
+            android:onClick="calcAct"
             />
 
         <Button
@@ -195,6 +205,7 @@
             android:text="1"
             android:textColor="@android:color/white"
             android:textSize="40dp"
+            android:onClick="calcAct"
             />
 
         <Button
@@ -207,6 +218,7 @@
             android:text="2"
             android:textColor="@android:color/white"
             android:textSize="40dp"
+            android:onClick="calcAct"
             />
 
         <Button
@@ -219,6 +231,7 @@
             android:text="3"
             android:textColor="@android:color/white"
             android:textSize="40dp"
+            android:onClick="calcAct"
             />
 
         <Button
@@ -232,6 +245,7 @@
             android:text="="
             android:textColor="@android:color/white"
             android:textSize="40dp"
+            android:onClick="calcAct"
             />
 
         <Button
@@ -244,6 +258,7 @@
             android:text="√"
             android:textColor="@android:color/white"
             android:textSize="40dp"
+            android:onClick="calcAct"
             />
 
         <Button
@@ -256,6 +271,7 @@
             android:text="0"
             android:textColor="@android:color/white"
             android:textSize="40dp"
+            android:onClick="calcAct"
             />
 
         <Button
@@ -268,6 +284,7 @@
             android:text="."
             android:textColor="@android:color/white"
             android:textSize="40dp"
+            android:onClick="calcAct"
             />
 
     </GridLayout>
