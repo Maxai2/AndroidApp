@@ -10,11 +10,13 @@ public class MainActivity extends AppCompatActivity {
 
     TextView expression;
     TextView curNumber;
-    float ansF = 0;
-    float ansS = 0;
+    int ansF = 0;
+    int ansS = 0;
     String ansStr = "0";
     String exp = "";
     boolean dotIn = false;
+    boolean chSign = false;
+    char oper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     public void calcNum(View view) {
         Button bt = (Button)view;
 
-        if (ansStr == "0") {
+        if (ansStr.equals("0")) {
             ansStr = "";
         }
 
@@ -85,6 +87,7 @@ public class MainActivity extends AppCompatActivity {
 
         switch (bt.getId()) {
             case R.id.clear:
+                expression.setText("");
                 ansStr = "0";
                 dotIn = false;
                 break;
@@ -106,34 +109,71 @@ public class MainActivity extends AppCompatActivity {
     public void numExp(View view) {
         Button bt = (Button)view;
 
-        if (ansS != 0)
-            ansF = ansS;
-
-        ansS = Float.parseFloat(ansStr);
+        if (ansStr == "") {
+            ansS = 0;
+            chSign = true;
+        } else {
+            ansS = Integer.parseInt(ansStr);
+        }
 
         String oldS = expression.getText().toString();
 
         if (oldS.equals("")) {
             oldS = ansStr;
             ansStr = "";
+            ansF = ansS;
         } else {
-            oldS.substring(oldS.length() - 1).equals(".")
+            if (chSign) {
+                switch (oldS.substring(oldS.length() - 1)) {
+                    case "+":
+                    case "-":
+                    case "*":
+                    case "÷":
+                        oldS = oldS.substring(0, oldS.length() - 1);
+                        break;
+                }
+                chSign = false;
+            } else {
+                switch (oldS.substring(oldS.length() - 1)) {
+                    case "+":
+                        ansF += ansS;
+                        break;
+                    case "-":
+                        ansF -= ansS;
+                        break;
+                    case "*":
+                        ansF *= ansS;
+                        break;
+                    case "÷":
+                        ansF /= ansS;
+                        break;
+                }
+
+                oldS += ansS;
+            }
+
+            ansStr = String.valueOf(ansF);
         }
 
         curNumber.setText(ansStr);
+        ansStr = "";
 
         switch (bt.getId()) {
             case R.id.divide:
                 oldS += '÷';
+                oper = '÷';
                 break;
             case R.id.multiple:
                 oldS += '*';
+                oper = '*';
                 break;
             case R.id.minus:
                 oldS += '-';
+                oper = '-';
                 break;
             case R.id.plus:
                 oldS += '+';
+                oper = '+';
                 break;
         }
 
@@ -141,7 +181,29 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void totalEq(View view) {
+        if (ansStr.equals(""))
+            ansS = ansF;
+        else
+            ansS = Integer.parseInt(ansStr);
 
+        switch (oper) {
+            case '÷':
+                ansF /= ansS;
+                break;
+            case '*':
+                ansF *= ansS;
+                break;
+            case '+':
+                ansF += ansS;
+                break;
+            case '-':
+                ansF -= ansS;
+                break;
+        }
+
+        expression.setText("");
+        ansStr = String.valueOf(ansF);
+        curNumber.setText(ansStr);
     }
 
     public void plusMinAdd(View view) {
