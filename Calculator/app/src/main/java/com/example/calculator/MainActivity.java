@@ -17,6 +17,8 @@ public class MainActivity extends AppCompatActivity {
     boolean dotIn = false;
     boolean chSign = false;
     char oper;
+    boolean negPos = false;
+    boolean total = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,8 +33,9 @@ public class MainActivity extends AppCompatActivity {
     public void calcNum(View view) {
         Button bt = (Button)view;
 
-        if (ansStr.equals("0")) {
+        if (ansStr.equals("0") || total) {
             ansStr = "";
+            total = false;
         }
 
         switch (bt.getId()) {
@@ -109,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
     public void numExp(View view) {
         Button bt = (Button)view;
 
-        if (ansStr == "") {
+        if (ansStr.equals("")) {
             ansS = 0;
             chSign = true;
         } else {
@@ -181,10 +184,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void totalEq(View view) {
-        if (ansStr.equals(""))
+        if (ansStr.equals("")) {
             ansS = ansF;
-        else
+        } else if (ansS == 0) {
             ansS = Integer.parseInt(ansStr);
+        }
+//        else if (!ansStr.equals("")) {
+//            ansS = Integer.parseInt(ansStr);
+//        }
 
         switch (oper) {
             case '÷':
@@ -204,9 +211,12 @@ public class MainActivity extends AppCompatActivity {
         expression.setText("");
         ansStr = String.valueOf(ansF);
         curNumber.setText(ansStr);
+        total = true;
     }
 
     public void plusMinAdd(View view) {
-//        if (ansStr.equals("0") || ansStr.equals("0."))
+        if (negPos) {
+
+        }
     }
 }
