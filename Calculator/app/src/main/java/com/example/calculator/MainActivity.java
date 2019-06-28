@@ -10,15 +10,16 @@ public class MainActivity extends AppCompatActivity {
 
     TextView expression;
     TextView curNumber;
-    int ansF = 0;
-    int ansS = 0;
-    String ansStr = "0";
+    double ansF = 0;
+    double ansS = 0;
+    String ansStr = "0.0";
     String exp = "";
     boolean dotIn = false;
     boolean chSign = false;
-    char oper;
-    boolean negPos = false;
+    String oper;
+    boolean negPos = true;
     boolean total = false;
+    boolean inEquel = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,9 +32,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void calcNum(View view) {
+        negPos = true;
         Button bt = (Button)view;
 
-        if (ansStr.equals("0") || total) {
+        if (ansStr.equals("0.0") || total) {
             ansStr = "";
             total = false;
         }
@@ -67,8 +69,8 @@ public class MainActivity extends AppCompatActivity {
                 ansStr += "9";
                 break;
             case R.id.zero:
-                if (!ansStr.equals("0"))
-                    ansStr += "0";
+                if (!ansStr.equals("0.0"))
+                    ansStr += "0.0";
                 break;
             case R.id.dot:
                 if (!dotIn) {
@@ -91,12 +93,15 @@ public class MainActivity extends AppCompatActivity {
         switch (bt.getId()) {
             case R.id.clear:
                 expression.setText("");
-                ansStr = "0";
+                ansStr = "0.0";
                 dotIn = false;
+                ansS = 0;
+                ansF = 0;
+                oper = "";
                 break;
             case R.id.backspace:
                 if (ansStr.length() == 1) {
-                    ansStr = "0";
+                    ansStr = "0.0";
                 } else {
                     if (ansStr.substring(ansStr.length() - 1).equals("."))
                         dotIn = false;
@@ -110,13 +115,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void numExp(View view) {
+        negPos = true;
         Button bt = (Button)view;
 
+        inEquel = false;
         if (ansStr.equals("")) {
             ansS = 0;
             chSign = true;
         } else {
-            ansS = Integer.parseInt(ansStr);
+            ansS = Float.parseFloat(ansStr);
         }
 
         String oldS = expression.getText().toString();
@@ -164,19 +171,19 @@ public class MainActivity extends AppCompatActivity {
         switch (bt.getId()) {
             case R.id.divide:
                 oldS += '÷';
-                oper = '÷';
+                oper = "÷";
                 break;
             case R.id.multiple:
                 oldS += '*';
-                oper = '*';
+                oper = "*";
                 break;
             case R.id.minus:
                 oldS += '-';
-                oper = '-';
+                oper = "-";
                 break;
             case R.id.plus:
                 oldS += '+';
-                oper = '+';
+                oper = "+";
                 break;
         }
 
@@ -184,26 +191,24 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void totalEq(View view) {
+        negPos = true;
         if (ansStr.equals("")) {
             ansS = ansF;
-        } else if (ansS == 0) {
-            ansS = Integer.parseInt(ansStr);
+        } else if (!inEquel) {
+            ansS = Float.parseFloat(ansStr);
         }
-//        else if (!ansStr.equals("")) {
-//            ansS = Integer.parseInt(ansStr);
-//        }
 
         switch (oper) {
-            case '÷':
+            case "÷":
                 ansF /= ansS;
                 break;
-            case '*':
+            case "*":
                 ansF *= ansS;
                 break;
-            case '+':
+            case "+":
                 ansF += ansS;
                 break;
-            case '-':
+            case "-":
                 ansF -= ansS;
                 break;
         }
@@ -212,11 +217,21 @@ public class MainActivity extends AppCompatActivity {
         ansStr = String.valueOf(ansF);
         curNumber.setText(ansStr);
         total = true;
+        inEquel = true;
     }
 
     public void plusMinAdd(View view) {
         if (negPos) {
-
+            if (!ansStr.contains("-"))
+                ansStr = "-" + ansStr;
+            else
+                ansStr = ansStr.replaceFirst("-", "");
+        } else {
+            ansStr = ansStr.replaceFirst("-", "");
         }
+
+        negPos = !negPos;
+
+        curNumber.setText(ansStr);
     }
 }
