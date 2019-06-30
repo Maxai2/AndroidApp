@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/mainBack">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:orientation="vertical"
+        android:layout_margin="50dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:background="#FF0000"
+            >
+
+            <TextView
+                android:id="@+id/tr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Red: "
+                />
+
+            <TextView
+                android:id="@+id/curR"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/tr"
+                android:text="0"
+                />
+
+            <SeekBar
+                android:id="@+id/R"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:min="0"
+                android:max="255"
+                android:progress="0"
+                android:layout_below="@id/tr"
+                android:layout_marginTop="5dp"
+
+                />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:background="#00FF00"
+            >
+
+            <TextView
+                android:id="@+id/tg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Green: "
+                />
+
+            <TextView
+                android:id="@+id/curG"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/tg"
+                android:text="0"
+                />
+
+            <SeekBar
+                android:id="@+id/G"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:min="0"
+                android:max="255"
+                android:progress="0"
+                android:layout_marginTop="5dp"
+                android:layout_below="@id/tg"
+                />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:background="#0000FF">
+
+            <TextView
+                android:id="@+id/tb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Blue: "
+                android:textColor="@android:color/white"
+                />
+
+            <TextView
+                android:id="@+id/curB"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/tb"
+                android:text="0"
+                android:textColor="@android:color/white"
+                />
+
+            <SeekBar
+                android:id="@+id/B"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:min="0"
+                android:max="255"
+                android:progress="0"
+                android:layout_marginTop="5dp"
+                android:layout_below="@id/tb"
+                />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

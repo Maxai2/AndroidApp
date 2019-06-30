@@ -10,11 +10,10 @@ public class MainActivity extends AppCompatActivity {
 
     TextView expression;
     TextView curNumber;
-    double ansF = 0;
-    double ansS = 0;
-    String ansStr = "0.0";
+    int ansF = 0;
+    int ansS = 0;
+    String ansStr = "0";
     String exp = "";
-    boolean dotIn = false;
     boolean chSign = false;
     String oper;
     boolean negPos = true;
@@ -35,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         negPos = true;
         Button bt = (Button)view;
 
-        if (ansStr.equals("0.0") || total) {
+        if (ansStr.equals("0") || total) {
             ansStr = "";
             total = false;
         }
@@ -69,17 +68,16 @@ public class MainActivity extends AppCompatActivity {
                 ansStr += "9";
                 break;
             case R.id.zero:
-                if (!ansStr.equals("0.0"))
-                    ansStr += "0.0";
+                if (!ansStr.equals("0"))
+                    ansStr += "0";
                 break;
             case R.id.dot:
-                if (!dotIn) {
+                if (!ansStr.contains(".")) {
                     if (ansStr.equals("")) {
                         ansStr += "0.";
                     } else {
                         ansStr += ".";
                     }
-                    dotIn = true;
                 }
                 break;
         }
@@ -93,18 +91,17 @@ public class MainActivity extends AppCompatActivity {
         switch (bt.getId()) {
             case R.id.clear:
                 expression.setText("");
-                ansStr = "0.0";
-                dotIn = false;
+                ansStr = "0";
                 ansS = 0;
                 ansF = 0;
                 oper = "";
                 break;
             case R.id.backspace:
                 if (ansStr.length() == 1) {
-                    ansStr = "0.0";
+                    ansStr = "0";
                 } else {
-                    if (ansStr.substring(ansStr.length() - 1).equals("."))
-                        dotIn = false;
+//                    if (ansStr.substring(ansStr.length() - 1).equals("."))
+//                        dotIn = false;
 
                     ansStr = ansStr.substring(0, ansStr.length() - 1);
                 }
@@ -123,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
             ansS = 0;
             chSign = true;
         } else {
-            ansS = Float.parseFloat(ansStr);
+            ansS = Integer.parseInt(ansStr);
         }
 
         String oldS = expression.getText().toString();
@@ -195,7 +192,7 @@ public class MainActivity extends AppCompatActivity {
         if (ansStr.equals("")) {
             ansS = ansF;
         } else if (!inEquel) {
-            ansS = Float.parseFloat(ansStr);
+            ansS = Integer.parseInt(ansStr);
         }
 
         switch (oper) {
@@ -222,7 +219,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void plusMinAdd(View view) {
         if (negPos) {
-            if (!ansStr.contains("-"))
+            if (!ansStr.contains("-") && !ansStr.equals("0"))
                 ansStr = "-" + ansStr;
             else
                 ansStr = ansStr.replaceFirst("-", "");
