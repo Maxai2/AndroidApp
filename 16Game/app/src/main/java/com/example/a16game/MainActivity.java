@@ -1,6 +1,9 @@
 package com.example.a16game;
 
 import android.content.DialogInterface;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.os.Handler;
 import android.os.TimerCustom;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -21,11 +24,11 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<Integer> numbers = new ArrayList<Integer>();
     int tempNum;
     long totalTime = 60000;
-    long curTime = totalTime;
     TimerCustom timer;
     String timerShow = "01:00";
     boolean timerOn = false;
-    ProgressBar prog;
+    ProgressBar progV;
+    ProgressBar progT;
     int progVal = 0;
     GridLayout gb;
 
@@ -35,7 +38,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         gb = (GridLayout)findViewById(R.id.gb);
-        prog = (ProgressBar)findViewById(R.id.prog);
+        progV = (ProgressBar)findViewById(R.id.progVal);
+        progT = (ProgressBar)findViewById(R.id.progTime);
 
         getSupportActionBar().setTitle(timerShow);
 
@@ -47,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
                 long tempNum = millisUntilFinished / 1000;
                 timerShow = "00:" + (tempNum < 10 ? ("0" + tempNum) : tempNum);
                 getSupportActionBar().setTitle(timerShow);
-                curTime = tempNum;
+                progT.setProgress((int)tempNum, true);
             }
 
             @Override
@@ -92,9 +96,19 @@ public class MainActivity extends AppCompatActivity {
 
         if (numbers.get(progVal).toString() != b.getText()) {
             timer.subTime(1000);
+            b.setBackgroundColor(Color.rgb(255, 0, 0));
+
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    b.setBackgroundColor(Color.rgb(205, 206, 206));
+                }
+            }, 500);
+
         } else {
-            prog.setProgress(++progVal, true);
+            progV.setProgress(++progVal, true);
             b.setEnabled(false);
+            b.setBackgroundColor(Color.rgb(0, 255, 0));
 
             if (progVal == 16) {
                 timer.cancel();
@@ -124,7 +138,8 @@ public class MainActivity extends AppCompatActivity {
         timer.cancel();
         getSupportActionBar().setTitle(timerShow);
         timerOn = false;
-        prog.setProgress(0, true);
+        progV.setProgress(0, true);
+        progT.setProgress(60, true);
         progVal = 0;
 
         gridFill();
@@ -142,6 +157,7 @@ public class MainActivity extends AppCompatActivity {
 
             GridLayout.LayoutParams param = new GridLayout.LayoutParams(GridLayout.spec(GridLayout.UNDEFINED, 1f), GridLayout.spec(GridLayout.UNDEFINED, 1f));
             param.height = 300;
+            param.setMargins(7, 7, 7, 7);
             b.setLayoutParams(param);
 
             b.setOnClickListener(new View.OnClickListener() {

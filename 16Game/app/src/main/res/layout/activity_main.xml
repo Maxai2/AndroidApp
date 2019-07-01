@@ -6,6 +6,19 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <ProgressBar
+        android:id="@+id/progTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:min="0"
+        android:max="60"
+        android:progress="60"
+        android:layout_gravity="left"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:indeterminate="false"
+        android:layout_marginTop="25dp"
+        />
+
     <Button
         android:id="@+id/restart"
         android:layout_width="wrap_content"
@@ -13,7 +26,8 @@
         android:text="Restart"
         android:layout_alignParentRight="true"
         android:onClick="restart"
-        android:enabled="false"
+        android:enabled="true"
+        android:layout_below="@id/progTime"
         />
 
     <GridLayout
@@ -30,7 +44,7 @@
     </GridLayout>
 
     <ProgressBar
-        android:id="@+id/prog"
+        android:id="@+id/progVal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
