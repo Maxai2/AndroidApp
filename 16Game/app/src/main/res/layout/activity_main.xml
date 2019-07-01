@@ -40,7 +40,7 @@
         android:layout_gravity="left"
         style="?android:attr/progressBarStyleHorizontal"
         android:indeterminate="false"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="25dp"
         />
 
 </RelativeLayout>

@@ -10,8 +10,8 @@ public class MainActivity extends AppCompatActivity {
 
     TextView expression;
     TextView curNumber;
-    int ansF = 0;
-    int ansS = 0;
+    double ansF = 0;
+    double ansS = 0;
     String ansStr = "0";
     String exp = "";
     boolean chSign = false;
@@ -120,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
             ansS = 0;
             chSign = true;
         } else {
-            ansS = Integer.parseInt(ansStr);
+            ansS = Double.parseDouble(ansStr);
         }
 
         String oldS = expression.getText().toString();
@@ -144,12 +144,15 @@ public class MainActivity extends AppCompatActivity {
                 switch (oldS.substring(oldS.length() - 1)) {
                     case "+":
                         ansF += ansS;
+                        ansF = (int)ansF;
                         break;
                     case "-":
                         ansF -= ansS;
+                        ansF = (int)ansF;
                         break;
                     case "*":
                         ansF *= ansS;
+                        ansF = (int)ansF;
                         break;
                     case "÷":
                         ansF /= ansS;
@@ -192,7 +195,7 @@ public class MainActivity extends AppCompatActivity {
         if (ansStr.equals("")) {
             ansS = ansF;
         } else if (!inEquel) {
-            ansS = Integer.parseInt(ansStr);
+            ansS = Double.parseDouble(ansStr);
         }
 
         switch (oper) {
@@ -201,12 +204,15 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case "*":
                 ansF *= ansS;
+                ansF = (int)ansF;
                 break;
             case "+":
                 ansF += ansS;
+                ansF = (int)ansF;
                 break;
             case "-":
                 ansF -= ansS;
+                ansF = (int)ansF;
                 break;
         }
 

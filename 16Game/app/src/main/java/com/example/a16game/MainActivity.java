@@ -1,6 +1,7 @@
 package com.example.a16game;
 
-import android.os.CountDownTimer;
+import android.content.DialogInterface;
+import android.os.TimerCustom;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -20,7 +21,8 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<Integer> numbers = new ArrayList<Integer>();
     int tempNum;
     long totalTime = 60000;
-    CountDownTimer timer;
+    long curTime = totalTime;
+    TimerCustom timer;
     String timerShow = "01:00";
     boolean timerOn = false;
     ProgressBar prog;
@@ -39,12 +41,13 @@ public class MainActivity extends AppCompatActivity {
 
         gridFill();
 
-        timer = new CountDownTimer(totalTime, 1000) {
+        timer = new TimerCustom(totalTime, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
                 long tempNum = millisUntilFinished / 1000;
                 timerShow = "00:" + (tempNum < 10 ? ("0" + tempNum) : tempNum);
                 getSupportActionBar().setTitle(timerShow);
+                curTime = tempNum;
             }
 
             @Override
@@ -53,13 +56,25 @@ public class MainActivity extends AppCompatActivity {
                     new AlertDialog.Builder(MainActivity.this)
                             .setTitle("Game over!")
                             .setMessage("YOU LOSE...")
+                            .setPositiveButton("Again", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    restAct();
+                                }
+                            })
                             .show();
 
                 } else {
 
                     new AlertDialog.Builder(MainActivity.this)
                             .setTitle("Game over!")
-                            .setMessage("YOU WIN! CONGRATS!!!")
+                            .setMessage("YOU WIN! CONGRATS!!!\nTime: 00:" + (59 - Integer.parseInt(timerShow.substring(timerShow.indexOf(":") + 1))))
+                            .setPositiveButton("Again", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    restAct();
+                                }
+                            })
                             .show();
                 }
             }
@@ -76,28 +91,37 @@ public class MainActivity extends AppCompatActivity {
         Button b = (Button)view;
 
         if (numbers.get(progVal).toString() != b.getText()) {
-            timer.onTick(-1000);
-
+            timer.subTime(1000);
         } else {
-            prog.setProgress(progVal++, true);
+            prog.setProgress(++progVal, true);
             b.setEnabled(false);
 
             if (progVal == 16) {
-
+                timer.cancel();
                 new AlertDialog.Builder(MainActivity.this)
                         .setTitle("Game over!")
-                        .setMessage("YOU WIN! CONGRATS!!!")
+                        .setMessage("YOU WIN! CONGRATS!!!\nTime: 00:" + (59 - Integer.parseInt(timerShow.substring(timerShow.indexOf(":") + 1))))
+                        .setPositiveButton("Again", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                restAct();
+                            }
+                        })
                         .show();
 
             }
         }
     }
 
-    public void restart() {
+    public void restart(View view) {
+        restAct();
+    }
+
+    void restAct() {
         numbers = new ArrayList<Integer>();
-        timer.cancel();
         totalTime = 60000;
         timerShow = "01:00";
+        timer.cancel();
         getSupportActionBar().setTitle(timerShow);
         timerOn = false;
         prog.setProgress(0, true);
@@ -105,6 +129,7 @@ public class MainActivity extends AppCompatActivity {
 
         gridFill();
         findViewById(R.id.restart).setEnabled(false);
+
     }
 
     private void gridFill() {
@@ -116,9 +141,9 @@ public class MainActivity extends AppCompatActivity {
             Button b = new Button(this);
 
             GridLayout.LayoutParams param = new GridLayout.LayoutParams(GridLayout.spec(GridLayout.UNDEFINED, 1f), GridLayout.spec(GridLayout.UNDEFINED, 1f));
-
+            param.height = 300;
             b.setLayoutParams(param);
-            b.setHeight(90);
+
             b.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
