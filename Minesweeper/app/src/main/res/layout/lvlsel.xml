@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MainActivity">
 
     <TextView
         android:layout_width="wrap_content"
@@ -25,27 +26,35 @@
         >
 
         <Button
+            android:id="@+id/easy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/easy"
+            android:onClick="selLvl"
             />
 
         <Button
+            android:id="@+id/middle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/middle"
+            android:onClick="selLvl"
             />
 
         <Button
+            android:id="@+id/hard"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/hard"
+            android:onClick="selLvl"
             />
 
         <ImageButton
+            android:id="@+id/skull"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:src="@drawable/skull"
+            android:onClick="selLvl"
             />
 
     </LinearLayout>
