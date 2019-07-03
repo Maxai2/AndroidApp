@@ -5,39 +5,47 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="5dp"
     tools:context=".FieldLvl">
 
-    <TextView
-        android:id="@+id/minesCount"
-        android:layout_width="60dp"
+    <RelativeLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/black"
-        android:padding="10dp"
-        android:textColor="@android:color/holo_red_dark"
-        android:textSize="20dp"
-        android:textAlignment="center"
-        />
+        android:layout_margin="5dp"
+        >
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/smileBt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:backgroundTint="#EDA200"
-        android:src="@drawable/idle" />
+        <TextView
+            android:id="@+id/minesCount"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:background="@android:color/black"
+            android:padding="10dp"
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="20dp"
+            android:textAlignment="center"
+            />
 
-    <TextView
-        android:id="@+id/timeLeft"
-        android:layout_width="60dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:background="@android:color/black"
-        android:padding="10dp"
-        android:textColor="@android:color/holo_red_dark"
-        android:textSize="20dp"
-        android:textAlignment="center"
-        />
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/smileBt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:backgroundTint="#EDA200"
+            android:src="@drawable/idle" />
+
+        <TextView
+            android:id="@+id/timeLeft"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:background="@android:color/black"
+            android:padding="10dp"
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="20dp"
+            android:textAlignment="center"
+            />
+
+    </RelativeLayout>
 
     <GridLayout
         android:id="@+id/mineField"
@@ -45,7 +53,9 @@
         android:layout_height="match_parent"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:layout_below="@id/smileBt"
+        android:layout_below="@id/header"
+        android:layout_marginBottom="50dp"
+        android:layout_marginTop="40dp"
         >
 
     </GridLayout>
