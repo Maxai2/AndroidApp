@@ -82,7 +82,7 @@ public class FieldLvl extends AppCompatActivity {
         for (int i = 0; i < row; ++i) {
             for (int j = 0; j < col; ++j) {
 
-                FrameLayout fl = new FrameLayout(this);
+                final FrameLayout fl = new FrameLayout(this);
 
                 Button b = new Button(this, null, R.style.Widget_AppCompat_Button_Borderless);
                 fl.addView(b);
@@ -92,6 +92,7 @@ public class FieldLvl extends AppCompatActivity {
                 paramB.setMargins(1, 1, 1, 1);
                 b.setLayoutParams(paramB);
 
+                b.setTooltipText(i + " " + j);
                 b.setBackgroundColor(Color.rgb(0, 0, 0));
                 b.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -108,35 +109,16 @@ public class FieldLvl extends AppCompatActivity {
                 paramFl.columnSpec = GridLayout.spec(i,1,1f);
                 paramFl.rowSpec = GridLayout.spec(j,1,1f);
 
+                fl.setTooltipText(i + " " + j + "b");
                 fl.setLayoutParams(paramFl);
                 fl.setBackgroundColor(Color.rgb(255, 0, 0));
                 fl.setPadding(0, 0, 0, 0);
-
-//                ImageButton ib = new ImageButton(this);
-//                minesField.addView(ib);
-//
-//                //GridLayout.LayoutParams param = new GridLayout.LayoutParams(GridLayout.spec(i, 1, 1f), GridLayout.spec(j, 1, 1f));
-//                GridLayout.LayoutParams param = (GridLayout.LayoutParams)ib.getLayoutParams();
-//                param.width = 0;
-//                param.height = 0;
-//                param.columnSpec = GridLayout.spec(i,1,1f);
-//                param.rowSpec = GridLayout.spec(j,1,1f);
-////                param.setGravity(Gravity.FILL);
-//                param.setMargins(0, 0, 0, 0);
-//                ib.setLayoutParams(param);
-//                ib.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        check(v);
-//                    }
-//                });
-//                ib.setBackgroundResource(R.drawable.flag);
 
             }
         }
     }
 
     private void check(View v) {
-
+        Toast.makeText(this, String.valueOf(v.getParent().), Toast.LENGTH_SHORT).show();
     }
 }
