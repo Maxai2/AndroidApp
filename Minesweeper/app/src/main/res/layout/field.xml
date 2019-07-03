@@ -33,6 +33,20 @@
             android:backgroundTint="#EDA200"
             android:src="@drawable/idle" />
 
+        <ToggleButton
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_toRightOf="@id/smileBt"
+            android:layout_toLeftOf="@id/timeLeft"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:layout_centerHorizontal="false"
+            android:textOff=""
+            android:textOn=""
+            android:background="@drawable/mine"
+            android:onClick="flagMine"
+            />
+
         <TextView
             android:id="@+id/timeLeft"
             android:layout_width="60dp"

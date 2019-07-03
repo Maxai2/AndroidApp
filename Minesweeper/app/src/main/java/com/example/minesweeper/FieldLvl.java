@@ -2,8 +2,10 @@ package com.example.minesweeper;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Layout;
 import android.view.CollapsibleActionView;
@@ -16,6 +18,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 public class FieldLvl extends AppCompatActivity {
 
@@ -27,6 +30,8 @@ public class FieldLvl extends AppCompatActivity {
     TextView timesLeft;
 
     GridLayout minesField;
+
+    boolean flagMine = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,7 +98,7 @@ public class FieldLvl extends AppCompatActivity {
                 b.setLayoutParams(paramB);
 
                 b.setTooltipText(i + " " + j);
-                b.setBackgroundColor(Color.rgb(0, 0, 0));
+                b.setBackgroundColor(Color.rgb(192, 193, 220));
                 b.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -111,7 +116,7 @@ public class FieldLvl extends AppCompatActivity {
 
                 fl.setTooltipText(i + " " + j + "b");
                 fl.setLayoutParams(paramFl);
-                fl.setBackgroundColor(Color.rgb(255, 0, 0));
+                fl.setBackgroundColor(Color.rgb(192, 192, 192));
                 fl.setPadding(0, 0, 0, 0);
 
             }
@@ -119,6 +124,18 @@ public class FieldLvl extends AppCompatActivity {
     }
 
     private void check(View v) {
-        Toast.makeText(this, String.valueOf(v.getParent().), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, String.valueOf(v.getTooltipText()), Toast.LENGTH_SHORT).show();
+    }
+
+    public void flagMine(View view) {
+        ToggleButton tb = (ToggleButton)view;
+
+        if (flagMine) {
+            tb.setBackground(ContextCompat.getDrawable(this, R.drawable.flag));
+        } else {
+            tb.setBackground(ContextCompat.getDrawable(this, R.drawable.mine));
+        }
+
+        flagMine = !flagMine;
     }
 }
