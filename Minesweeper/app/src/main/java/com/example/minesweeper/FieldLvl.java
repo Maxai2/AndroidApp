@@ -2,48 +2,49 @@ package com.example.minesweeper;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.text.Layout;
-import android.view.CollapsibleActionView;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.GridLayout;
-import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.ToggleButton;
+
+import java.util.Random;
 
 public class FieldLvl extends AppCompatActivity {
 
     String lvl;
     int row;
     int col;
+    int minesCount;
 
-    TextView minesCount;
-    TextView timesLeft;
+    TextView minesCountText;
+    TextView timesLeftText;
 
     GridLayout minesField;
 
-    boolean flagMine = true;
+    boolean isMine = false;
+
+    CellItem[] field;
+    int[][] fieldRand;
+
+    Random rand;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.field);
 
-        minesCount = (TextView)findViewById(R.id.minesCount);
-        timesLeft = (TextView)findViewById(R.id.timeLeft);
-        timesLeft.setText("000");
+        minesCountText = (TextView)findViewById(R.id.minesCount);
+        timesLeftText = (TextView)findViewById(R.id.timeLeft);
+        timesLeftText.setText("000");
 
         minesField = (GridLayout)findViewById(R.id.mineField);
 
+        rand = new Random();
         getSupportActionBar().hide();
 
         Intent intent = getIntent();
@@ -55,25 +56,31 @@ public class FieldLvl extends AppCompatActivity {
                 case "easy":
                     row = 10;
                     col = 10;
-                    minesCount.setText("10");
+                    minesCountText.setText("10");
+                    minesCount = 10;
                     break;
                 case "middle":
                     row = 20;
                     col = 20;
-                    minesCount.setText("40");
+                    minesCountText.setText("40");
+                    minesCount = 40;
                     break;
                 case "hard":
                     row = 30;
                     col = 30;
-                    minesCount.setText("90");
+                    minesCountText.setText("90");
+                    minesCount = 90;
                     break;
                 case "skull":
                     row = 10;
                     col = 10;
-                    minesCount.setText("80");
+                    minesCountText.setText("80");
+                    minesCount = 80;
                     break;
             }
 
+            field = new CellItem[row];
+            fieldRand = new int[row][col];
             gridFill();
 
         }
@@ -94,11 +101,10 @@ public class FieldLvl extends AppCompatActivity {
 
                 FrameLayout.LayoutParams paramB = (FrameLayout.LayoutParams)b.getLayoutParams();
                 paramB.height = paramB.width = FrameLayout.LayoutParams.MATCH_PARENT;
-                paramB.setMargins(1, 1, 1, 1);
                 b.setLayoutParams(paramB);
 
-                b.setTooltipText(i + " " + j);
-                b.setBackgroundColor(Color.rgb(192, 193, 220));
+                b.setTooltipText(i + "" + j);
+                b.setBackgroundColor(Color.rgb(245, 245, 245));
                 b.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -114,28 +120,55 @@ public class FieldLvl extends AppCompatActivity {
                 paramFl.columnSpec = GridLayout.spec(i,1,1f);
                 paramFl.rowSpec = GridLayout.spec(j,1,1f);
 
-                fl.setTooltipText(i + " " + j + "b");
+                fl.setTooltipText(i + "" + j);
                 fl.setLayoutParams(paramFl);
                 fl.setBackgroundColor(Color.rgb(192, 192, 192));
-                fl.setPadding(0, 0, 0, 0);
+                fl.setPadding(5, 5, 5, 5);
 
             }
         }
     }
 
     private void check(View v) {
-        Toast.makeText(this, String.valueOf(v.getTooltipText()), Toast.LENGTH_SHORT).show();
+        FrameLayout fl = (FrameLayout)v.getParent();
+
+        Toast.makeText(this, String.valueOf(fl.getTooltipText()), Toast.LENGTH_SHORT).show();
+
+        fillBombs();
+    }
+
+    private void fillBombs() {
+        int rowTemp;
+        int colTemp;
+        int index;
+
+        for (int i = 0; i < minesCount; ++i) {
+//            while(true) {
+                rowTemp = rand.nextInt(row);
+                colTemp = rand.nextInt(col);
+
+                field[i] = new CellItem(Cell.bomb, rowTemp, colTemp);
+
+                if (rowTemp >= 10 && colTemp >= 10)
+                    index =
+                index = rowTemp * 10 + colTemp;
+
+                FrameLayout fl = (FrameLayout) minesField.getChildAt(index);
+
+                fl.getChildAt(0).setBackground(ContextCompat.getDrawable(this, R.drawable.mine));
+//            }
+        }
     }
 
     public void flagMine(View view) {
-        ToggleButton tb = (ToggleButton)view;
+        Button tb = (Button) view;
 
-        if (flagMine) {
+        if (!isMine) {
             tb.setBackground(ContextCompat.getDrawable(this, R.drawable.flag));
         } else {
             tb.setBackground(ContextCompat.getDrawable(this, R.drawable.mine));
         }
 
-        flagMine = !flagMine;
+        isMine = !isMine;
     }
 }
