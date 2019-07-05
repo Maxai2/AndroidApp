@@ -12,6 +12,8 @@ import android.widget.GridLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Random;
 
 public class FieldLvl extends AppCompatActivity {
@@ -29,7 +31,7 @@ public class FieldLvl extends AppCompatActivity {
     boolean isMine = false;
 
     CellItem[] field;
-    int[][] fieldRand;
+    ArrayList<Integer> randIndex;
 
     Random rand;
 
@@ -80,11 +82,16 @@ public class FieldLvl extends AppCompatActivity {
             }
 
             field = new CellItem[row * col];
-            fieldRand = new int[row][col];
+
+            for (int i = 0; i < row; ++i) {
+                for (int j = 0; j < col; ++j) {
+                    field[i * row + j] = new CellItem(Cell.empty, i, j);
+                }
+            }
+
+            randIndex = new ArrayList<>();
             gridFill();
-
         }
-
     }
 
     private void gridFill() {
@@ -143,19 +150,43 @@ public class FieldLvl extends AppCompatActivity {
         int index = 0;
 
         for (int i = 0; i < minesCount; ++i) {
-//            while(true) {
+            while(true) {
                 rowTemp = rand.nextInt(row);
                 colTemp = rand.nextInt(col);
 
-                field[i] = new CellItem(Cell.bomb, rowTemp, colTemp);
-
                 index = rowTemp * row + colTemp;
+                if (!randIndex.contains(index)) {
+                    randIndex.add(index);
+                    break;
+                }
+            }
 
-                FrameLayout fl = (FrameLayout) minesField.getChildAt(index);
+            field[index] = new CellItem(Cell.bomb, rowTemp, colTemp);
 
-                fl.getChildAt(0).setBackground(ContextCompat.getDrawable(this, R.drawable.mine));
-//            }
+            FrameLayout fl = (FrameLayout) minesField.getChildAt(index);
+
+            fl.getChildAt(0).setBackground(ContextCompat.getDrawable(this, R.drawable.mine));
         }
+    }
+
+    private void fillNumber() {
+        int rowF = 0;
+        int colF = 0;
+        int index = 0;
+
+        for (Integer rIndex : randIndex) {
+            rowF = field[rIndex].row;
+            colF = field[rIndex].col;
+
+        }
+    }
+
+    private int eightStep(int rowP, int colP) {
+        int count = 1;
+
+
+
+        return count;
     }
 
     public void flagMine(View view) {
