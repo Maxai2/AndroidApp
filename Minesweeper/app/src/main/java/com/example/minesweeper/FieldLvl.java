@@ -79,7 +79,7 @@ public class FieldLvl extends AppCompatActivity {
                     break;
             }
 
-            field = new CellItem[row];
+            field = new CellItem[row * col];
             fieldRand = new int[row][col];
             gridFill();
 
@@ -138,9 +138,9 @@ public class FieldLvl extends AppCompatActivity {
     }
 
     private void fillBombs() {
-        int rowTemp;
-        int colTemp;
-        int index;
+        int rowTemp = 0;
+        int colTemp = 0;
+        int index = 0;
 
         for (int i = 0; i < minesCount; ++i) {
 //            while(true) {
@@ -149,9 +149,7 @@ public class FieldLvl extends AppCompatActivity {
 
                 field[i] = new CellItem(Cell.bomb, rowTemp, colTemp);
 
-                if (rowTemp >= 10 && colTemp >= 10)
-                    index =
-                index = rowTemp * 10 + colTemp;
+                index = rowTemp * row + colTemp;
 
                 FrameLayout fl = (FrameLayout) minesField.getChildAt(index);
 
