@@ -2,15 +2,8 @@ package com.example.minesweeper;
 
 enum Cell {
     empty,
-    one,
-    two,
-    three,
-    four,
-    five,
-    six,
-    seven,
-    eight,
-    bomb
+    bomb,
+    fill
 }
 
 public class CellItem {

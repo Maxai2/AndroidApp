@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">Minesweeper</string>
 
+    <string name="kinder">
+        Kinder\n5x5
+    </string>
     <string name="easy">
         Easy\n10x10
     </string>

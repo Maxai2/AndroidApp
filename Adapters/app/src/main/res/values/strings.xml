@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Adapters</string>
+
+    <string name="contactList">Contact list</string>
+    <string name="newsList">News list</string>
+    <string name="wishList">Wish list</string>
+</resources>

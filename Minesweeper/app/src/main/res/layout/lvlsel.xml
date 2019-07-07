@@ -26,6 +26,14 @@
         >
 
         <Button
+            android:id="@+id/kinder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/kinder"
+            android:onClick="selLvl"
+            />
+
+        <Button
             android:id="@+id/easy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

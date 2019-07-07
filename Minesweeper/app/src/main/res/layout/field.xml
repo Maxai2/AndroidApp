@@ -36,6 +36,7 @@
             android:backgroundTint="#EDA200"
             android:src="@drawable/idle"
             android:layout_centerVertical="true"
+            android:onClick="reset"
             />
 
         <Button

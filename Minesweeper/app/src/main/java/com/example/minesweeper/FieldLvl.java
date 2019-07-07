@@ -55,6 +55,12 @@ public class FieldLvl extends AppCompatActivity {
             lvl = intent.getStringExtra("lvl");
 
             switch (lvl) {
+                case "kinder":
+                    row = 5;
+                    col = 5;
+                    minesCountText.setText("5");
+                    minesCount = 1;
+                    break;
                 case "easy":
                     row = 10;
                     col = 10;
@@ -142,6 +148,7 @@ public class FieldLvl extends AppCompatActivity {
         Toast.makeText(this, String.valueOf(fl.getTooltipText()), Toast.LENGTH_SHORT).show();
 
         fillBombs();
+        fillNumber();
     }
 
     private void fillBombs() {
@@ -178,15 +185,142 @@ public class FieldLvl extends AppCompatActivity {
             rowF = field[rIndex].row;
             colF = field[rIndex].col;
 
+            if (rowF != 0) {
+                index = (rowF - 1) * row + colF; // -y x
+                if (0 <= index && index < row * col) {
+                    setNum(eightStep(rowF - 1, colF), index);
+                }
+            }
+
+            if (rowF != 0 && colF != col - 1) {
+                index = (rowF - 1) * row + colF + 1; // -y +x
+                if (0 <= index && index < row * col) {
+                    setNum(eightStep(rowF - 1, colF + 1), index);
+                }
+            }
+
+            if (colF != col - 1) {
+                index = rowF * row + colF + 1; // y +x
+                if (0 <= index && index < row * col) {
+                    setNum(eightStep(rowF, colF + 1), index);
+                }
+            }
+
+            if (rowF != row - 1 && colF != col - 1) {
+                index = (rowF + 1) * row + (colF + 1); // +y +x
+                if (0 <= index && index < row * col) {
+                    setNum(eightStep(rowF + 1, colF + 1), index);
+                }
+            }
+
+            if (rowF != row - 1) {
+                index = (rowF + 1) * row + colF; // +y x
+                if (0 <= index && index < row * col) {
+                    setNum(eightStep(rowF + 1, colF), index);
+                }
+            }
+
+            if (rowF != row - 1 && colF != 0) {
+                index = (rowF + 1) * row + (colF - 1); // +y -x
+                if (0 <= index && index < row * col) {
+                    setNum(eightStep(rowF + 1, (colF - 1)), index);
+                }
+            }
+
+            if (colF != 0) {
+                index = rowF * row + (colF - 1); // y -x
+                if (0 <= index && index < row * col) {
+                    setNum(eightStep(rowF, (colF - 1)), index);
+                }
+            }
+
+            if (rowF != 0 && colF != 0) {
+                index = (rowF - 1) * row + (colF - 1); // -y -x
+                if (0 <= index && index < row * col) {
+                    setNum(eightStep(rowF - 1, (colF - 1)), index);
+                }
+            }
         }
     }
 
+    private void setNum(int num, int index) {
+        if (field[index].cell == Cell.bomb)
+            return;
+
+        int id = 0;
+
+        switch (num) {
+            case 1:
+                id = R.drawable.one;
+                break;
+            case 2:
+                id = R.drawable.two;
+                break;
+            case 3:
+                id = R.drawable.three;
+                break;
+            case 4:
+                id = R.drawable.four;
+                break;
+            case 5:
+                id = R.drawable.five;
+                break;
+            case 6:
+                id = R.drawable.six;
+                break;
+            case 7:
+                id = R.drawable.seven;
+                break;
+            case 8:
+                id = R.drawable.eight;
+                break;
+        }
+
+        FrameLayout fl = (FrameLayout) minesField.getChildAt(index);
+        fl.getChildAt(0).setBackground(ContextCompat.getDrawable(this, id));
+        field[index].cell = Cell.fill;
+    }
+
     private int eightStep(int rowP, int colP) {
-        int count = 1;
+        int count = 0;
 
+        if(checkNullBomb((rowP - 1) * row + colP)) { // -y x
+            count++;
+        }
 
+        if(checkNullBomb ((rowP - 1) * row + (colP + 1))) { // -y +x
+            count++;
+        }
+
+        if(checkNullBomb(rowP * row + (colP + 1))) { // y +x
+            count++;
+        }
+
+        if(checkNullBomb((rowP + 1) * row + (colP + 1))) { // +y +x
+            count++;
+        }
+
+        if(checkNullBomb((rowP + 1) * row + colP)) { // +y x
+            count++;
+        }
+
+        if(checkNullBomb((rowP + 1) * row + (colP - 1))) { // +y -x
+            count++;
+        }
+
+        if(checkNullBomb(rowP * row + (colP - 1))) { // y -x
+            count++;
+        }
+
+        if(checkNullBomb((rowP - 1) * row + (colP - 1))) { // -y -x
+            count++;
+        }
 
         return count;
+    }
+
+    private boolean checkNullBomb(int index) {
+        return 0 <= index && index < row * col && (field[index].cell == Cell.bomb);
     }
 
     public void flagMine(View view) {
@@ -199,5 +333,22 @@ public class FieldLvl extends AppCompatActivity {
         }
 
         isMine = !isMine;
+    }
+
+    public void reset(View view) {
+        timesLeftText.setText("000");
+
+        field = new CellItem[row * col];
+
+        for (int i = 0; i < row; ++i) {
+            for (int j = 0; j < col; ++j) {
+                field[i * row + j] = new CellItem(Cell.empty, i, j);
+                FrameLayout fl = (FrameLayout) minesField.getChildAt(i * row + j);
+
+                fl.getChildAt(0).setBackgroundColor(Color.rgb(245, 245, 245));
+            }
+        }
+
+        randIndex = new ArrayList<>();
     }
 }

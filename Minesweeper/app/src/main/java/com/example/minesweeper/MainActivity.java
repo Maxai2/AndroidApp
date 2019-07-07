@@ -17,6 +17,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, FieldLvl.class);
 
         switch (view.getId()) {
+            case R.id.kinder:
+                intent.putExtra("lvl", "kinder");
+                break;
             case R.id.easy:
                 intent.putExtra("lvl", "easy");
                 break;
