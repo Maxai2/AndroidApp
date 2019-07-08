@@ -29,6 +29,7 @@ public class FieldLvl extends AppCompatActivity {
     GridLayout minesField;
 
     boolean isMine = false;
+    boolean firstClick = true;
 
     CellItem[] field;
     ArrayList<Integer> randIndex;
@@ -143,12 +144,18 @@ public class FieldLvl extends AppCompatActivity {
     }
 
     private void check(View v) {
+        if (firstClick) {
+            fillBombs();
+            fillNumber();
+
+            firstClick = false;
+        }
+
         FrameLayout fl = (FrameLayout)v.getParent();
 
-        Toast.makeText(this, String.valueOf(fl.getTooltipText()), Toast.LENGTH_SHORT).show();
+        fl.removeViewAt(0);
+//        Toast.makeText(this, String.valueOf(fl.getTooltipText()), Toast.LENGTH_SHORT).show();
 
-        fillBombs();
-        fillNumber();
     }
 
     private void fillBombs() {
@@ -168,11 +175,12 @@ public class FieldLvl extends AppCompatActivity {
                 }
             }
 
-            field[index] = new CellItem(Cell.bomb, rowTemp, colTemp);
+            field[index].cell = Cell.bomb;
 
             FrameLayout fl = (FrameLayout) minesField.getChildAt(index);
 
-            fl.getChildAt(0).setBackground(ContextCompat.getDrawable(this, R.drawable.mine));
+//            fl.getChildAt(0).setBackground(ContextCompat.getDrawable(this, R.drawable.mine));
+            fl.setBackground(ContextCompat.getDrawable(this, R.drawable.mine));
         }
     }
 
@@ -277,7 +285,8 @@ public class FieldLvl extends AppCompatActivity {
         }
 
         FrameLayout fl = (FrameLayout) minesField.getChildAt(index);
-        fl.getChildAt(0).setBackground(ContextCompat.getDrawable(this, id));
+//        fl.getChildAt(0).setBackground(ContextCompat.getDrawable(this, id));
+        fl.setBackground(ContextCompat.getDrawable(this, id));
         field[index].cell = Cell.fill;
     }
 
@@ -337,18 +346,17 @@ public class FieldLvl extends AppCompatActivity {
 
     public void reset(View view) {
         timesLeftText.setText("000");
+        firstClick = true;
 
         field = new CellItem[row * col];
 
         for (int i = 0; i < row; ++i) {
             for (int j = 0; j < col; ++j) {
                 field[i * row + j] = new CellItem(Cell.empty, i, j);
-                FrameLayout fl = (FrameLayout) minesField.getChildAt(i * row + j);
-
-                fl.getChildAt(0).setBackgroundColor(Color.rgb(245, 245, 245));
             }
         }
 
         randIndex = new ArrayList<>();
+        gridFill();
     }
 }
