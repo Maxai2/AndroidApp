@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
@@ -97,10 +98,16 @@ public class contactListFragment extends Fragment {
                             while (cur.moveToNext()) {
                                 String id = cur.getString(cur.getColumnIndex(ContactsContract.Contacts._ID));
                                 String name = cur.getString(cur.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
-                                Uri img = cur.getString(cur.getColumnIndex(ContactsContract.Contacts.PHOTO_URI));
 
-                                if (img == null) {
-                                    img = getResources().getResourceEntryName(R.drawable.contact_image);
+                                String temp = cur.getString(cur.getColumnIndex(ContactsContract.Contacts.PHOTO_URI));
+
+                                Uri img;
+
+                                if (temp != null) {
+                                    img = Uri.parse(temp);
+                                } else  {
+//                                    Uri imgUri=Uri.parse("android.resource://com.example.adapters/"+R.drawable.image);
+                                    img = Uri.parse("android.resource://com.example.adapters/"+R.drawable.contact_image);
                                 }
 
                                 m = new HashMap<String, Object>();
