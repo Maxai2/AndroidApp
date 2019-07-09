@@ -5,17 +5,37 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class NewsArrayAdapter extends ArrayAdapter<String> {
-    private final Context context;
-    private final String[] values;
+import org.w3c.dom.Text;
 
-    public NewsArrayAdapter(Context context, String[] values) {
-        super(context, R.layout.news_item, values);
+import java.util.ArrayList;
+
+public class NewsArrayAdapter extends BaseAdapter {
+    private final Context context;
+    private ArrayList<newItem> posts = new ArrayList<>();
+
+    public NewsArrayAdapter(Context context, ArrayList<newItem> posts) {
+//        super(context, R.layout.news_item);
         this.context = context;
-        this.values = values;
+        this.posts = posts;
+    }
+
+    @Override
+    public int getCount() {
+        return posts.size();
+    }
+
+    @Override
+    public Object getItem(int position) {
+        return null;
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return 0;
     }
 
     @Override
@@ -24,23 +44,51 @@ public class NewsArrayAdapter extends ArrayAdapter<String> {
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         View rowView = inflater.inflate(R.layout.news_item, parent, false);
-        TextView textView = (TextView) rowView.findViewById(R.id.label);
-        ImageView imageView = (ImageView) rowView.findViewById(R.id.logo);
-        textView.setText(values[position]);
 
-        String s = values[position];
+        TextView label = (TextView) rowView.findViewById(R.id.label);
+        TextView author = (TextView) rowView.findViewById(R.id.author);
+        TextView timeStamp = (TextView) rowView.findViewById(R.id.timeStamp);
+        ImageView logo = (ImageView) rowView.findViewById(R.id.logo);
 
-//        if (s.equals("enot")) {
-//            imageView.setImageResource(R.drawable.enot);
-//        } else if (s.equals("pikachu")) {
-//            imageView.setImageResource(R.drawable.pikachu);
-//        } else if (s.equals("bulbasaur")) {
-//            imageView.setImageResource(R.drawable.bulbasaur);
-//        } else {
-//            imageView.setImageResource(R.drawable.rain);
-//        }
+        label.setText(posts.get(position).text);
+        author.setText(posts.get(position).author);
+        timeStamp.setText(posts.get(position).timeStamp);
+        logo.setImageResource(posts.get(position).img);
 
         return rowView;
     }
 
 }
+
+
+
+
+
+//public class NewsArrayAdapter extends ArrayAdapter<String> {
+//    private final Context context;
+//    private final String[] values;
+//    static final int[] imgItems = new int[] {
+//            R.drawable.field, R.drawable.forest_road, R.drawable.sunflower, R.drawable.sunset
+//    };
+//
+//    public NewsArrayAdapter(Context context, String[] values) {
+//        super(context, R.layout.news_item, values);
+//        this.context = context;
+//        this.values = values;
+//    }
+//
+//    @Override
+//    public View getView(int position, View convertView, ViewGroup parent) {
+//        LayoutInflater inflater = (LayoutInflater) context
+//                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+//
+//        View rowView = inflater.inflate(R.layout.news_item, parent, false);
+//        TextView textView = (TextView) rowView.findViewById(R.id.label);
+//        ImageView imageView = (ImageView) rowView.findViewById(R.id.logo);
+//        textView.setText(values[position]);
+//        imageView.setImageResource(imgItems[position]);
+//
+//        return rowView;
+//    }
+//
+//}

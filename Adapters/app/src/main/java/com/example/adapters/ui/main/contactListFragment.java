@@ -107,7 +107,7 @@ public class contactListFragment extends Fragment {
                                     img = Uri.parse(temp);
                                 } else  {
 //                                    Uri imgUri=Uri.parse("android.resource://com.example.adapters/"+R.drawable.image);
-                                    img = Uri.parse("android.resource://com.example.adapters/"+R.drawable.contact_image);
+                                    img = Uri.parse("android.resource://com.example.adapters/" + R.drawable.contact_image);
                                 }
 
                                 m = new HashMap<String, Object>();
@@ -121,11 +121,20 @@ public class contactListFragment extends Fragment {
                                             ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = ?",
                                             new String[]{id}, null);
 
+                                    final ArrayList<String> phoneNList = new ArrayList<>();
                                     String phoneNo = "";
                                     while (pCur.moveToNext()) {
-                                        phoneNo += pCur.getString(pCur.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER)) + "\n";
+                                        phoneNo = pCur.getString(pCur.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+                                        if (!phoneNList.contains(phoneNo)) {
+                                            phoneNList.add(phoneNo);
 
-                                        sAdapter.notifyDataSetChanged();
+                                            sAdapter.notifyDataSetChanged();
+                                        }
+                                    }
+
+                                    phoneNo = "";
+                                    for (String num: phoneNList) {
+                                        phoneNo += num + "\n";
                                     }
 
                                     m.put(NUMBER, phoneNo);
