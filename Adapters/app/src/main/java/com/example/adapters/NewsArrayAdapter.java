@@ -59,36 +59,3 @@ public class NewsArrayAdapter extends BaseAdapter {
     }
 
 }
-
-
-
-
-
-//public class NewsArrayAdapter extends ArrayAdapter<String> {
-//    private final Context context;
-//    private final String[] values;
-//    static final int[] imgItems = new int[] {
-//            R.drawable.field, R.drawable.forest_road, R.drawable.sunflower, R.drawable.sunset
-//    };
-//
-//    public NewsArrayAdapter(Context context, String[] values) {
-//        super(context, R.layout.news_item, values);
-//        this.context = context;
-//        this.values = values;
-//    }
-//
-//    @Override
-//    public View getView(int position, View convertView, ViewGroup parent) {
-//        LayoutInflater inflater = (LayoutInflater) context
-//                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-//
-//        View rowView = inflater.inflate(R.layout.news_item, parent, false);
-//        TextView textView = (TextView) rowView.findViewById(R.id.label);
-//        ImageView imageView = (ImageView) rowView.findViewById(R.id.logo);
-//        textView.setText(values[position]);
-//        imageView.setImageResource(imgItems[position]);
-//
-//        return rowView;
-//    }
-//
-//}

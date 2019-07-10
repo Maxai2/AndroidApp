@@ -9,7 +9,6 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:layout_centerHorizontal="true"
-
         >
 
         <RelativeLayout
@@ -19,6 +18,30 @@
             android:layout_margin="5dp"
             >
 
+            <RelativeLayout
+                android:id="@+id/headerPan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/holo_orange_light"
+                android:padding="5dp"
+                >
+
+                <TextView
+                    android:id="@+id/author"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="italic"
+                    />
+
+                <TextView
+                    android:id="@+id/timeStamp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:textColor="@android:color/darker_gray"
+                    />
+            </RelativeLayout>
+
 
             <ImageView
                 android:id="@+id/logo"
@@ -26,32 +49,21 @@
                 android:layout_height="120dp"
                 android:layout_marginLeft="5px"
                 android:layout_marginRight="20px"
-                android:layout_marginTop="5px" />
-
-            <TextView
-                android:id="@+id/author"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/logo"
+                android:layout_marginTop="5px"
+                android:layout_below="@id/headerPan"
+                android:layout_centerVertical="true"
                 />
 
-            <TextView
-                android:id="@+id/timeStamp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:textColor="@android:color/darker_gray"
-                />
 
             <TextView
                 android:id="@+id/label"
                 android:layout_width="match_parent"
-                android:layout_height="120dp"
+                android:layout_height="125dp"
                 android:gravity="center_vertical"
                 android:text="@+id/label"
-                android:textSize="20dp"
+                android:textSize="15dp"
                 android:layout_toRightOf="@id/logo"
-                android:layout_below="@id/author"
+                android:layout_below="@id/headerPan"
                 />
 
         </RelativeLayout>

@@ -12,7 +12,7 @@ import com.example.adapters.R;
 public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     @StringRes
-    private static final int[] TAB_TITLES = new int[]{R.string.newsList, R.string.newsList};
+    private static final int[] TAB_TITLES = new int[]{R.string.newsList, R.string.newsList, R.string.wishList};
     private final Context mContext;
 
     public SectionsPagerAdapter(Context context, FragmentManager fm) {
@@ -27,6 +27,8 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
                 return new contactListFragment();
             case 1:
                 return new newsListFragment();
+            case 2:
+                return new wishListFragment();
             default:
                 return null;
         }
