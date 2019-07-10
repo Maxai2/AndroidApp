@@ -41,7 +41,7 @@
                 android:id="@+id/price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="25dp"
+                android:textSize="20dp"
                 android:background="@android:color/holo_orange_dark"
                 android:padding="2dp"
                 android:layout_below="@id/title"

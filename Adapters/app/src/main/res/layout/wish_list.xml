@@ -31,6 +31,10 @@
             android:id="@+id/amount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:textAlignment="center"
+            android:text="0123456789"
+            android:textColor="@android:color/white"
             />
 
         <RadioGroup
@@ -39,12 +43,13 @@
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:orientation="horizontal"
+            android:layout_marginBottom="10dp"
             >
 
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="USA"
+                android:text="USD"
                 android:textColor="@android:color/white"
                 android:buttonTint="@android:color/white"
                 />

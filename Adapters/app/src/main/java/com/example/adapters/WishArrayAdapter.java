@@ -18,18 +18,18 @@ public class WishArrayAdapter extends BaseAdapter {
     private ArrayList<WishItem> wishes = new ArrayList<>();
     private String sign;
 
+    TextView tv;
+
     public WishArrayAdapter(Context context, ArrayList<WishItem> wishes, String sign) {
         this.context = context;
         this.wishes = wishes;
         this.sign = sign;
     }
 
-    public boolean changeSign(String sign)
-    {
+    public boolean changeSign(String sign) {
         this.sign = sign;
         return true;
     }
-
 
     @Override
     public int getCount() {
@@ -47,27 +47,39 @@ public class WishArrayAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(final int position, View convertView, ViewGroup parent) {
-        LayoutInflater inflater = (LayoutInflater) context
+    public View getView(final int position, View convertView, final ViewGroup parent) {
+        final LayoutInflater inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         View rowView = inflater.inflate(R.layout.wish_item, parent, false);
 
+
+        tv = rowView.findViewById(R.id.amount);
+
         ImageView img = (ImageView) rowView.findViewById(R.id.img);
         TextView title = (TextView) rowView.findViewById(R.id.title);
-        TextView price = (TextView) rowView.findViewById(R.id.price);
+        final TextView price = (TextView) rowView.findViewById(R.id.price);
         CheckBox isWish = (CheckBox) rowView.findViewById(R.id.isWish);
 
         isWish.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 wishes.get(position).isWish = isChecked;
+
+                double amount = 0;
+                for (WishItem item : wishes) {
+                    if (item.isWish) {
+                        amount += item.price;
+                    }
+                }
+
+                tv.setText("Total amount: " + amount);
             }
         });
 
         img.setImageResource(wishes.get(position).img);
         title.setText(wishes.get(position).title);
-        price.setText(String.valueOf(wishes.get(position).price) + " " +sign);
+        price.setText(String.format("%.2f", wishes.get(position).price) + " " + sign);
         isWish.setChecked(wishes.get(position).isWish);
 
         return rowView;

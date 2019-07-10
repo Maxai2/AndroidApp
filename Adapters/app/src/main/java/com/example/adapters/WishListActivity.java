@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.GridView;
 import android.widget.ListView;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
@@ -27,6 +28,7 @@ public class WishListActivity extends AppCompatActivity {
     ArrayList<WishItem> wishes;
     WishArrayAdapter wishArrayAdapter;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,17 +36,28 @@ public class WishListActivity extends AppCompatActivity {
 
         RadioGroup rg = (RadioGroup) findViewById(R.id.currency);
 
+        RadioButton rb = (RadioButton) rg.getChildAt(0);
+        rb.setChecked(true);
+
         rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                String s="";
 
-                double convert=0;
+                String s = "";
+                double convert = 0;
+
+                for (int i = 0; i < wishes.size(); ++i) {
+                    wishes.get(i).price = priceItems[i];
+                }
+
                 switch (checkedId) {
                     case 1:
-
+                        s = "USD";
+                        convert = 1;
                         break;
                     case 2:
+                        s = "EUR";
+                        convert = 0.89;
                         break;
                     case 3:
                         s = "UAH";
@@ -52,10 +65,10 @@ public class WishListActivity extends AppCompatActivity {
                         break;
                 }
 
-                for(WishItem item : wishes)
-                {
-                    item.price*=convert;
+                for(WishItem item : wishes) {
+                    item.price *= convert;
                 }
+
                 wishArrayAdapter.changeSign(s);
                 wishArrayAdapter.notifyDataSetChanged();
             }
