@@ -33,7 +33,6 @@
             android:layout_height="wrap_content"
             android:padding="5dp"
             android:textAlignment="center"
-            android:text="0123456789"
             android:textColor="@android:color/white"
             />
 
@@ -47,6 +46,7 @@
             >
 
             <RadioButton
+                android:id="@+id/USD"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="USD"
@@ -55,6 +55,7 @@
                 />
 
             <RadioButton
+                android:id="@+id/EUR"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="EUR"
@@ -63,6 +64,7 @@
                 />
 
             <RadioButton
+                android:id="@+id/UAH"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="UAH"

@@ -12,18 +12,29 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+interface MyInterface{
+    void onChangeCost(double b);
+}
+
 public class WishArrayAdapter extends BaseAdapter {
+
+    MyInterface onchangecost;
 
     private final Context context;
     private ArrayList<WishItem> wishes = new ArrayList<>();
     private String sign;
 
-    TextView tv;
-
-    public WishArrayAdapter(Context context, ArrayList<WishItem> wishes, String sign) {
+    public WishArrayAdapter(Context context, ArrayList<WishItem> wishes, String sign, MyInterface onchangecost) {
         this.context = context;
         this.wishes = wishes;
         this.sign = sign;
+        this.onchangecost = onchangecost;
+    }
+
+    public boolean setOnChangeCost(MyInterface myInterface)
+    {
+        onchangecost = myInterface;
+        return true;
     }
 
     public boolean changeSign(String sign) {
@@ -53,12 +64,9 @@ public class WishArrayAdapter extends BaseAdapter {
 
         View rowView = inflater.inflate(R.layout.wish_item, parent, false);
 
-
-        tv = rowView.findViewById(R.id.amount);
-
         ImageView img = (ImageView) rowView.findViewById(R.id.img);
         TextView title = (TextView) rowView.findViewById(R.id.title);
-        final TextView price = (TextView) rowView.findViewById(R.id.price);
+        TextView price = (TextView) rowView.findViewById(R.id.price);
         CheckBox isWish = (CheckBox) rowView.findViewById(R.id.isWish);
 
         isWish.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -73,7 +81,7 @@ public class WishArrayAdapter extends BaseAdapter {
                     }
                 }
 
-                tv.setText("Total amount: " + amount);
+                onchangecost.onChangeCost(amount);
             }
         });
 

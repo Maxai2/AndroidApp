@@ -7,7 +7,10 @@ import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -27,7 +30,7 @@ public class WishListActivity extends AppCompatActivity {
 
     ArrayList<WishItem> wishes;
     WishArrayAdapter wishArrayAdapter;
-
+    String sign = "USD";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +46,7 @@ public class WishListActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
 
-                String s = "";
+                sign = "";
                 double convert = 0;
 
                 for (int i = 0; i < wishes.size(); ++i) {
@@ -51,16 +54,16 @@ public class WishListActivity extends AppCompatActivity {
                 }
 
                 switch (checkedId) {
-                    case 1:
-                        s = "USD";
+                    case R.id.USD:
+                        sign = "USD";
                         convert = 1;
                         break;
-                    case 2:
-                        s = "EUR";
+                    case R.id.EUR:
+                        sign = "EUR";
                         convert = 0.89;
                         break;
-                    case 3:
-                        s = "UAH";
+                    case R.id.UAH:
+                        sign = "UAH";
                         convert = 27.02;
                         break;
                 }
@@ -69,7 +72,7 @@ public class WishListActivity extends AppCompatActivity {
                     item.price *= convert;
                 }
 
-                wishArrayAdapter.changeSign(s);
+                wishArrayAdapter.changeSign(sign);
                 wishArrayAdapter.notifyDataSetChanged();
             }
         });
@@ -84,7 +87,13 @@ public class WishListActivity extends AppCompatActivity {
             wishes.add(w);
         }
 
-        wishArrayAdapter = new WishArrayAdapter(this, wishes,"USD");
+        wishArrayAdapter = new WishArrayAdapter(this, wishes, "USD", new MyInterface() {
+            @Override
+            public void onChangeCost(double b) {
+                ((TextView)findViewById(R.id.amount)).setText(b != 0  ? "Total amount: " + String.format("%.2f", b) + " " + sign : "");
+            }
+        });
+
         wishList.setAdapter(wishArrayAdapter);
     }
 }
