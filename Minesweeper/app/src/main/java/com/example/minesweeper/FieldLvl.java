@@ -117,7 +117,7 @@ public class FieldLvl extends AppCompatActivity {
                 paramB.height = paramB.width = FrameLayout.LayoutParams.MATCH_PARENT;
                 b.setLayoutParams(paramB);
 
-                b.setTooltipText(i + "" + j);
+                b.setTooltipText(i + " " + j);
                 b.setBackgroundColor(Color.rgb(245, 245, 245));
                 b.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -134,34 +134,70 @@ public class FieldLvl extends AppCompatActivity {
                 paramFl.columnSpec = GridLayout.spec(i,1,1f);
                 paramFl.rowSpec = GridLayout.spec(j,1,1f);
 
-                fl.setTooltipText(i + "" + j);
+                fl.setTooltipText(i + " " + j);
                 fl.setLayoutParams(paramFl);
                 fl.setBackgroundColor(Color.rgb(192, 192, 192));
                 fl.setPadding(5, 5, 5, 5);
-
             }
         }
     }
 
     private void check(View v) {
+        FrameLayout fl = (FrameLayout)v.getParent();
+
+        fl.removeViewAt(0);
+
+        String targetBt = String.valueOf(fl.getTooltipText());
+
+        int row = Integer.parseInt(targetBt.substring(0, targetBt.indexOf(" ")));
+        int col = Integer.parseInt(targetBt.substring(targetBt.indexOf(" ") + 1));
+
         if (firstClick) {
-            fillBombs();
+            fillBombs(row, col);
             fillNumber();
 
             firstClick = false;
         }
 
-
-
-//        FrameLayout fl = (FrameLayout)v.getParent();
-//
-//        fl.removeViewAt(0);
-//        Toast.makeText(this, String.valueOf(fl.getTooltipText()), Toast.LENGTH_SHORT).show();
-
+        wideSearch(row, col);
     }
 
-    void wideSearch(int row, int col) {
+    void wideSearch(int rowS, int colS) {
+        int index = 0;
+        int stepCount = 8;
+        int step = 0;
+        ArrayList<Integer> nums;
+        boolean notFind = true;
 
+        while(notFind) {
+
+            nums = stepsFill(rowS * row + colS, stepCount);
+
+            for (int i = 0; i < stepCount; ++i) {
+
+                step = index + nums.get(i);
+
+                if (field[step].cell == Cell.bomb) {
+                    notFind = false;
+                    break;
+                } else {
+                    FrameLayout fl = (FrameLayout) minesField.getChildAt(step);
+                    fl.removeViewAt(0);
+                }
+            }
+
+            stepCount = stepCount * 2;
+        }
+    }
+
+    ArrayList<Integer> stepsFill(int index, int stepCount) {
+        ArrayList<Integer> num = new ArrayList<>();
+
+        for (int i = 0; i < stepCount; ++i) {
+            num.add(index - );
+        }
+
+        return  num;
     }
 
 //    void justBFS(int v) {
@@ -190,7 +226,7 @@ public class FieldLvl extends AppCompatActivity {
 //        }
 //    }
 
-    private void fillBombs() {
+    private void fillBombs(int rowU, int colU) {
         int rowTemp = 0;
         int colTemp = 0;
         int index = 0;
@@ -199,6 +235,10 @@ public class FieldLvl extends AppCompatActivity {
             while(true) {
                 rowTemp = rand.nextInt(row);
                 colTemp = rand.nextInt(col);
+
+                if (rowU == rowTemp && colU == colTemp) {
+                    continue;
+                }
 
                 index = rowTemp * row + colTemp;
                 if (!randIndex.contains(index)) {
@@ -211,8 +251,8 @@ public class FieldLvl extends AppCompatActivity {
 
             FrameLayout fl = (FrameLayout) minesField.getChildAt(index);
 
-//            fl.getChildAt(0).setBackground(ContextCompat.getDrawable(this, R.drawable.mine));
             fl.setBackground(ContextCompat.getDrawable(this, R.drawable.mine));
+//            fl.getChildAt(0).setBackground(ContextCompat.getDrawable(this, R.drawable.mine));
         }
     }
 
@@ -385,10 +425,13 @@ public class FieldLvl extends AppCompatActivity {
         for (int i = 0; i < row; ++i) {
             for (int j = 0; j < col; ++j) {
                 field[i * row + j] = new CellItem(Cell.empty, i, j);
+
             }
         }
 
         randIndex = new ArrayList<>();
+        minesField.removeAllViews();
+
         gridFill();
     }
 }
