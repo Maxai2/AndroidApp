@@ -151,36 +151,44 @@ public class FieldLvl extends AppCompatActivity {
             firstClick = false;
         }
 
-        FrameLayout fl = (FrameLayout)v.getParent();
 
-        fl.removeViewAt(0);
+
+//        FrameLayout fl = (FrameLayout)v.getParent();
+//
+//        fl.removeViewAt(0);
 //        Toast.makeText(this, String.valueOf(fl.getTooltipText()), Toast.LENGTH_SHORT).show();
 
     }
 
-    void justBFS(int v) {
-        boolean[] used = new boolean [vNum]; // массив пометок
-        int[] queue = new int [vNum]; // очередь
+    void wideSearch(int row, int col) {
 
-        int qH = 0; // голова очереди
-        int qT = 0; // хвост
-
-        /* <обработка вершины v> */
-        used[v] = true; // помечаем исходную вершину
-        queue[qT++] = v; // помещаем ее в очередь
-
-        while (qH < qT) { // пока очередь не пуста
-                 v = queue[qH++]; // извлекаем текущую вершину
-
-                 for (int nv = 0; nv < vNum; nv++) { // перебираем вершины
-                     if (!used[nv] && graph[v][nv]) { // если nv не помечена и смежна с v
-                         /* <обработка вершины nv> */
-                         used[nv] = true; // помечаем ее
-                         queue[qT++] = nv; // и добавляем в очередь
-                }
-            }
-        }
     }
+
+//    void justBFS(int v) {
+//        boolean[] used = new boolean [row]; // массив пометок
+//        int[] queue = new int [col]; // очередь
+//
+//        int qH = 0; // голова очереди
+//        int qT = 0; // хвост
+//
+//        /* <обработка вершины v> */
+//        used[v] = true; // помечаем исходную вершину
+//        queue[qT++] = v; // помещаем ее в очередь
+//
+//        while (qH < qT) { // пока очередь не пуста
+//                 v = queue[qH++]; // извлекаем текущую вершину
+//
+//                 for (int nv = 0; nv < row; nv++) { // перебираем вершины
+////                     if (!used[nv] && graph[v][nv]) { // если nv не помечена и смежна с v
+//                       if (!used[nv] && (field[v * row + nv].cell == Cell.bomb)) { // если nv не помечена и смежна с v
+//
+//                         /* <обработка вершины nv> */
+//                         used[nv] = true; // помечаем ее
+//                         queue[qT++] = nv; // и добавляем в очередь
+//                }
+//            }
+//        }
+//    }
 
     private void fillBombs() {
         int rowTemp = 0;
