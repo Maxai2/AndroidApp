@@ -159,46 +159,116 @@ public class FieldLvl extends AppCompatActivity {
             firstClick = false;
         }
 
-        wideSearch(row, col);
+        wideSearch(row, col, 3);
     }
 
-    void wideSearch(int rowS, int colS) {
-        int index = 0;
-        int stepCount = 8;
+    void wideSearch(int rowS, int colS, int colRow) {
+
+        int min_x = colS - colRow / 2;
+        int max_x = colS + colRow / 2;
+        int min_y = rowS - colRow / 2;
+        int max_y = rowS + colRow / 2;
         int step = 0;
-        ArrayList<Integer> nums;
-        boolean notFind = true;
 
-        while(notFind) {
+        if (min_x < 0) {
+            min_x = 0;
+        }
 
-            nums = stepsFill(rowS * row + colS, stepCount);
+        if (max_x >= col) {
+            max_x = col - 1;
+        }
 
-            for (int i = 0; i < stepCount; ++i) {
+        if (min_y < 0) {
+            min_y = 0;
+        }
 
-                step = index + nums.get(i);
+        if (max_y >= row) {
+            max_y = row - 1;
+        }
 
-                if (field[step].cell == Cell.bomb) {
-                    notFind = false;
-                    break;
-                } else {
-                    FrameLayout fl = (FrameLayout) minesField.getChildAt(step);
+        for (int i = min_x; i <= max_x; ++i) {
+            step = min_y * row + i;
+
+            if (field[step].cell == Cell.bomb) {
+                return;
+            } else {
+                FrameLayout fl = (FrameLayout) minesField.getChildAt(step);
+                if (fl.getChildAt(0) != null) {
                     fl.removeViewAt(0);
                 }
             }
-
-            stepCount = stepCount * 2;
-        }
-    }
-
-    ArrayList<Integer> stepsFill(int index, int stepCount) {
-        ArrayList<Integer> num = new ArrayList<>();
-
-        for (int i = 0; i < stepCount; ++i) {
-            num.add(index - );
         }
 
-        return  num;
+        for (int i = min_y + 1; i < max_y; ++i) {
+            step = i * row + min_x;
+
+            if (field[step].cell == Cell.bomb) {
+                return;
+            } else {
+                FrameLayout fl = (FrameLayout) minesField.getChildAt(step);
+                fl.removeViewAt(0);
+            }
+
+            step = i * row + max_x;
+
+            if (field[step].cell == Cell.bomb) {
+                return;
+            } else {
+                FrameLayout fl = (FrameLayout) minesField.getChildAt(step);
+                fl.removeViewAt(0);
+            }
+        }
+
+        for (int i = min_x; i <= max_x; ++i) {
+            step = max_y * row + i;
+
+            if (field[step].cell == Cell.bomb) {
+                return;
+            } else {
+                FrameLayout fl = (FrameLayout) minesField.getChildAt(step);
+                fl.removeViewAt(0);
+            }
+        }
+
+        colRow += 2;
+        wideSearch(rowS, colS, colRow);
+
+//        int index = 0;
+//        int stepCount = 8;
+//        int step = 0;
+//        ArrayList<Integer> nums;
+//        boolean notFind = true;
+//
+//        while(notFind) {
+//
+//            nums = stepsFill(rowS * row + colS, stepCount);
+//
+//            for (int i = 0; i < stepCount; ++i) {
+//
+//                step = index + nums.get(i);
+//
+//                if (field[step].cell == Cell.bomb) {
+//                    notFind = false;
+//                    break;
+//                } else {
+//                    FrameLayout fl = (FrameLayout) minesField.getChildAt(step);
+//                    fl.removeViewAt(0);
+//                }
+//            }
+//
+//            stepCount = stepCount * 2;
+//        }
     }
+
+//    ArrayList<Integer> stepsFill(int index, int stepCount) {
+//        ArrayList<Integer> num = new ArrayList<>();
+//
+//        for (int i = 0; i < stepCount; ++i) {
+//            num.add(index - );
+//        }
+//
+//        return  num;
+//    }
 
 //    void justBFS(int v) {
 //        boolean[] used = new boolean [row]; // массив пометок
