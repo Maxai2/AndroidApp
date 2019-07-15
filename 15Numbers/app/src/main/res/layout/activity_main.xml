@@ -36,6 +36,7 @@
         android:columnCount="4"
         android:rowCount="4"
         android:layout_margin="50dp"
+        android:background="@android:color/black"
         >
 
     </GridLayout>
