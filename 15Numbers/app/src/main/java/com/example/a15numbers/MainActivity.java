@@ -51,6 +51,12 @@ public class MainActivity extends AppCompatActivity {
 
     RelativeLayout relatLay;
 
+    Timer timer;
+    TimerTask timerTask;
+    boolean start = true;
+
+    ArrayList<Integer> winNumbersField = new ArrayList<Integer>();
+    //-----------------------------------------------------
     @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,15 +66,25 @@ public class MainActivity extends AppCompatActivity {
         relatLay = findViewById(R.id.relatLay);
 
         relatLay.setOnTouchListener(new OnSwipeTouchListener(this) {
+
             public void onSwipeTop() {
-                Toast.makeText(MainActivity.this, "top", Toast.LENGTH_SHORT).show();
+                if (start) {
+                    timer.scheduleAtFixedRate(timerTask, 1000, 1000);
+                    start = false;
+                }
+
                 int index = numbersField.indexOf(0);
 
                 top(index);
+                win();
             }
 
             public void onSwipeRight() {
-                Toast.makeText(MainActivity.this, "right", Toast.LENGTH_SHORT).show();
+                if (start) {
+                    timer.scheduleAtFixedRate(timerTask, 1000, 1000);
+                    start = false;
+                }
+
                 int index = numbersField.indexOf(0);
 
                 if (index == 4 || index == 8 || index == 12) {
@@ -76,10 +92,15 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 right(index);
+                win();
             }
 
             public void onSwipeLeft() {
-                Toast.makeText(MainActivity.this, "left", Toast.LENGTH_SHORT).show();
+                if (start) {
+                    timer.scheduleAtFixedRate(timerTask, 1000, 1000);
+                    start = false;
+                }
+
                 int index = numbersField.indexOf(0);
 
                 if (index == 3 || index == 7 || index == 11) {
@@ -87,13 +108,19 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 left(index);
+                win();
             }
 
             public void onSwipeBottom() {
-                Toast.makeText(MainActivity.this, "bottom", Toast.LENGTH_SHORT).show();
+                if (start) {
+                    timer.scheduleAtFixedRate(timerTask, 1000, 1000);
+                    start = false;
+                }
+
                 int index = numbersField.indexOf(0);
 
                 bottom(index);
+                win();
             }
         });
 
@@ -102,8 +129,8 @@ public class MainActivity extends AppCompatActivity {
         timeLeft.setText("00:00");
 
         final Handler handler = new Handler();
-        Timer timer = new Timer(false);
-        TimerTask timerTask = new TimerTask() {
+        timer = new Timer(false);
+        timerTask = new TimerTask() {
             @Override
             public void run() {
                 handler.post(new Runnable() {
@@ -115,15 +142,29 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
-//        timer.scheduleAtFixedRate(timerTask, 1000, 1000);
-
         gridField();
         fillNumber();
         randomMe();
     }
+    //-----------------------------------------------------
+    void win() {
+        for (int i = 0; i < 16; ++i) {
+            if (winNumbersField.get(i) != numbersField.get(i)) {
+                return;
+            }
+        }
 
+//        timer.cancel();
+    }
+    //-----------------------------------------------------
     private void top(int index) {
-        Drawable res = field.getChildAt(index + 4).getBackground();
+        View view = field.getChildAt(index + 4);
+
+        if (view == null) {
+            return;
+        }
+
+        Drawable res = view.getBackground();
 
         field.getChildAt(index).setBackground(res);
         numbersField.set(index, numbersField.get(index + 4));
@@ -131,9 +172,15 @@ public class MainActivity extends AppCompatActivity {
         field.getChildAt(index + 4).setBackground(null);
         numbersField.set(index  + 4, 0);
     }
-
+    //-----------------------------------------------------
     private void right(int index) {
-        Drawable res = field.getChildAt(index - 1).getBackground();
+        View view = field.getChildAt(index - 1);
+
+        if (view == null) {
+            return;
+        }
+
+        Drawable res = view.getBackground();
 
         field.getChildAt(index).setBackground(res);
         numbersField.set(index, numbersField.get(index - 1));
@@ -141,9 +188,15 @@ public class MainActivity extends AppCompatActivity {
         field.getChildAt(index - 1).setBackground(null);
         numbersField.set(index - 1, 0);
     }
-
+    //-----------------------------------------------------
     private void left(int index) {
-        Drawable res = field.getChildAt(index + 1).getBackground();
+        View view = field.getChildAt(index + 1);
+
+        if (view == null) {
+            return;
+        }
+
+        Drawable res = view.getBackground();
 
         field.getChildAt(index).setBackground(res);
         numbersField.set(index, numbersField.get(index + 1));
@@ -151,9 +204,15 @@ public class MainActivity extends AppCompatActivity {
         field.getChildAt(index + 1).setBackground(null);
         numbersField.set(index + 1, 0);
     }
-
+    //-----------------------------------------------------
     private void bottom(int index) {
-        Drawable res = field.getChildAt(index - 4).getBackground();
+        View view = field.getChildAt(index - 4);
+
+        if (view == null) {
+            return;
+        }
+
+        Drawable res = view.getBackground();
 
         field.getChildAt(index).setBackground(res);
         numbersField.set(index, numbersField.get(index - 4));
@@ -161,7 +220,7 @@ public class MainActivity extends AppCompatActivity {
         field.getChildAt(index - 4).setBackground(null);
         numbersField.set(index - 4, 0);
     }
-
+    //-----------------------------------------------------
     private void fillNumber() {
         for (int i = 0; i < 15; ++i) {
             ((FrameLayout)field.getChildAt(i)).setBackgroundResource(numbers[i]);
@@ -170,48 +229,49 @@ public class MainActivity extends AppCompatActivity {
 
         ((FrameLayout)field.getChildAt(15)).setBackground(null);
         numbersField.add(0);
+        winNumbersField = numbersField;
     }
-
+    //-----------------------------------------------------
     private void randomMe() {
         Random rand = new Random();
         int index = 0;
-        for (int i = 0; i < 1000; ++i) {
+        boolean repeat;
+        for (int i = 0; i < 100; ++i) {
 
-            switch (rand.nextInt(3)) {
-                case 0: // top
-                    index = numbersField.indexOf(0);
-                    top(index);
-                    break;
-                case 1: // right
-                    index = numbersField.indexOf(0);
+            repeat = true;
+            while(repeat) {
+                switch (rand.nextInt(3)) {
+                    case 0: // top
+                        index = numbersField.indexOf(0);
 
-                    if (index == 4 || index == 8 || index == 12) {
-                        continue;
-                    }
+                        top(index);
+                        repeat = false;
+                        break;
+                    case 1: // right
+                        index = numbersField.indexOf(0);
 
-                    right(index);
-                    break;
-                case 2: // bottom
-                    index = numbersField.indexOf(0);
+                        right(index);
+                        repeat = false;
+                        break;
+                    case 2: // bottom
+                        index = numbersField.indexOf(0);
 
-                    bottom(index);
-                    break;
-                case 3: // left
-                    index = numbersField.indexOf(0);
+                        bottom(index);
+                        repeat = false;
+                        break;
+                    case 3: // left
+                        index = numbersField.indexOf(0);
 
-                    if (index == 3 || index == 7 || index == 11) {
-                        continue;
-                    }
-
-                    left(index);
-                    break;
-
-                default:
-                    break;
+                        left(index);
+                        repeat = false;
+                        break;
+                    default:
+                        break;
+                }
             }
         }
     }
-
+    //-----------------------------------------------------
     String timeCorrect(int num) {
 
         int resH = (int)(num / 3600);
@@ -222,11 +282,10 @@ public class MainActivity extends AppCompatActivity {
 
         return String.format("%02d:%02d", resM, resS);
     }
-
+    //-----------------------------------------------------
     void gridField() {
         for (int i = 0; i < 4; ++i) {
             for (int j = 0; j < 4; ++j) {
-
                 FrameLayout fl = new FrameLayout(this);
 
                 field.addView(fl);
@@ -243,9 +302,15 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
-
+    //-----------------------------------------------------
     public void reset(View view) {
         numbersField = new ArrayList<>();
         fillNumber();
+        randomMe();
+        count = 0;
+        timeLeft.setText("00:00");
+        timer.cancel();
+        start = true;
     }
+    //-----------------------------------------------------
 }
