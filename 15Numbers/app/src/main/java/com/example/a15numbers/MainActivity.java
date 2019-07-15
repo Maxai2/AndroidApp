@@ -2,8 +2,10 @@ package com.example.a15numbers;
 
 import android.annotation.SuppressLint;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.CountDownTimer;
 import android.os.Handler;
+import android.support.annotation.DrawableRes;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MotionEvent;
@@ -17,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -44,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
             R.drawable.fiveteen
     };
 
-    ArrayList<Integer>
+    ArrayList<Integer> numbersField = new ArrayList<>();
 
     RelativeLayout relatLay;
 
@@ -57,21 +60,40 @@ public class MainActivity extends AppCompatActivity {
         relatLay = findViewById(R.id.relatLay);
 
         relatLay.setOnTouchListener(new OnSwipeTouchListener(this) {
-
             public void onSwipeTop() {
                 Toast.makeText(MainActivity.this, "top", Toast.LENGTH_SHORT).show();
+                int index = numbersField.indexOf(0);
+
+                top(index);
             }
 
             public void onSwipeRight() {
                 Toast.makeText(MainActivity.this, "right", Toast.LENGTH_SHORT).show();
+                int index = numbersField.indexOf(0);
+
+                if (index == 4 || index == 8 || index == 12) {
+                    return;
+                }
+
+                right(index);
             }
 
             public void onSwipeLeft() {
                 Toast.makeText(MainActivity.this, "left", Toast.LENGTH_SHORT).show();
+                int index = numbersField.indexOf(0);
+
+                if (index == 3 || index == 7 || index == 11) {
+                    return;
+                }
+
+                left(index);
             }
 
             public void onSwipeBottom() {
                 Toast.makeText(MainActivity.this, "bottom", Toast.LENGTH_SHORT).show();
+                int index = numbersField.indexOf(0);
+
+                bottom(index);
             }
         });
 
@@ -97,11 +119,96 @@ public class MainActivity extends AppCompatActivity {
 
         gridField();
         fillNumber();
+        randomMe();
+    }
+
+    private void top(int index) {
+        Drawable res = field.getChildAt(index + 4).getBackground();
+
+        field.getChildAt(index).setBackground(res);
+        numbersField.set(index, numbersField.get(index + 4));
+
+        field.getChildAt(index + 4).setBackground(null);
+        numbersField.set(index  + 4, 0);
+    }
+
+    private void right(int index) {
+        Drawable res = field.getChildAt(index - 1).getBackground();
+
+        field.getChildAt(index).setBackground(res);
+        numbersField.set(index, numbersField.get(index - 1));
+
+        field.getChildAt(index - 1).setBackground(null);
+        numbersField.set(index - 1, 0);
+    }
+
+    private void left(int index) {
+        Drawable res = field.getChildAt(index + 1).getBackground();
+
+        field.getChildAt(index).setBackground(res);
+        numbersField.set(index, numbersField.get(index + 1));
+
+        field.getChildAt(index + 1).setBackground(null);
+        numbersField.set(index + 1, 0);
+    }
+
+    private void bottom(int index) {
+        Drawable res = field.getChildAt(index - 4).getBackground();
+
+        field.getChildAt(index).setBackground(res);
+        numbersField.set(index, numbersField.get(index - 4));
+
+        field.getChildAt(index - 4).setBackground(null);
+        numbersField.set(index - 4, 0);
     }
 
     private void fillNumber() {
         for (int i = 0; i < 15; ++i) {
             ((FrameLayout)field.getChildAt(i)).setBackgroundResource(numbers[i]);
+            numbersField.add(i + 1);
+        }
+
+        ((FrameLayout)field.getChildAt(15)).setBackground(null);
+        numbersField.add(0);
+    }
+
+    private void randomMe() {
+        Random rand = new Random();
+        int index = 0;
+        for (int i = 0; i < 1000; ++i) {
+
+            switch (rand.nextInt(3)) {
+                case 0: // top
+                    index = numbersField.indexOf(0);
+                    top(index);
+                    break;
+                case 1: // right
+                    index = numbersField.indexOf(0);
+
+                    if (index == 4 || index == 8 || index == 12) {
+                        continue;
+                    }
+
+                    right(index);
+                    break;
+                case 2: // bottom
+                    index = numbersField.indexOf(0);
+
+                    bottom(index);
+                    break;
+                case 3: // left
+                    index = numbersField.indexOf(0);
+
+                    if (index == 3 || index == 7 || index == 11) {
+                        continue;
+                    }
+
+                    left(index);
+                    break;
+
+                default:
+                    break;
+            }
         }
     }
 
@@ -138,6 +245,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void reset(View view) {
-
+        numbersField = new ArrayList<>();
+        fillNumber();
     }
 }
