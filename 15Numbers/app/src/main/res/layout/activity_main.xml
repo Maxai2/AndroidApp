@@ -5,7 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:id="@+id/relatLay">
 
     <Button
         android:layout_width="wrap_content"
@@ -29,14 +30,13 @@
 
     <GridLayout
         android:id="@+id/field"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:columnCount="4"
         android:rowCount="4"
         android:layout_margin="50dp"
-        android:background="@android:color/black"
         >
 
     </GridLayout>

@@ -131,8 +131,8 @@ public class FieldLvl extends AppCompatActivity {
 
                 paramFl.width = 0;
                 paramFl.height = 0;
-                paramFl.columnSpec = GridLayout.spec(i,1,1f);
-                paramFl.rowSpec = GridLayout.spec(j,1,1f);
+                paramFl.columnSpec = GridLayout.spec(j,1,1f);
+                paramFl.rowSpec = GridLayout.spec(i,1,1f);
 
                 fl.setTooltipText(i + " " + j);
                 fl.setLayoutParams(paramFl);
@@ -162,6 +162,19 @@ public class FieldLvl extends AppCompatActivity {
         wideSearch(row, col, 3);
     }
 
+    boolean checkMe(int step) {
+        if (field[step].cell == Cell.bomb) {
+            return true;
+        } else {
+            FrameLayout fl = (FrameLayout) minesField.getChildAt(step);
+            if (fl.getChildAt(0) != null) {
+                fl.removeViewAt(0);
+            }
+
+            return false;
+        }
+    }
+
     void wideSearch(int rowS, int colS, int colRow) {
 
         int min_x = colS - colRow / 2;
@@ -189,44 +202,30 @@ public class FieldLvl extends AppCompatActivity {
         for (int i = min_x; i <= max_x; ++i) {
             step = min_y * row + i;
 
-            if (field[step].cell == Cell.bomb) {
+            if (checkMe(step)) {
                 return;
-            } else {
-                FrameLayout fl = (FrameLayout) minesField.getChildAt(step);
-                if (fl.getChildAt(0) != null) {
-                    fl.removeViewAt(0);
-                }
             }
         }
 
         for (int i = min_y + 1; i < max_y; ++i) {
             step = i * row + min_x;
 
-            if (field[step].cell == Cell.bomb) {
+            if (checkMe(step)) {
                 return;
-            } else {
-                FrameLayout fl = (FrameLayout) minesField.getChildAt(step);
-                fl.removeViewAt(0);
             }
 
             step = i * row + max_x;
 
-            if (field[step].cell == Cell.bomb) {
+            if (checkMe(step)) {
                 return;
-            } else {
-                FrameLayout fl = (FrameLayout) minesField.getChildAt(step);
-                fl.removeViewAt(0);
             }
         }
 
         for (int i = min_x; i <= max_x; ++i) {
             step = max_y * row + i;
 
-            if (field[step].cell == Cell.bomb) {
+            if (checkMe(step)) {
                 return;
-            } else {
-                FrameLayout fl = (FrameLayout) minesField.getChildAt(step);
-                fl.removeViewAt(0);
             }
         }
 
