@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@android:color/black"
+    tools:context=".MainActivity"
+    >
+
+    <ImageView
+        android:id="@+id/album"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/vinil"
+        />
+
+    <LinearLayout
+        android:id="@+id/artSong"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_toRightOf="@id/album"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        >
+
+        <TextView
+            android:id="@+id/song"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15dp"
+            android:text="Crazy Music"
+            android:textColor="@android:color/white"
+            />
+
+        <TextView
+            android:id="@+id/artist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/darker_gray"
+            android:text="Ottawan"
+            android:textSize="10dp"
+            />
+    </LinearLayout>
+
+    <GridLayout
+        android:id="@+id/btns"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnCount="4"
+        android:rowCount="1"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/album"
+        >
+
+        <Button
+            android:id="@+id/prevSm"
+            android:layout_columnWeight="1"
+            android:layout_width="0dp"
+            android:background="@drawable/prev_sm"
+            android:layout_margin="10dp"
+            android:onClick="notifAct"
+            />
+
+        <Button
+            android:id="@+id/playPauseSm"
+            android:layout_columnWeight="1"
+            android:layout_width="0dp"
+            android:background="@drawable/play_sm"
+            android:layout_margin="10dp"
+            android:onClick="notifAct"
+            />
+
+        <Button
+            android:id="@+id/nextSm"
+            android:layout_columnWeight="1"
+            android:layout_width="0dp"
+            android:background="@drawable/next_sm"
+            android:layout_margin="10dp"
+            android:onClick="notifAct"
+            />
+
+        <Button
+            android:id="@+id/favUnfavSm"
+            android:layout_columnWeight="1"
+            android:layout_width="0dp"
+            android:background="@drawable/un_fuv_sm"
+            android:layout_margin="10dp"
+            android:onClick="notifAct"
+            />
+
+    </GridLayout>
+
+
+</RelativeLayout>

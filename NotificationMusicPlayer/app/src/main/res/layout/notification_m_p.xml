@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@android:color/black"
+    tools:context=".MainActivity"
+    >
+
+    <ImageView
+        android:id="@+id/album"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:src="@drawable/vinil"
+        android:layout_centerVertical="true"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_toRightOf="@id/album"
+        android:layout_centerVertical="true"
+        android:padding="5dp"
+        >
+
+        <LinearLayout
+            android:id="@+id/artSong"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+
+            <TextView
+                android:id="@+id/song"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:text="Crazy Music"
+                android:textColor="@android:color/white"
+                />
+
+            <TextView
+                android:id="@+id/artist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/darker_gray"
+                android:text="Ottawan"
+                android:textSize="15dp"
+                />
+        </LinearLayout>
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:columnCount="4"
+            android:layout_marginTop="20dp"
+            >
+
+            <Button
+                android:id="@+id/prev"
+                android:layout_columnWeight="1"
+                android:layout_width="0dp"
+                android:background="@drawable/prev_music"
+                android:layout_margin="10dp"
+                android:onClick="notifAct"
+                />
+
+            <Button
+                android:id="@+id/playPause"
+                android:layout_columnWeight="1"
+                android:layout_width="0dp"
+                android:background="@drawable/play_music"
+                android:layout_margin="10dp"
+                android:onClick="notifAct"
+                />
+
+            <Button
+                android:id="@+id/next"
+                android:layout_columnWeight="1"
+                android:layout_width="0dp"
+                android:background="@drawable/next_music"
+                android:layout_margin="10dp"
+                android:onClick="notifAct"
+                />
+
+            <Button
+                android:id="@+id/favUnfav"
+                android:layout_columnWeight="1"
+                android:layout_width="0dp"
+                android:background="@drawable/unlike"
+                android:layout_margin="10dp"
+                android:onClick="notifAct"
+                />
+
+        </GridLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>
