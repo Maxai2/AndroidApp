@@ -1,11 +1,17 @@
 package com.example.a15numbers;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.support.annotation.DrawableRes;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MotionEvent;
@@ -54,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
     Timer timer;
     TimerTask timerTask;
     boolean start = true;
+    MediaPlayer mediaPlayer;
 
     ArrayList<Integer> winNumbersField = new ArrayList<Integer>();
     //-----------------------------------------------------
@@ -69,19 +76,20 @@ public class MainActivity extends AppCompatActivity {
 
             public void onSwipeTop() {
                 if (start) {
-                    timer.scheduleAtFixedRate(timerTask, 1000, 1000);
+                    timer.scheduleAtFixedRate(createTimerTask(), 0, 1000);
                     start = false;
                 }
 
                 int index = numbersField.indexOf(0);
 
                 top(index);
+                mediaPlayer.start();
                 win();
             }
 
             public void onSwipeRight() {
                 if (start) {
-                    timer.scheduleAtFixedRate(timerTask, 1000, 1000);
+                    timer.scheduleAtFixedRate(createTimerTask(), 0, 1000);
                     start = false;
                 }
 
@@ -92,12 +100,13 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 right(index);
+                mediaPlayer.start();
                 win();
             }
 
             public void onSwipeLeft() {
                 if (start) {
-                    timer.scheduleAtFixedRate(timerTask, 1000, 1000);
+                    timer.scheduleAtFixedRate(createTimerTask(), 0, 1000);
                     start = false;
                 }
 
@@ -108,18 +117,20 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 left(index);
+                mediaPlayer.start();
                 win();
             }
 
             public void onSwipeBottom() {
                 if (start) {
-                    timer.scheduleAtFixedRate(timerTask, 1000, 1000);
+                    timer.scheduleAtFixedRate(createTimerTask(), 0, 1000);
                     start = false;
                 }
 
                 int index = numbersField.indexOf(0);
 
                 bottom(index);
+                mediaPlayer.start();
                 win();
             }
         });
@@ -128,12 +139,32 @@ public class MainActivity extends AppCompatActivity {
         timeLeft = findViewById(R.id.timeLeft);
         timeLeft.setText("00:00");
 
-        final Handler handler = new Handler();
+        mediaPlayer = MediaPlayer.create(this, R.raw.swap);
+
+//        final Handler handler = new Handler();
         timer = new Timer(false);
-        timerTask = new TimerTask() {
+//        timerTask = new TimerTask() {
+//            @Override
+//            public void run() {
+////                handler.post(new Runnable() {
+////                    @Override
+////                    public void run() {
+////                        timeLeft.setText(timeCorrect(count++));
+////                    }
+////                });
+//            }
+//        };
+
+        gridField();
+        fillNumber();
+        randomMe();
+    }
+    //-----------------------------------------------------
+    private TimerTask createTimerTask() {
+        return new TimerTask() {
             @Override
             public void run() {
-                handler.post(new Runnable() {
+                getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         timeLeft.setText(timeCorrect(count++));
@@ -141,10 +172,10 @@ public class MainActivity extends AppCompatActivity {
                 });
             }
         };
-
-        gridField();
-        fillNumber();
-        randomMe();
+    }
+    //-----------------------------------------------------
+    private Activity getActivity() {
+        return this;
     }
     //-----------------------------------------------------
     void win() {
@@ -154,7 +185,24 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-//        timer.cancel();
+        new AlertDialog.Builder(this)
+                .setTitle("Congratulation!")
+                .setMessage("U WIN!!!")
+                .show();
+
+        timer.cancel();
+    }
+    //-----------------------------------------------------
+    private void fillNumber() {
+        for (int i = 0; i < 15; ++i) {
+            ((FrameLayout)field.getChildAt(i)).setBackgroundResource(numbers[i]);
+            numbersField.add(i + 1);
+            winNumbersField.add(i + 1);
+        }
+
+        ((FrameLayout)field.getChildAt(15)).setBackground(null);
+        numbersField.add(0);
+        winNumbersField.add(0);
     }
     //-----------------------------------------------------
     private void top(int index) {
@@ -221,17 +269,6 @@ public class MainActivity extends AppCompatActivity {
         numbersField.set(index - 4, 0);
     }
     //-----------------------------------------------------
-    private void fillNumber() {
-        for (int i = 0; i < 15; ++i) {
-            ((FrameLayout)field.getChildAt(i)).setBackgroundResource(numbers[i]);
-            numbersField.add(i + 1);
-        }
-
-        ((FrameLayout)field.getChildAt(15)).setBackground(null);
-        numbersField.add(0);
-        winNumbersField = numbersField;
-    }
-    //-----------------------------------------------------
     private void randomMe() {
         Random rand = new Random();
         int index = 0;
@@ -250,6 +287,10 @@ public class MainActivity extends AppCompatActivity {
                     case 1: // right
                         index = numbersField.indexOf(0);
 
+//                        if (index == 4 || index == 8 || index == 12) {
+//                            continue;
+//                        }
+
                         right(index);
                         repeat = false;
                         break;
@@ -261,6 +302,10 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case 3: // left
                         index = numbersField.indexOf(0);
+
+//                        if (index == 3 || index == 7 || index == 11) {
+//                            continue;
+//                        }
 
                         left(index);
                         repeat = false;
@@ -310,6 +355,8 @@ public class MainActivity extends AppCompatActivity {
         count = 0;
         timeLeft.setText("00:00");
         timer.cancel();
+        timer.purge();
+        timer = new Timer(false);
         start = true;
     }
     //-----------------------------------------------------
