@@ -1,6 +1,5 @@
 package com.example.notificationmusicplayer;
 
-import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -11,8 +10,10 @@ import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.RemoteViews;
+
+import java.util.ArrayList;
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,31 +25,32 @@ public class MainActivity extends AppCompatActivity {
     static NotificationManager manager;
     static NotificationCompat.Builder builder;
     static RemoteViews notiflay;
+    static RemoteViews notiflaySmall;
 
-    static Button favBtn;
+    static ArrayList<Song> songs = new ArrayList<>();
+
+    static int curIndex;
+
+    static boolean isPlay = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        favBtn = findViewById(R.id.favUnfav);
+        CustomReciever r = new CustomReciever();
+        IntentFilter i = new IntentFilter();
+        i.addAction(FAVORITE);
+        i.addAction(NEXTMUSIC);
+        i.addAction(PREVMUSIC);
+        i.addAction(PLAYPAUSEMUSIC);
+        registerReceiver(r, i);
 
-        CustomReciever rf = new CustomReciever();
-        IntentFilter iff = new IntentFilter(FAVORITE);
-        registerReceiver(rf, iff);
-
-//        CustomReciever rn = new CustomReciever();
-//        IntentFilter in = new IntentFilter(NEXTMUSIC);
-//        registerReceiver(rn, in);
-//
-//        CustomReciever rp = new CustomReciever();
-//        IntentFilter ip = new IntentFilter(PREVMUSIC);
-//        registerReceiver(rp, ip);
-//
-//        CustomReciever rpp = new CustomReciever();
-//        IntentFilter ipp = new IntentFilter(PLAYPAUSEMUSIC);
-//        registerReceiver(rpp, ipp);
+        songs.add(new Song(R.drawable.skillet_album, "The Last Night", "Skillet"));
+        songs.add(new Song(R.drawable.maroon5_album, "Girls Like You", "Marron 5 ft. Cardi B."));
+        songs.add(new Song(R.drawable.elvis_presley_album, "Heartbreak Hotel", "Elvis Presley"));
+        songs.add(new Song(R.drawable.michael_jackson_album, "You Are Not Alone", "Michael Jackson"));
+        songs.add(new Song(R.drawable.red_album, "Hymn For The Missing", "Red"));
     }
 
     public void open(View view) {
@@ -57,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         Context context = getApplicationContext();
 
         notiflay = new RemoteViews(getPackageName(), R.layout.notification_m_p);
-//        RemoteViews notiflaySmall = new RemoteViews(getPackageName(), R.layout.notification_m_p_small);
+        notiflaySmall = new RemoteViews(getPackageName(), R.layout.notification_m_p_small);
 
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
 
@@ -71,27 +73,39 @@ public class MainActivity extends AppCompatActivity {
 
             manager.createNotificationChannel(channel);
 
-            setRemoteViews(notiflay);
-
-
-
             builder = new NotificationCompat.Builder(context, CHANNEL_ID)
                     .setSmallIcon(R.drawable.vinil)
                     .setStyle(null)
-                  .setCustomContentView(notiflay)
+                    .setCustomContentView(notiflaySmall)
                     .setCustomBigContentView(notiflay)
+                    .setOngoing(true)
                     .setAutoCancel(true);
 
-//            setRemoteViews(notiflaySmall);
+            setRemoteViews(notiflay);
+            setRemoteViews(notiflaySmall);
 
         } else {
             builder = new NotificationCompat.Builder(context)
                     .setSmallIcon(R.drawable.vinil)
-                    .setStyle(null);
+                    .setStyle(null)
+                    .setCustomContentView(notiflaySmall)
+                    .setOngoing(true)
+                    .setAutoCancel(true);
 //                    .setCustomContentView(notiflaySmall);
 
-//            setRemoteViews(notiflaySmall);
+            setRemoteViews(notiflaySmall);
         }
+
+        Random rand = new Random();
+        curIndex = rand.nextInt(4);
+        Song s = songs.get(curIndex);
+        notiflay.setImageViewResource(R.id.album, s.albumId);
+        notiflay.setTextViewText(R.id.song, s.name);
+        notiflay.setTextViewText(R.id.artist, s.artist);
+
+        notiflaySmall.setImageViewResource(R.id.album, s.albumId);
+        notiflaySmall.setTextViewText(R.id.song, s.name);
+        notiflaySmall.setTextViewText(R.id.artist, s.artist);
 
         manager.notify(105, builder.build());
     }

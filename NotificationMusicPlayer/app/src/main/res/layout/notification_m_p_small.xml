@@ -10,9 +10,9 @@
         android:id="@+id/album"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:src="@drawable/vinil"
         android:layout_centerVertical="true"
         />
+        <!--android:src="@drawable/vinil"-->
 
     <LinearLayout
         android:id="@+id/artSong"
@@ -30,18 +30,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="15dp"
-            android:text="Crazy Music"
             android:textColor="@android:color/white"
             />
+            <!--android:text="Crazy Music"-->
 
         <TextView
             android:id="@+id/artist"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@android:color/darker_gray"
-            android:text="Ottawan"
             android:textSize="10dp"
             />
+            <!--android:text="Ottawan"-->
     </LinearLayout>
 
     <GridLayout
@@ -55,35 +55,39 @@
         android:layout_marginLeft="10dp"
         >
 
-        <Button
+        <ImageButton
             android:id="@+id/prev"
             android:layout_columnWeight="1"
             android:layout_width="0dp"
-            android:background="@drawable/prev_music"
+            android:src="@drawable/prev_music"
+            android:background="@android:color/black"
             android:layout_margin="7dp"
             />
 
-        <Button
+        <ImageButton
             android:id="@+id/playPause"
             android:layout_columnWeight="1"
             android:layout_width="0dp"
-            android:background="@drawable/play_music"
+            android:src="@drawable/play_music"
+            android:background="@android:color/black"
             android:layout_margin="7dp"
             />
 
-        <Button
+        <ImageButton
             android:id="@+id/next"
             android:layout_columnWeight="1"
             android:layout_width="0dp"
-            android:background="@drawable/next_music"
+            android:src="@drawable/next_music"
+            android:background="@android:color/black"
             android:layout_margin="7dp"
             />
 
-        <Button
-            android:id="@+id/favUnfavSm"
+        <ImageButton
+            android:id="@+id/favUnfav"
             android:layout_columnWeight="1"
             android:layout_width="0dp"
-            android:background="@drawable/unlike"
+            android:src="@drawable/unlike"
+            android:background="@android:color/black"
             android:layout_margin="7dp"
             />
 
