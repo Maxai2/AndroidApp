@@ -3,30 +3,61 @@ package com.example.notificationmusicplayer;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.RemoteViews;
 
 public class MainActivity extends AppCompatActivity {
+
+    static final String FAVORITE = "set_unset_favorite";
+    static final String NEXTMUSIC = "next_music";
+    static final String PREVMUSIC = "prev_music";
+    static final String PLAYPAUSEMUSIC = "next_pause_music";
+
+    static NotificationManager manager;
+    static NotificationCompat.Builder builder;
+    static RemoteViews notiflay;
+
+    static Button favBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        favBtn = findViewById(R.id.favUnfav);
+
+        CustomReciever rf = new CustomReciever();
+        IntentFilter iff = new IntentFilter(FAVORITE);
+        registerReceiver(rf, iff);
+
+//        CustomReciever rn = new CustomReciever();
+//        IntentFilter in = new IntentFilter(NEXTMUSIC);
+//        registerReceiver(rn, in);
+//
+//        CustomReciever rp = new CustomReciever();
+//        IntentFilter ip = new IntentFilter(PREVMUSIC);
+//        registerReceiver(rp, ip);
+//
+//        CustomReciever rpp = new CustomReciever();
+//        IntentFilter ipp = new IntentFilter(PLAYPAUSEMUSIC);
+//        registerReceiver(rpp, ipp);
     }
 
     public void open(View view) {
-
-        NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        Notification builder;
+        manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
         Context context = getApplicationContext();
 
-        RemoteViews notiflay = new RemoteViews(getPackageName(), R.layout.notification_m_p);
-        RemoteViews notiflaySmall = new RemoteViews(getPackageName(), R.layout.notification_m_p_small);
+        notiflay = new RemoteViews(getPackageName(), R.layout.notification_m_p);
+//        RemoteViews notiflaySmall = new RemoteViews(getPackageName(), R.layout.notification_m_p_small);
 
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
 
@@ -40,39 +71,46 @@ public class MainActivity extends AppCompatActivity {
 
             manager.createNotificationChannel(channel);
 
+            setRemoteViews(notiflay);
+
+
+
             builder = new NotificationCompat.Builder(context, CHANNEL_ID)
                     .setSmallIcon(R.drawable.vinil)
                     .setStyle(null)
-                    .setCustomContentView(notiflaySmall)
+                  .setCustomContentView(notiflay)
                     .setCustomBigContentView(notiflay)
-                    .build();
+                    .setAutoCancel(true);
+
+//            setRemoteViews(notiflaySmall);
+
         } else {
             builder = new NotificationCompat.Builder(context)
                     .setSmallIcon(R.drawable.vinil)
-                    .setStyle(null)
-                    .setCustomContentView(notiflaySmall)
-                    .setCustomBigContentView(notiflay)
-                    .build();
+                    .setStyle(null);
+//                    .setCustomContentView(notiflaySmall);
+
+//            setRemoteViews(notiflaySmall);
         }
 
-//        PendingIntent action = PendingIntent.getActivity(context,
-//                0, new Intent(Intent.ACTION_VIEW, Uri.parse("https://t.me/Prosto_Amiran")),
-//                PendingIntent.FLAG_CANCEL_CURRENT);
-
-        manager.notify(101, builder);
+        manager.notify(105, builder.build());
     }
 
-    public void notifAct(View view) {
-        switch (view.getId()) {
-            case R.id.prev:
-                break;
-            case R.id.playPause:
-                view.setBackground(getResources().getDrawable(R.drawable.pause_music));
-                break;
-            case R.id.next:
-                break;
-            case R.id.favUnfav:
-                break;
-        }
+    private void setRemoteViews(RemoteViews remoteViews) {
+        Intent favoriteNotification = new Intent(FAVORITE);
+        Intent playPauseIntent = new Intent(PLAYPAUSEMUSIC);
+        Intent previousIntent = new Intent(PREVMUSIC);
+        Intent nextIntent = new Intent(NEXTMUSIC);
+
+        PendingIntent pendingFavoriteIntent = PendingIntent.getBroadcast(this, 0, favoriteNotification, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent pendingPlayPauseIntent = PendingIntent.getBroadcast(this, 0, playPauseIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent pendingPreviousIntent = PendingIntent.getBroadcast(this, 0, previousIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent pendingNextIntent = PendingIntent.getBroadcast(this, 0, nextIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        remoteViews.setOnClickPendingIntent(R.id.favUnfav, pendingFavoriteIntent);
+        remoteViews.setOnClickPendingIntent(R.id.playPause, pendingPlayPauseIntent);
+        remoteViews.setOnClickPendingIntent(R.id.next, pendingNextIntent);
+        remoteViews.setOnClickPendingIntent(R.id.prev, pendingPreviousIntent);
     }
+
 }
