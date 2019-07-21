@@ -14,9 +14,9 @@
         android:src="@drawable/basket"/>
 
     <TextView
-        android:id="@+id/cart_badge"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
+        android:id="@+id/basket_badge"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
         android:layout_gravity="right|end|top"
         android:layout_marginEnd="-5dp"
         android:layout_marginRight="-5dp"
@@ -26,6 +26,6 @@
         android:padding="3dp"
         android:textColor="@android:color/white"
         android:text="0"
-        android:textSize="10dp"/>
+        android:textSize="7dp"/>
 
 </FrameLayout>

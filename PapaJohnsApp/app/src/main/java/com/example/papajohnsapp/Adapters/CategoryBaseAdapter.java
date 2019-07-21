@@ -1,6 +1,7 @@
-package com.example.papajohnsapp;
+package com.example.papajohnsapp.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,13 +9,19 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.cardview.widget.CardView;
+
+import com.example.papajohnsapp.CategCategActivity;
+import com.example.papajohnsapp.Model.CategoryItem;
+import com.example.papajohnsapp.R;
+
 import java.util.ArrayList;
 
 public class CategoryBaseAdapter extends BaseAdapter {
     Context context;
     ArrayList<CategoryItem> categoryItems;
 
-    CategoryBaseAdapter(Context context, ArrayList<CategoryItem> categoryItems) {
+    public CategoryBaseAdapter(Context context, ArrayList<CategoryItem> categoryItems) {
         this.context = context;
         this.categoryItems = categoryItems;
     }
@@ -35,13 +42,23 @@ public class CategoryBaseAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         final LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         View rowView = inflater.inflate(R.layout.category_item, parent, false);
 
+        CardView cv = rowView.findViewById(R.id.categItem);
         ImageView pic = rowView.findViewById(R.id.pic);
         TextView text = rowView.findViewById(R.id.text);
+
+        cv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, CategCategActivity.class);
+                intent.putExtra("categName", categoryItems.get(position).categName);
+                context.startActivity(intent);
+            }
+        });
 
         pic.setImageResource(categoryItems.get(position).categId);
         text.setText(categoryItems.get(position).categName);

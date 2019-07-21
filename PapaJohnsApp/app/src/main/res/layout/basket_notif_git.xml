@@ -10,22 +10,22 @@
     android:focusable="true"
     >
 
-    <ru.nikartm.support.ImageBadgeView
-        android:id="@+id/basketCount"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="10dp"
-        android:padding="10dp"
-        app:ibv_badgeValue="1"
-        app:ibv_badgeTextSize="7sp"
-        app:ibv_fixedBadgeRadius="7dp"
-        app:ibv_badgeTextStyle="bold"
-        app:ibv_badgeTextColor="#ffffff"
-        app:ibv_badgeColor="#00ACC1"
-        app:ibv_badgeLimitValue="false"
-        android:src="@drawable/basket"
-        tools:ignore="MissingConstraints"
-        app:ibv_badgeBackground="@drawable/rectangle_rounded"
-        app:ibv_badgePosition="top_right"/>
+    <!--<ru.nikartm.support.ImageBadgeView-->
+        <!--android:id="@+id/basketCount"-->
+        <!--android:layout_width="40dp"-->
+        <!--android:layout_height="40dp"-->
+        <!--android:layout_marginTop="10dp"-->
+        <!--android:padding="10dp"-->
+        <!--app:ibv_badgeValue="1"-->
+        <!--app:ibv_badgeTextSize="7sp"-->
+        <!--app:ibv_fixedBadgeRadius="7dp"-->
+        <!--app:ibv_badgeTextStyle="bold"-->
+        <!--app:ibv_badgeTextColor="#ffffff"-->
+        <!--app:ibv_badgeColor="#00ACC1"-->
+        <!--app:ibv_badgeLimitValue="false"-->
+        <!--android:src="@drawable/basket"-->
+        <!--tools:ignore="MissingConstraints"-->
+        <!--app:ibv_badgeBackground="@drawable/rectangle_rounded"-->
+        <!--app:ibv_badgePosition="top_right"/>-->
 
 </RelativeLayout>

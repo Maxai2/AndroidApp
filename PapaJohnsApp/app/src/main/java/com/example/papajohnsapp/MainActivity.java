@@ -1,9 +1,8 @@
 package com.example.papajohnsapp;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.MenuItemCompat;
 
-import android.graphics.drawable.Drawable;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -11,16 +10,15 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.mikepenz.actionitembadge.library.ActionItemBadge;
-import com.mikepenz.actionitembadge.library.ActionItemBadgeAdder;
-import com.mikepenz.iconics.typeface.IIcon;
+import com.example.papajohnsapp.Adapters.CategoryBaseAdapter;
+import com.example.papajohnsapp.Model.CategoryItem;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    TextView basketCount;
-    int basketCountNum;
+    static TextView basketItem;
+    static int basketCountNum = 2;
 
     int[] categImg = new int[] {
             R.drawable.pizza, R.drawable.pasta
@@ -51,7 +49,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
-            case R.id.basket:
+            case R.id.action_cart:
+                Intent intent = new Intent(this, BasketActivity.class);
+                startActivity(intent);
                 return true;
             case R.id.store_action:
 
@@ -61,11 +61,10 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    int badgeCount = 10;
+//    int badgeCount = 10;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu, menu);
 
 //        if (badgeCount > 0) {
 //            Drawable d  = getDrawable(R.drawable.basket);
@@ -75,12 +74,12 @@ public class MainActivity extends AppCompatActivity {
 //            ActionItemBadge.hide(menu.findItem(R.id.basket));
 //        }
 
-        new ActionItemBadgeAdder().act(this).menu(menu).title(R.string.sample_2).itemDetails(0, SAMPLE2_ID, 1).showAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS).add(bigStyle, 1);
-        return super.onCreateOptionsMenu(menu);
-        final MenuItem menuItem = menu.findItem(R.id.basket);
+        getMenuInflater().inflate(R.menu.menu, menu);
 
-        View actionView = MenuItemCompat.getActionView(menuItem);
-        basketCount = (TextView) actionView.findViewById(R.id.cart_badge);
+        final MenuItem menuItem = menu.findItem(R.id.action_cart);
+
+        View actionView = menuItem.getActionView();
+        basketItem = (TextView) actionView.findViewById(R.id.basket_badge);
 
         setupBadge();
 
@@ -94,17 +93,17 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-    private void setupBadge() {
+    static public void setupBadge() {
 
-        if (basketCount != null) {
+        if (basketItem != null) {
             if (basketCountNum == 0) {
-                if (basketCount.getVisibility() != View.GONE) {
-                    basketCount.setVisibility(View.GONE);
+                if (basketItem.getVisibility() != View.GONE) {
+                    basketItem.setVisibility(View.GONE);
                 }
             } else {
-                basketCount.setText(String.valueOf(Math.min(basketCountNum, 99)));
-                if (basketCount.getVisibility() != View.VISIBLE) {
-                    basketCount.setVisibility(View.VISIBLE);
+                basketItem.setText(String.valueOf(Math.min(basketCountNum, 99)));
+                if (basketItem.getVisibility() != View.VISIBLE) {
+                    basketItem.setVisibility(View.VISIBLE);
                 }
             }
         }

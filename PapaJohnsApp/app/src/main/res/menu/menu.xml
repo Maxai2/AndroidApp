@@ -5,17 +5,22 @@
     >
 
     <item
-        android:id="@+id/basket"
-        android:actionLayout="@layout/basket_notif_git"
-        app:showAsAction="always"
+        android:id="@+id/action_cart"
+        android:icon="@drawable/basket"
         android:title="@string/basket"
-        />
+        app:actionLayout="@layout/basket_notif"
+        app:showAsAction="ifRoom"/>
 
     <item
         android:id="@+id/store_action"
-        android:orderInCategory="1"
         android:title="@string/stores"
-        app:showAsAction="never"
-        />
-
+        app:showAsAction="never"/>
 </menu>
+
+
+    <!--<item-->
+    <!--android:id="@+id/basket"-->
+    <!--android:actionLayout="@layout/basket_notif_git"-->
+    <!--app:showAsAction="always"-->
+    <!--android:title="@string/basket"-->
+    <!--/>-->

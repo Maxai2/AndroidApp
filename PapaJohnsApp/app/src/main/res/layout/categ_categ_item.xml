@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/categCategItem"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="20dp"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="250dp">
+
+            <ImageView
+                android:id="@+id/categPic"
+                android:layout_width="wrap_content"
+                android:layout_height="150dp"
+                />
+                <!--android:src="@drawable/pizza"-->
+
+            <TextView
+                android:id="@+id/categName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:layout_below="@id/categPic"
+                android:layout_margin="5dp"
+                android:textColor="@android:color/black"
+                />
+                <!--android:text="Pizza"-->
+
+            <TextView
+                android:id="@+id/categIng"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/categName"
+                android:layout_margin="3dp"
+                android:lines="3"
+                android:ellipsize="end"
+                />
+                <!--android:text="asdfhasdfihasdfha;sldkfhaosdif ;asodf ;aosdif ;oasd fh;oasih fosaidhf;oas dhf;oasidhf;oasdhf;oisahd;foas"-->
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>
