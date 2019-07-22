@@ -31,4 +31,5 @@ dependencies {
     implementation 'androidx.cardview:cardview:1.0.0-beta01'
     implementation 'com.mikepenz:actionitembadge:3.3.2@aar'
     implementation 'com.mikepenz:iconics-core:4.0.1-b01'
+    implementation 'com.google.code.gson:gson:2.8.5'
 }

@@ -1,10 +1,12 @@
 package com.example.papajohnsapp;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.NavUtils;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+
+import java.util.Objects;
 
 public class BasketActivity extends AppCompatActivity {
 
@@ -13,7 +15,10 @@ public class BasketActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_basket);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
         getSupportActionBar().setTitle("Basket");
     }
 
@@ -21,7 +26,7 @@ public class BasketActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                NavUtils.navigateUpFromSameTask(this);
+                finish();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

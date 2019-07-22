@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    static TextView basketItem;
+    TextView basketItem;
     static int basketCountNum = 2;
 
     int[] categImg = new int[] {
@@ -93,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-    static public void setupBadge() {
+    private void setupBadge() {
 
         if (basketItem != null) {
             if (basketCountNum == 0) {

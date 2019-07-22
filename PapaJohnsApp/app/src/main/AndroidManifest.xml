@@ -9,23 +9,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            android:noHistory="false"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".BasketActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.papajohnsapp.MainActivity" />
-        </activity>
-        <activity android:name=".CategCategActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.papajohnsapp.MainActivity" />
-        </activity>
+        <activity android:name=".BasketActivity"></activity>
+        <activity android:name=".ItemDetailActivity"></activity>
+        <activity android:name=".CategCategActivity"></activity>
     </application>
 
 </manifest>

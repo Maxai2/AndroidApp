@@ -1,5 +1,6 @@
 package com.example.papajohnsapp;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NavUtils;
 
@@ -16,7 +17,7 @@ import com.example.papajohnsapp.Model.CategoryCategItem;
 
 import java.util.ArrayList;
 
-import static com.example.papajohnsapp.MainActivity.setupBadge;
+import static com.example.papajohnsapp.MainActivity.basketCountNum;
 
 public class CategCategActivity extends AppCompatActivity {
 
@@ -51,6 +52,7 @@ public class CategCategActivity extends AppCompatActivity {
 //            {9, 14, 19},
 //            {8, 13, 18}
 //    };
+
     //----------------------------------------------------------------------------
 
     int[] categCategPicsPasta = new int[] {
@@ -77,12 +79,17 @@ public class CategCategActivity extends AppCompatActivity {
 //            {6}
 //    };
 
+    TextView basketItem;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_categ_categ);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
 
         String categ = "";
         if (savedInstanceState == null) {
@@ -123,7 +130,7 @@ public class CategCategActivity extends AppCompatActivity {
                     return;
         }
 
-        ItemFromCategBaseAdapter itemFromCategBaseAdapter = new ItemFromCategBaseAdapter(this, categoryCategItems);
+        ItemFromCategBaseAdapter itemFromCategBaseAdapter = new ItemFromCategBaseAdapter(this, categoryCategItems, categ);
         categCategList.setAdapter(itemFromCategBaseAdapter);
     }
 
@@ -134,6 +141,7 @@ public class CategCategActivity extends AppCompatActivity {
         final MenuItem menuItem = menu.findItem(R.id.action_cart);
 
         View actionView = menuItem.getActionView();
+        basketItem = (TextView) actionView.findViewById(R.id.basket_badge);
 
         setupBadge();
 
@@ -147,11 +155,27 @@ public class CategCategActivity extends AppCompatActivity {
         return true;
     }
 
+    private void setupBadge() {
+
+        if (basketItem != null) {
+            if (basketCountNum == 0) {
+                if (basketItem.getVisibility() != View.GONE) {
+                    basketItem.setVisibility(View.GONE);
+                }
+            } else {
+                basketItem.setText(String.valueOf(Math.min(basketCountNum, 99)));
+                if (basketItem.getVisibility() != View.VISIBLE) {
+                    basketItem.setVisibility(View.VISIBLE);
+                }
+            }
+        }
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                NavUtils.navigateUpFromSameTask(this);
+                finish();
                 return true;
             case R.id.action_cart:
                 Intent intent = new Intent(this, BasketActivity.class);
