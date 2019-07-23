@@ -51,6 +51,7 @@ public class BasketBaseAdapter extends BaseAdapter {
         TextView basketItemTitle = rowView.findViewById(R.id.basketItemTitle);
         TextView basketItemSize = rowView.findViewById(R.id.basketItemSize);
         TextView itemCount = rowView.findViewById(R.id.itemCount);
+        TextView basketItemPrice = rowView.findViewById(R.id.basketItemPrice);
 
         basketPic.setImageResource(basketItems.get(position).basItemPicId);
         basketItemTitle.setText(basketItems.get(position).basItemTitle);
@@ -63,7 +64,8 @@ public class BasketBaseAdapter extends BaseAdapter {
         }
 
         itemCount.setText(basketItems.get(position).basItemCount);
+        basketItemPrice.setText(basketItems.get(position).);
 
-        return null;
+        return rowView;
     }
 }
