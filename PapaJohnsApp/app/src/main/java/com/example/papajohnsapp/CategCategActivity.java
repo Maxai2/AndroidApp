@@ -17,7 +17,7 @@ import com.example.papajohnsapp.Model.CategoryCategItem;
 
 import java.util.ArrayList;
 
-import static com.example.papajohnsapp.MainActivity.basketCountNum;
+import static com.example.papajohnsapp.MainActivity.basketItems;
 
 public class CategCategActivity extends AppCompatActivity {
 
@@ -160,12 +160,12 @@ public class CategCategActivity extends AppCompatActivity {
     private void setupBadge() {
 
         if (basketItem != null) {
-            if (basketCountNum == 0) {
+            if (basketItems.size() == 0) {
                 if (basketItem.getVisibility() != View.GONE) {
                     basketItem.setVisibility(View.GONE);
                 }
             } else {
-                basketItem.setText(String.valueOf(Math.min(basketCountNum, 99)));
+                basketItem.setText(String.valueOf(Math.min(basketItems.size(), 99)));
                 if (basketItem.getVisibility() != View.VISIBLE) {
                     basketItem.setVisibility(View.VISIBLE);
                 }

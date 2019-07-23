@@ -11,6 +11,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.papajohnsapp.Adapters.CategoryBaseAdapter;
+import com.example.papajohnsapp.Model.BasketItem;
 import com.example.papajohnsapp.Model.CategoryItem;
 
 import java.util.ArrayList;
@@ -18,7 +19,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     TextView basketItem;
-    static int basketCountNum = 2;
+    static ArrayList<BasketItem> basketItems = new ArrayList<>();
 
     int[] categImg = new int[] {
             R.drawable.pizza, R.drawable.pasta
@@ -96,12 +97,12 @@ public class MainActivity extends AppCompatActivity {
     private void setupBadge() {
 
         if (basketItem != null) {
-            if (basketCountNum == 0) {
+            if (basketItems.size() == 0) {
                 if (basketItem.getVisibility() != View.GONE) {
                     basketItem.setVisibility(View.GONE);
                 }
             } else {
-                basketItem.setText(String.valueOf(Math.min(basketCountNum, 99)));
+                basketItem.setText(String.valueOf(Math.min(basketItems.size(), 99)));
                 if (basketItem.getVisibility() != View.VISIBLE) {
                     basketItem.setVisibility(View.VISIBLE);
                 }

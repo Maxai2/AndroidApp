@@ -35,7 +35,7 @@
                 android:textStyle="bold"
                 android:layout_below="@id/categPic"
                 android:layout_margin="5dp"
-                android:textColor="@android:color/black"
+                android:textColor="@android:color/white"
                 />
                 <!--android:text="Pizza"-->
 
@@ -47,6 +47,7 @@
                 android:layout_margin="3dp"
                 android:lines="3"
                 android:ellipsize="end"
+                android:textColor="@android:color/white"
                 />
                 <!--android:text="asdfhasdfihasdfha;sldkfhaosdif ;asodf ;aosdif ;oasd fh;oasih fosaidhf;oas dhf;oasidhf;oasdhf;oisahd;foas"-->
 
