@@ -7,7 +7,7 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/categItem"
-        android:layout_width="250dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_margin="20dp"
@@ -15,12 +15,14 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:background="@color/colorPapa">
 
             <ImageView
                 android:id="@+id/pic"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
                 />
                 <!--android:src="@drawable/pizza"-->
 
@@ -31,9 +33,10 @@
                 android:layout_toRightOf="@id/pic"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:textSize="25dp"
+                android:textSize="40dp"
                 android:textStyle="bold"
                 android:textAlignment="center"
+                android:textColor="@android:color/white"
                 />
                 <!--android:text="Pizza"-->
 

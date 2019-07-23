@@ -19,8 +19,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".BasketActivity"></activity>
-        <activity android:name=".ItemDetailActivity"></activity>
         <activity android:name=".CategCategActivity"></activity>
+        <activity android:name=".ItemDetailActivity"></activity>
     </application>
 
 </manifest>

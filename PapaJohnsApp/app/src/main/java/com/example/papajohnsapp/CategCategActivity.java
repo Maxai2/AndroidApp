@@ -38,20 +38,20 @@ public class CategCategActivity extends AppCompatActivity {
     };
 
     String[] categCategIngsPizza = new String[] {
-            "Курица Гриль, Свежие Грибы, Соус Барбекю, Сыр Моцарелла",
-            "Пепперони, Итальянские Cосиски, Ветчина, Свежие Грибы, Зелёный Перец, Чёрные Оливки, Сыр Моцарелла",
-            "Пепперони, Итальянские Cосиски, Говядина, Ветчина, Сыр Моцарелла",
-            "Курица Гриль, Ананасы, Экстра Моцарелла",
-            "Говядина, Свежие Грибы, Соус Барбекю, Сыр Моцарелла"
+            "\t\tКурица Гриль, Свежие Грибы, Соус Барбекю, Сыр Моцарелла",
+            "\t\tПепперони, Итальянские Cосиски, Ветчина, Свежие Грибы, Зелёный Перец, Чёрные Оливки, Сыр Моцарелла",
+            "\t\tПепперони, Итальянские Cосиски, Говядина, Ветчина, Сыр Моцарелла",
+            "\t\tКурица Гриль, Ананасы, Экстра Моцарелла",
+            "\t\tГовядина, Свежие Грибы, Соус Барбекю, Сыр Моцарелла"
     };
 
-//    int[][] categCategPricesPizza = new int[][] {
-//            {8, 13, 18},
-//            {10, 16, 20},
-//            {11, 18, 23},
-//            {9, 14, 19},
-//            {8, 13, 18}
-//    };
+    int[][] categCategPricesPizza = new int[][] {
+            {8, 13, 18},
+            {10, 16, 20},
+            {11, 18, 23},
+            {9, 14, 19},
+            {8, 13, 18}
+    };
 
     //----------------------------------------------------------------------------
 
@@ -68,16 +68,16 @@ public class CategCategActivity extends AppCompatActivity {
     };
 
     String[] categCategIngsPasta = new String[] {
-            "Спагетти, Пепперони, Ветчина, Итальянские Сосиски, Зелёный Перец, Свежие Грибы, Пицца-Соус, Сыр Моцарелла",
-            "Спагетти, Курица Гриль, Свежие Грибы, Соус Рэнч, Сыр Моцарелла",
-            "Спагетти, Пармезан, Орегано, Пицца-Соус, Сыр Моцарелла"
+            "\t\tСпагетти, Пепперони, Ветчина, Итальянские Сосиски, Зелёный Перец, Свежие Грибы, Пицца-Соус, Сыр Моцарелла",
+            "\t\tСпагетти, Курица Гриль, Свежие Грибы, Соус Рэнч, Сыр Моцарелла",
+            "\t\tСпагетти, Пармезан, Орегано, Пицца-Соус, Сыр Моцарелла"
     };
 
-//    int[][] categCategPricesPasta = new int[][] {
-//            {7},
-//            {7},
-//            {6}
-//    };
+    int[][] categCategPricesPasta = new int[][] {
+            {7},
+            {7},
+            {6}
+    };
 
     TextView basketItem;
 
@@ -115,7 +115,8 @@ public class CategCategActivity extends AppCompatActivity {
                     categoryCategItems.add(new CategoryCategItem(
                             categCategPicsPizza[i],
                             categCategNamesPizza[i],
-                            categCategIngsPizza[i]));
+                            categCategIngsPizza[i],
+                            categCategPricesPizza[i]));
                 }
                 break;
             case "Pasta":
@@ -123,7 +124,8 @@ public class CategCategActivity extends AppCompatActivity {
                     categoryCategItems.add(new CategoryCategItem(
                             categCategPicsPasta[i],
                             categCategNamesPasta[i],
-                            categCategIngsPasta[i]));
+                            categCategIngsPasta[i],
+                            categCategPricesPasta[i]));
                 }
                 break;
                 default:
