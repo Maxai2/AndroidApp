@@ -1,7 +1,9 @@
 package com.example.papajohnsapp;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -19,7 +21,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     TextView basketItem;
-    static ArrayList<BasketItem> basketItems = new ArrayList<>();
+    public static ArrayList<BasketItem> basketItems = new ArrayList<>();
 
     int[] categImg = new int[] {
             R.drawable.pizza, R.drawable.pasta
@@ -45,6 +47,19 @@ public class MainActivity extends AppCompatActivity {
         CategoryBaseAdapter adapter = new CategoryBaseAdapter(this, categArr);
 
         categList.setAdapter(adapter);
+
+        adapter.setOnItemClickListner(new onItemClickListner() {
+            @Override
+            public void onItemClick(Intent intent) {
+                startActivityForResult(intent, 100);
+            }
+        });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        setupBadge();
     }
 
     @Override
@@ -52,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()){
             case R.id.action_cart:
                 Intent intent = new Intent(this, BasketActivity.class);
-                startActivity(intent);
+                startActivityForResult(intent, 100);
                 return true;
             case R.id.store_action:
 

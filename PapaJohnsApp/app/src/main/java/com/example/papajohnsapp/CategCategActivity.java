@@ -1,9 +1,11 @@
 package com.example.papajohnsapp;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NavUtils;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -134,6 +136,18 @@ public class CategCategActivity extends AppCompatActivity {
 
         ItemFromCategBaseAdapter itemFromCategBaseAdapter = new ItemFromCategBaseAdapter(this, categoryCategItems, categ);
         categCategList.setAdapter(itemFromCategBaseAdapter);
+        itemFromCategBaseAdapter.setOnItemClickListner(new onItemClickListner() {
+            @Override
+            public void onItemClick(Intent intent) {
+                startActivityForResult(intent, 100);
+            }
+        });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        setupBadge();
     }
 
     @Override
@@ -177,11 +191,13 @@ public class CategCategActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
+                Intent returnIntent = new Intent();
+                setResult(100, returnIntent);
                 finish();
                 return true;
             case R.id.action_cart:
                 Intent intent = new Intent(this, BasketActivity.class);
-                startActivity(intent);
+                startActivityForResult(intent, 100);
                 return true;
             case R.id.store_action:
 

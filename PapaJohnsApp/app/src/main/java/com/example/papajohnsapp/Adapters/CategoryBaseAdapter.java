@@ -14,12 +14,20 @@ import androidx.cardview.widget.CardView;
 import com.example.papajohnsapp.CategCategActivity;
 import com.example.papajohnsapp.Model.CategoryItem;
 import com.example.papajohnsapp.R;
+import com.example.papajohnsapp.onItemClickListner;
 
 import java.util.ArrayList;
 
 public class CategoryBaseAdapter extends BaseAdapter {
     Context context;
     ArrayList<CategoryItem> categoryItems;
+
+    onItemClickListner onItemClickListner;
+
+    public void setOnItemClickListner(onItemClickListner onItemClickListner)
+    {
+        this.onItemClickListner = onItemClickListner;
+    }
 
     public CategoryBaseAdapter(Context context, ArrayList<CategoryItem> categoryItems) {
         this.context = context;
@@ -56,7 +64,8 @@ public class CategoryBaseAdapter extends BaseAdapter {
             public void onClick(View v) {
                 Intent intent = new Intent(context, CategCategActivity.class);
                 intent.putExtra("categName", categoryItems.get(position).categName);
-                context.startActivity(intent);
+
+                onItemClickListner.onItemClick(intent);
             }
         });
 

@@ -1,9 +1,11 @@
 package com.example.papajohnsapp;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -123,6 +125,12 @@ public class ItemDetailActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        setupBadge();
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu, menu);
 
@@ -163,11 +171,13 @@ public class ItemDetailActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
+                Intent returnIntent = new Intent();
+                setResult(100, returnIntent);
                 finish();
                 return true;
             case R.id.action_cart:
                 Intent intent = new Intent(this, BasketActivity.class);
-                startActivity(intent);
+                startActivityForResult(intent, 100);
                 return true;
             case R.id.store_action:
 
@@ -208,9 +218,9 @@ public class ItemDetailActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         if (categ.equals("Pizza")) {
-                            basketItems.add(new BasketItem(categoryCategItem.CCIPic, categoryCategItem.CCIName, sizes[(int)itemSize.getSelectedItemId()], itemCount.getText().toString()));
+                            basketItems.add(new BasketItem(categoryCategItem.CCIPic, categoryCategItem.CCIName, String.valueOf(count), itemPrice.getText().toString(), sizes[(int)itemSize.getSelectedItemId()]));
                         } else {
-                            basketItems.add(new BasketItem(categoryCategItem.CCIPic, categoryCategItem.CCIName, itemCount.getText().toString()));
+                            basketItems.add(new BasketItem(categoryCategItem.CCIPic, categoryCategItem.CCIName, String.valueOf(count), itemPrice.getText().toString()));
                         }
 
                         setupBadge();

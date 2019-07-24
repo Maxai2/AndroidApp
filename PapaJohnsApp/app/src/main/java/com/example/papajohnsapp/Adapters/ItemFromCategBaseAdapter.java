@@ -15,16 +15,26 @@ import com.example.papajohnsapp.CategCategActivity;
 import com.example.papajohnsapp.ItemDetailActivity;
 import com.example.papajohnsapp.Model.CategoryCategItem;
 import com.example.papajohnsapp.R;
+import com.example.papajohnsapp.onItemClickListner;
 import com.google.gson.Gson;
 
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
+
 public class ItemFromCategBaseAdapter extends BaseAdapter {
+
+   onItemClickListner onItemClickListner;
+
     Context context;
     ArrayList<CategoryCategItem> categoryCategItems;
     String categ;
+
+    public void setOnItemClickListner(onItemClickListner onItemClickListner)
+    {
+        this.onItemClickListner = onItemClickListner;
+    }
 
     public ItemFromCategBaseAdapter(Context context, ArrayList<CategoryCategItem> categoryCategItems, String categ) {
         this.context = context;
@@ -64,7 +74,9 @@ public class ItemFromCategBaseAdapter extends BaseAdapter {
                 Intent intent = new Intent(context, ItemDetailActivity.class);
                 intent.putExtra("itemCateg", categ);
                 intent.putExtra("itemName", new Gson().toJson(categoryCategItems.get(position)));
-                context.startActivity(intent);
+                //context.startActivity(intent);
+
+                onItemClickListner.onItemClick(intent);
             }
         });
 
