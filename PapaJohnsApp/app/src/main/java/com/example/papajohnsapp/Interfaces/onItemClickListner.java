@@ -1,4 +1,4 @@
-package com.example.papajohnsapp;
+package com.example.papajohnsapp.Interfaces;
 
 import android.content.Intent;
 

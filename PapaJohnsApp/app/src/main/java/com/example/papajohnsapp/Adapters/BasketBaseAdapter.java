@@ -11,7 +11,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.papajohnsapp.AmountInterface;
+import com.example.papajohnsapp.Interfaces.AmountInterface;
 import com.example.papajohnsapp.Model.BasketItem;
 import com.example.papajohnsapp.R;
 

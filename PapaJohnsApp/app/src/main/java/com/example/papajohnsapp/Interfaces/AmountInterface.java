@@ -1,4 +1,4 @@
-package com.example.papajohnsapp;
+package com.example.papajohnsapp.Interfaces;
 
 public interface AmountInterface {
     void onAmontCost(int c);

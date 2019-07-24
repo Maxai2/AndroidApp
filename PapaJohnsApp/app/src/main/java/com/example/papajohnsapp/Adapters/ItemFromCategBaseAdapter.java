@@ -11,14 +11,11 @@ import android.widget.TextView;
 
 import androidx.cardview.widget.CardView;
 
-import com.example.papajohnsapp.CategCategActivity;
 import com.example.papajohnsapp.ItemDetailActivity;
 import com.example.papajohnsapp.Model.CategoryCategItem;
 import com.example.papajohnsapp.R;
-import com.example.papajohnsapp.onItemClickListner;
+import com.example.papajohnsapp.Interfaces.onItemClickListner;
 import com.google.gson.Gson;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 

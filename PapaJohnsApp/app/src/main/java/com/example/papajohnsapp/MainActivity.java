@@ -3,7 +3,6 @@ package com.example.papajohnsapp;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -13,6 +12,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.papajohnsapp.Adapters.CategoryBaseAdapter;
+import com.example.papajohnsapp.Interfaces.onItemClickListner;
 import com.example.papajohnsapp.Model.BasketItem;
 import com.example.papajohnsapp.Model.CategoryItem;
 
@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(intent, 100);
                 return true;
             case R.id.store_action:
-
+                
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

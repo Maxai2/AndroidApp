@@ -14,7 +14,7 @@ import androidx.cardview.widget.CardView;
 import com.example.papajohnsapp.CategCategActivity;
 import com.example.papajohnsapp.Model.CategoryItem;
 import com.example.papajohnsapp.R;
-import com.example.papajohnsapp.onItemClickListner;
+import com.example.papajohnsapp.Interfaces.onItemClickListner;
 
 import java.util.ArrayList;
 
