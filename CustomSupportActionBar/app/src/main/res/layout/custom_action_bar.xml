@@ -1,0 +1,71 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<LinearLayout xmlns:android = "http://schemas.android.com/apk/res/android"
+    xmlns:app = "http://schemas.android.com/apk/res-auto"
+    android:layout_width = "match_parent"
+    android:layout_height = "wrap_content"
+    android:background="@drawable/bottom_border"
+    >
+
+    <GridLayout
+        android:layout_height = "40dp"
+        android:layout_width="match_parent"
+        android:columnCount="3"
+        android:rowCount="1"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="7dp"
+        >
+
+        <ImageView
+            android:layout_width = "0dp"
+            android:layout_height = "0dp"
+            android:src = "@drawable/left_arrow"
+            android:layout_column="0"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:layout_marginRight="5dp"
+            />
+
+        <LinearLayout
+            android:id="@+id/search"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            android:background="@drawable/rounded_border"
+            android:backgroundTint="#9C2018"
+            android:layout_column="1"
+            android:layout_columnWeight="5"
+            android:layout_rowWeight="1"
+            >
+
+            <ImageView
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:src="@drawable/ic_search"
+                android:layout_gravity="center"
+                />
+
+            <EditText
+                android:layout_width = "match_parent"
+                android:layout_height = "match_parent"
+                android:hint="Поиск музыки"
+                android:textColorHint="#E2605B"
+                android:background="@null"
+                android:layout_marginLeft="5dp"
+                android:layout_gravity="center"
+                android:textSize="15dp"
+                />
+        </LinearLayout>
+
+        <Button
+            android:layout_width="0dp"
+            android:text="Поиск"
+            android:background="@android:color/transparent"
+            android:textAllCaps="false"
+            android:textColor="#E2605B"
+            android:layout_column="2"
+            android:layout_columnWeight="1"
+            android:textSize="15dp"
+            android:layout_marginLeft="5dp"
+            />
+    </GridLayout>
+</LinearLayout>
