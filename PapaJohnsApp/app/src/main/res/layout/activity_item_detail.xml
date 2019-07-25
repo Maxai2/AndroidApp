@@ -91,10 +91,10 @@
                         android:layout_rowWeight="1"
                         android:text="-"
                         android:textSize="25dp"
-                        android:background="@drawable/border"
                         android:backgroundTint="@android:color/darker_gray"
                         android:enabled="false"
                         android:onClick="decIncCount"
+                        android:background="@color/colorPapa"
                         />
 
                     <TextView
@@ -116,7 +116,7 @@
                         android:layout_rowWeight="1"
                         android:text="+"
                         android:textSize="25dp"
-                        android:background="@drawable/border"
+                        android:background="@color/colorPapa"
                         android:backgroundTint="@android:color/darker_gray"
                         android:onClick="decIncCount"
                         />
@@ -171,6 +171,7 @@
             android:layout_alignParentRight="true"
             android:layout_margin="10dp"
             android:onClick="addToBasket"
+            android:background="@android:color/white"
             />
 
     </RelativeLayout>

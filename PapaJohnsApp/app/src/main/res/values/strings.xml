@@ -2,5 +2,6 @@
     <string name="app_name">PapaJohnsApp</string>
 
     <string name="basket">Basket</string>
+    <string name="delete">Clear</string>
     <string name="stores">Stores</string>
 </resources>

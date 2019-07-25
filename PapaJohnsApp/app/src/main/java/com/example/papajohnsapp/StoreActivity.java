@@ -1,10 +1,15 @@
 package com.example.papajohnsapp;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.ListView;
 
+import com.example.papajohnsapp.Adapters.StoreBaseAdapter;
 import com.example.papajohnsapp.Model.StoreItem;
 
 import java.util.ArrayList;
@@ -12,11 +17,12 @@ import java.util.ArrayList;
 public class StoreActivity extends AppCompatActivity {
 
     int[] storePics = new int[] {
-            R.drawable.nizamiStore,
-            R.drawable.sahilStore,
-            R.drawable.genclikStore,
-            R.drawable.acamiStore,
-            R.drawable.parkBulvarStore
+            R.drawable.nizami_store,
+            R.drawable.sahil_store,
+            R.drawable.genclik_store,
+            R.drawable.acami_store,
+            R.drawable.park_bulvar_store,
+            R.drawable.pizza_store_default
     };
 
     String[] storeNames = new String[] {
@@ -51,6 +57,10 @@ public class StoreActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_store);
 
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
         getSupportActionBar().setTitle("Stores");
 
         ListView storeList = findViewById(R.id.storeList);
@@ -61,6 +71,19 @@ public class StoreActivity extends AppCompatActivity {
             storeItems.add(new StoreItem(storePics[i], storeNames[i], storeStreets[i], storeWorkTimes[i]));
         }
 
+        StoreBaseAdapter adapter = new StoreBaseAdapter(this, storeItems);
 
+        storeList.setAdapter(adapter);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

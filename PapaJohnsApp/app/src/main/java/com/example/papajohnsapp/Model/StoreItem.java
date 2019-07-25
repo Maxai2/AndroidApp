@@ -1,10 +1,10 @@
 package com.example.papajohnsapp.Model;
 
 public class StoreItem {
-    int storePicId;
-    String storeName;
-    String storeStreet;
-    String storeWorkTime;
+    public int storePicId;
+    public String storeName;
+    public String storeStreet;
+    public String storeWorkTime;
 
     public StoreItem(int storePicId, String storeName, String storeStreet, String storeWorkTime) {
         this.storePicId = storePicId;

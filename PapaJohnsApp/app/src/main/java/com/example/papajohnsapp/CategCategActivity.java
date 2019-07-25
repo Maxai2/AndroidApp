@@ -155,6 +155,7 @@ public class CategCategActivity extends AppCompatActivity {
 
         final MenuItem menuItem = menu.findItem(R.id.action_cart);
 
+        menu.findItem(R.id.delete_action).setVisible(false);
         View actionView = menuItem.getActionView();
         basketItem = (TextView) actionView.findViewById(R.id.basket_badge);
 
@@ -199,7 +200,8 @@ public class CategCategActivity extends AppCompatActivity {
                 startActivityForResult(intent, 100);
                 return true;
             case R.id.store_action:
-
+                Intent intentSto = new Intent(this, StoreActivity.class);
+                startActivity(intentSto);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

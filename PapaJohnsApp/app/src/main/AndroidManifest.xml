@@ -9,7 +9,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".StoreActivity"></activity>
         <activity
             android:name=".MainActivity"
             android:noHistory="false">
@@ -19,9 +18,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".BasketActivity" />
-        <activity android:name=".CategCategActivity" />
-        <activity android:name=".ItemDetailActivity" />
+        <activity android:name=".BasketActivity"></activity>
+        <activity android:name=".ItemDetailActivity"></activity>
+        <activity android:name=".StoreActivity"></activity>
+        <activity android:name=".CategCategActivity"></activity>
     </application>
 
 </manifest>

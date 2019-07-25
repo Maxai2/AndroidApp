@@ -12,6 +12,13 @@
         app:showAsAction="ifRoom"/>
 
     <item
+        android:id="@+id/delete_action"
+        android:icon="@drawable/delete"
+        android:title="@string/delete"
+        app:showAsAction="ifRoom"
+        />
+
+    <item
         android:id="@+id/store_action"
         android:title="@string/stores"
         app:showAsAction="never"/>

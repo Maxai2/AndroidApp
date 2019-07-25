@@ -24,6 +24,7 @@ import static com.example.papajohnsapp.MainActivity.basketItems;
 public class BasketActivity extends AppCompatActivity {
 
     Context context;
+    BasketBaseAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +43,7 @@ public class BasketActivity extends AppCompatActivity {
 
         ((TextView)findViewById(R.id.basketAmount)).setText(String.valueOf(amountCh()));
 
-        final BasketBaseAdapter adapter = new BasketBaseAdapter(context, new AmountInterface() {
+        adapter = new BasketBaseAdapter(context, new AmountInterface() {
             @Override
             public void onAmontCost(int c) {
                 ((TextView)findViewById(R.id.basketAmount)).setText(String.valueOf(c));
@@ -51,39 +52,39 @@ public class BasketActivity extends AppCompatActivity {
 
         basketList.setAdapter(adapter);
 
-        Button order = findViewById(R.id.order);
+//        Button order = findViewById(R.id.order);
+//
+//        if (basketItems.size() == 0) {
+//            order.setEnabled(false);
+//        }
 
-        if (basketItems.size() == 0) {
-            order.setEnabled(false);
-        }
-
-        order.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (basketItems.size() != 0) {
-                    new AlertDialog.Builder(context)
-                            .setTitle("Info!")
-                            .setMessage("Order all items?")
-                            .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    basketItems.clear();
-                                    ((TextView)findViewById(R.id.basketAmount)).setText(String.valueOf(amountCh()));
-                                    adapter.notifyDataSetChanged();
-                                }
-                            })
-                            .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-
-                                }
-                            })
-                            .setCancelable(false)
-                            .show();
-
-                }
-            }
-        });
+//        order.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (basketItems.size() != 0) {
+//                    new AlertDialog.Builder(context)
+//                            .setTitle("Info!")
+//                            .setMessage("Order all items?")
+//                            .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+//                                @Override
+//                                public void onClick(DialogInterface dialog, int which) {
+//                                    basketItems.clear();
+//                                    ((TextView)findViewById(R.id.basketAmount)).setText(String.valueOf(amountCh()));
+//                                    adapter.notifyDataSetChanged();
+//                                }
+//                            })
+//                            .setNegativeButton("No", new DialogInterface.OnClickListener() {
+//                                @Override
+//                                public void onClick(DialogInterface dialog, int which) {
+//
+//                                }
+//                            })
+//                            .setCancelable(false)
+//                            .show();
+//
+//                }
+//            }
+//        });
     }
 
     private int amountCh() {
@@ -115,7 +116,32 @@ public class BasketActivity extends AppCompatActivity {
                 finish();
                 return true;
             case R.id.store_action:
+                Intent intentSto = new Intent(this, StoreActivity.class);
+                startActivity(intentSto);
+                return true;
+            case R.id.delete_action:
+                if (basketItems.size() != 0) {
+                    new AlertDialog.Builder(context)
+                            .setTitle("Info!")
+                            .setMessage("Clear all items?")
+                            .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    basketItems.clear();
+                                    ((TextView)findViewById(R.id.basketAmount)).setText(String.valueOf(amountCh()));
+                                    adapter.notifyDataSetChanged();
+                                }
+                            })
+                            .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
 
+                                }
+                            })
+                            .setCancelable(false)
+                            .show();
+
+                }
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

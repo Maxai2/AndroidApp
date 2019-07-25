@@ -66,11 +66,12 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.action_cart:
-                Intent intent = new Intent(this, BasketActivity.class);
-                startActivityForResult(intent, 100);
+                Intent intentBas = new Intent(this, BasketActivity.class);
+                startActivityForResult(intentBas, 100);
                 return true;
             case R.id.store_action:
-                
+                Intent intentSto = new Intent(this, StoreActivity.class);
+                startActivity(intentSto);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -93,6 +94,8 @@ public class MainActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu, menu);
 
         final MenuItem menuItem = menu.findItem(R.id.action_cart);
+
+        menu.findItem(R.id.delete_action).setVisible(false);
 
         View actionView = menuItem.getActionView();
         basketItem = (TextView) actionView.findViewById(R.id.basket_badge);
