@@ -14,7 +14,7 @@ public class Animal {
     private Animal(String name, String description, int id) {
         this.name = name;
         this.description = description;
-        idPicture = id;
+        this.idPicture = id;
     }
 
     public String getDescription() {
