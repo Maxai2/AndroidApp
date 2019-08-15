@@ -40,6 +40,8 @@ public class PostActivity  extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        getSupportActionBar().setTitle("Посты");
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -98,6 +100,7 @@ public class PostActivity  extends AppCompatActivity
                 intent = new Intent(this, PostActivity.class);
                 break;
             case R.id.nav_setting:
+                intent = new Intent(this, SettingActivity.class);
                 break;
             case R.id.nav_community:
                 break;
@@ -132,10 +135,10 @@ public class PostActivity  extends AppCompatActivity
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_post, container, false);
-            TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-            textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
-            return rootView;
+//            View rootView = inflater.inflate(R.layout.fragment_post, container, false);
+//            TextView textView = (TextView) rootView.findViewById(R.id.section_label);
+//            textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
+            return null;
         }
     }
     //----------------------------------------------------------------------------------------------
