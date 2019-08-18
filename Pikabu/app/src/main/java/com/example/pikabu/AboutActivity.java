@@ -1,27 +1,27 @@
 package com.example.pikabu;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
-public class SettingActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+public class AboutActivity extends AppCompatActivity
+        implements NavigationView.OnNavigationItemSelectedListener  {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_setting);
+        setContentView(R.layout.activity_about);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        getSupportActionBar().setTitle("Настройки");
+        getSupportActionBar().setTitle("О приложении");
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -32,7 +32,7 @@ public class SettingActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        navigationView.setCheckedItem(R.id.nav_setting);
+        navigationView.setCheckedItem(R.id.nav_about);
     }
 
     @Override
