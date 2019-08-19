@@ -11,15 +11,12 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".AboutActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".TagsActivity"
-            android:label="@string/title_activity_tags"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".CommunityActivity"
-            android:label="@string/title_activity_community"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".SettingActivity"

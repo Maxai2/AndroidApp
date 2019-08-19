@@ -123,15 +123,15 @@ public class PostActivity  extends AppCompatActivity
     }
     //----------------------------------------------------------------------------------------------
     public static class PlaceholderFragment extends Fragment {
-        private static final String ARG_SECTION_NUMBER = "section_number";
+        private static String TabText;
 
         public PlaceholderFragment() {
         }
 
-        public static PlaceholderFragment newInstance(int sectionNumber) {
+        public static PlaceholderFragment newInstance(String name) {
             PlaceholderFragment fragment = new PlaceholderFragment();
             Bundle args = new Bundle();
-            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
+            args.putCharArray(TabText, name.toCharArray());
             fragment.setArguments(args);
             return fragment;
         }
@@ -139,9 +139,9 @@ public class PostActivity  extends AppCompatActivity
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-//            View rootView = inflater.inflate(R.layout.fragment_post, container, false);
-//            TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-//            textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
+            View rootView = inflater.inflate(R.layout.tabs_fragment, container, false);
+            TextView textView = (TextView) rootView.findViewById(R.id.text_for_tab);
+            textView.setText(TabText);
             return null;
         }
     }
@@ -154,12 +154,23 @@ public class PostActivity  extends AppCompatActivity
 
         @Override
         public Fragment getItem(int position) {
-            return PlaceholderFragment.newInstance(position + 1);
+            switch (position) {
+                case 0:
+                    return PlaceholderFragment.newInstance("Горячее");
+                case 1:
+                    return PlaceholderFragment.newInstance("Лучшее");
+                case 2:
+                    return PlaceholderFragment.newInstance("Свежее");
+                case 3:
+                    return PlaceholderFragment.newInstance("Сообщества");
+            }
+
+            return null;
         }
 
         @Override
         public int getCount() {
-            return 3;
+            return 4;
         }
     }
 }
