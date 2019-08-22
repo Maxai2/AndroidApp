@@ -1,7 +1,9 @@
 package com.example.pikabu;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -28,10 +30,6 @@ import android.widget.TextView;
 public class PostActivity  extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private SectionsPagerAdapter mSectionsPagerAdapter;
-
-    private ViewPager mViewPager;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,15 +51,16 @@ public class PostActivity  extends AppCompatActivity
 
         navigationView.setCheckedItem(R.id.nav_post);
 
-        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
 
-        mViewPager = (ViewPager) findViewById(R.id.container);
-        mViewPager.setAdapter(mSectionsPagerAdapter);
+        ViewPager viewPager = (ViewPager) findViewById(R.id.container);
+        viewPager.setAdapter(sectionsPagerAdapter);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(viewPager);
 
-        mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
-        tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+        tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(viewPager));
     }
 
     @Override
@@ -130,10 +129,13 @@ public class PostActivity  extends AppCompatActivity
 
         public static PlaceholderFragment newInstance(String name) {
             PlaceholderFragment fragment = new PlaceholderFragment();
-            Bundle args = new Bundle();
-            args.putCharArray(TabText, name.toCharArray());
-            fragment.setArguments(args);
+            TabText = name;
             return fragment;
+        }
+
+        @Override
+        public void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
         }
 
         @Override
@@ -142,35 +144,31 @@ public class PostActivity  extends AppCompatActivity
             View rootView = inflater.inflate(R.layout.tabs_fragment, container, false);
             TextView textView = (TextView) rootView.findViewById(R.id.text_for_tab);
             textView.setText(TabText);
-            return null;
+            return rootView;
         }
     }
     //----------------------------------------------------------------------------------------------
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
+        private String[] TAB_TITLES = new String[]{"Горячее", "Лучшее", "Свежее", "Сообщества"};
 
-        public SectionsPagerAdapter(FragmentManager fm) {
+        public SectionsPagerAdapter(Context context, FragmentManager fm) {
             super(fm);
         }
 
         @Override
         public Fragment getItem(int position) {
-            switch (position) {
-                case 0:
-                    return PlaceholderFragment.newInstance("Горячее");
-                case 1:
-                    return PlaceholderFragment.newInstance("Лучшее");
-                case 2:
-                    return PlaceholderFragment.newInstance("Свежее");
-                case 3:
-                    return PlaceholderFragment.newInstance("Сообщества");
-            }
+            return PlaceholderFragment.newInstance(TAB_TITLES[position]);
+        }
 
-            return null;
+        @Nullable
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return TAB_TITLES[position];
         }
 
         @Override
         public int getCount() {
-            return 4;
+            return TAB_TITLES.length;
         }
     }
 }
