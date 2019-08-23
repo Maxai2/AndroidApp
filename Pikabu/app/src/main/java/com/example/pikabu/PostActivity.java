@@ -128,8 +128,9 @@ public class PostActivity  extends AppCompatActivity
         }
 
         public static PlaceholderFragment newInstance(String name) {
-            PlaceholderFragment fragment = new PlaceholderFragment();
             TabText = name;
+            PlaceholderFragment fragment = new PlaceholderFragment();
+            fa
             return fragment;
         }
 
@@ -157,6 +158,7 @@ public class PostActivity  extends AppCompatActivity
 
         @Override
         public Fragment getItem(int position) {
+//            return PlaceholderFragment.newInstance(TAB_TITLES[position]);
             return PlaceholderFragment.newInstance(TAB_TITLES[position]);
         }
 
