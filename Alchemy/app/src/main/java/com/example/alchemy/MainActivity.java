@@ -82,6 +82,12 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
                     return;
                 }
 
+                for (ElementForAlchemistry element : elements) {
+                    if (element.elemTag == imageIDs.get(position)) {
+                        return;
+                    }
+                }
+
                 ImageView iv = new ImageView(parent.getContext());
 
                 iv.setTag(imageIDs.get(position));
@@ -107,7 +113,9 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
 
                 iv.setLayoutParams(layoutParams);
 
-                elements.add(new ElementForAlchemistry(layoutParams.leftMargin, layoutParams.topMargin, getResources().getResourceEntryName(imageIDs.get(position)), imageIDs.get(position)));
+                    ElementForAlchemistry efa = new ElementForAlchemistry(layoutParams.leftMargin, layoutParams.topMargin, getResources().getResourceEntryName(imageIDs.get(position)), imageIDs.get(position));
+
+                elements.add(efa);
                 rootLayout.addView(iv, layoutParams);
 
                 iv.setOnTouchListener(new View.OnTouchListener() {
@@ -120,6 +128,8 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
 
                         final ImageView iv = (ImageView) view;
                         int curIndex = 0;
+
+                        boolean galSame = true;
 
                         ElementForAlchemistry ea = new ElementForAlchemistry();
                         for (ElementForAlchemistry element : elements) {
@@ -165,9 +175,17 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
                                                 ea.elemName = getResources().getResourceEntryName(resultElem);
                                                 ea.elemTag = resultElem;
 
-                                                imageIDs.add(resultElem);
-                                                imageAdapter = new ImageAdapter(getApplicationContext(), imageIDs);
-                                                gallery.setAdapter(imageAdapter);
+                                                for (Integer imageID : imageIDs) {
+                                                    if (imageID == resultElem) {
+                                                        galSame = false;
+                                                    }
+                                                }
+
+                                                if (galSame) {
+                                                    imageIDs.add(resultElem);
+                                                    imageAdapter = new ImageAdapter(getApplicationContext(), imageIDs);
+                                                    gallery.setAdapter(imageAdapter);
+                                                }
                                             }
 
                                             break;
