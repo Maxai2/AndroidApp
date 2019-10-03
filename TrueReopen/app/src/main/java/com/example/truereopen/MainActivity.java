@@ -28,21 +28,36 @@ public class MainActivity extends AppCompatActivity {
             if (sp.getString("count", "").equals("")) {
                 SharedPreferences.Editor ed = sp.edit();
                 ed.putString("count", "1");
+                ed.putBoolean("orientation", true);
                 ed.apply();
 
                 text.setText("1");
             } else {
+                if (!sp.getBoolean("orientation", false)) {
+                    text.setText(sp.getString("count", ""));
+
+                    SharedPreferences.Editor ed = sp.edit();
+                    ed.putBoolean("orientation", true);
+                    ed.apply();
+                    return;
+                }
+
                 int c = Integer.parseInt(sp.getString("count", "0"));
                 c++;
 
                 SharedPreferences.Editor ed = sp.edit();
                 ed.putString("count", String.valueOf(c));
+                ed.putBoolean("orientation", true);
                 ed.apply();
 
                 text.setText(String.valueOf(c));
             }
         } else {
             text.setText(sp.getString("count", ""));
+
+            SharedPreferences.Editor ed = sp.edit();
+            ed.putBoolean("orientation", false);
+            ed.apply();
         }
 
     }
